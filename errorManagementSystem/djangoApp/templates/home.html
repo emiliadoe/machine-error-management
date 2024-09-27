@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <head>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
@@ -18,8 +20,19 @@
         <ul>
             {% if user.is_authenticated %}
                 {% block logged_in_content %}
+                    <a href="{% url 'home' %}">
+                        <div class="profile">
+                            <img src="{% static 'images/account.png' %}" alt="Profil" style="height: 60px; width: 65px">
+                        </div>
+                    </a>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'home' %}">Maschinensuche</a></li>
+                <li><a href="{% url 'home' %}">Fehlercodesuche</a></li>   
+                <a href="{% url 'home' %}">
+                    <div class="profile">
+                        <img src="{% static 'images/plus.png' %}" alt="Profil" style="height: 60px; width: 65px">
+                    </div>
+                </a>             
                 {% endblock %}
             {% else %}
                 {% block not_logged_in_content %}
