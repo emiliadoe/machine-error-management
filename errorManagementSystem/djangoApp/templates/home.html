@@ -3,6 +3,11 @@
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
     <title>
 {% block title %}Error Management{% endblock %}
 </title>
@@ -16,23 +21,51 @@
 
 <body>
 <header>
-    <nav>
+    <nav class="navbar">
         <ul>
             {% if user.is_authenticated %}
                 {% block logged_in_content %}
-                    <a href="{% url 'home' %}">
-                        <div class="profile">
-                            <img src="{% static 'images/account.png' %}" alt="Profil" style="height: 60px; width: 65px">
-                        </div>
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'home' %}"  data-toggle="dropdown" id="navbarDropdown3">
+                            <div class="profile">
+                                <img src="{% static 'images/account.png' %}" alt="Profil" style="height: 60px; width: 65px">
+                            </div>
+                        </a>       
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3" id="dropdown3">
+                                <a class="dropdown-item" href="{% url 'home' %}">Logout</a>
+                            </div>
+                        </li>   
+
+                <li class="nav-item dropdown" id="arrow">
+                    <a class="nav-link dropdown-toggle" href="{% url 'home' %}" role="button" data-toggle="dropdown">
+                        DE
                     </a>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'home' %}">Maschinensuche</a></li>
-                <li><a href="{% url 'home' %}">Fehlercodesuche</a></li>   
-                <a href="{% url 'home' %}">
-                    <div class="profile">
-                        <img src="{% static 'images/plus.png' %}" alt="Profil" style="height: 60px; width: 65px">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown1" id="dropdown1">
+                        <a class="dropdown-item" href="{% url 'home' %}">ENG</a>
+                        <a class="dropdown-item" href="{% url 'home' %}">ESP</a>
                     </div>
-                </a>             
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="{% url 'home' %}"  data-toggle="dropdown" class="nav-link dropdown-toggle"  role="button">Maschinensuche</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown4" id="dropdown4">
+                            <a class="dropdown-item" href="{% url 'home' %}">Lorem ipsum</a>
+                        </div>
+                    </li>   
+                <li><a href="{% url 'home' %}">Fehlercodesuche</a></li>   
+
+                <li class="nav-item dropdown" id="navbar2">
+                <a data-toggle="dropdown" href="{% url 'home' %}" id="navbarDropdown2">
+                    <div class="plus">
+                        <img src="{% static 'images/plus.png' %}" alt="Plus" style="height: 60px; width: 65px">
+                    </div>
+                </a>       
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
+                        <a class="dropdown-item" href="{% url 'home' %}">Maschine hinzufügen</a>
+                        <a class="dropdown-item" href="{% url 'home' %}">Fehlercode hinzufügen</a>
+                        <a class="dropdown-item" href="{% url 'home' %}">Maschinendaten bearbeiten</a>
+                    </div>
+                </li>   
                 {% endblock %}
             {% else %}
                 {% block not_logged_in_content %}
@@ -55,8 +88,18 @@
 </main>
 
 <footer>
-    <p>&copy; 2024 Bachelor</p>
+    <p>&copy; 2024 Bachelorprojekt</p>
 </footer>
+
+  <!-- Optional JavaScript -->
+    <!-- jQuery then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 </body>
 
 
