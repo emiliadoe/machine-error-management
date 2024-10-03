@@ -6,45 +6,43 @@
 </head>
 <body>
 
-<main>
 {% block content %}
+
+<main>
     <h1>Error Management System</h1>
         <br>
 
-        <form method="POST">
+       
+        <form method="GET" action="{% url 'home' %}">
             {% csrf_token %}
-            {{ form.as_p }}
-                <button type="submit">Suchen</button>
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">Search</button>
         </form>
-
-        {% if show_search_results %}
+        
+        {% if results %}
         <b>Maschinen:</b><br>
-
         <ul>
-            {% for machine in machines_found %}
+            {% for machine in results %}
                 <li>
-                    <p><b>{{ product }}</b></p>
-
-                    <a href="{% url 'machine-detail' machine.id %}">
-                        Show product
+                    <p><b>{{ machine }}</b></p>
+                    <a href="{% url 'machine_detail' machine.id %}">
+                        Show machine
                     </a>
                 </li>
             {% endfor %}
         </ul>
 
+        {% else %}
+        <p>No results found.</p>
     {% endif %}
 
         
     </main>
 
 
-    {% endblock %}
+  
 </main>
-
-<footer>
-    <p>&copy; 2024 Bachelorprojekt</p>
-</footer>
-
+  {% endblock %}
 </body>
 
 

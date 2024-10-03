@@ -14,34 +14,34 @@ from django.views.generic import UpdateView, CreateView
 
 
 def home_page(request):
+    q = request.GET.get('q')
+    if q:
+        results = Machine.objects.filter(name__icontains=q)
+    else:
+        results = None
+    
+    return render(request, 'home.html', {'results': results})
+
     if request.method == 'POST':
 
-        search_title = request.POST['name']
+        search_name = request.POST['name']
         search_description = request.POST['description']
-      
-
-        products_found = Machine.objects.filter(
-            Q(title__contains=search_title)
+        machines_found = Machine.objects.filter(
+            Q(title__contains=search_name)
             & Q(description__contains=search_description)
         )
-
         form_in_function_based_view = SearchForm()
-
         context = {
             'show_search_results': True,
             'form': form_in_function_based_view,
-            'products_found': products_found
+            'machines_found': machines_found
         }
-
     else:  # GET
-
         form_in_function_based_view = SearchForm()
-
         context = {
             'show_search_results': False,
             'form': form_in_function_based_view,
         }
-
     return render(request, 'home.html', context)
 
 def overview_list(request):
@@ -50,22 +50,13 @@ def overview_list(request):
     return render(request, 'overview.html', context)
 
 
-
 def machine_detail(request, **kwargs):
     product_id = kwargs['pk']  
     current_machine = get_object_or_404(Machine, id=product_id)
     current_user = request.user
 
-   # if not (current_user.groups.filter(name='Kundenservice').exists() or current_user.is_superuser):
-   #     return redirect('overview')
-
-    if request.method == 'POST' and 'delete_product' in request.POST:
-        current_machine.delete()
-        return redirect('overview')
-
-
     context = {
-        'single_product': current_machine,
+        'single_machine': current_machine,
     }
 
     return render(request, 'machine_detail.html', context)

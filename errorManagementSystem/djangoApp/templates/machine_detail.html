@@ -1,19 +1,26 @@
 {% extends "base.html" %}
-
 <body>
-    <h2>{{ single_product.name }}</h2>
+   
+    {% block content %}
+ <main>
+    
+    <h2>{{ single_machine.name }}</h2>
 
     <table>
         <tr>
             <td><b>Description:</b></td>
-            <td><p>{{ single_product.description }}</p><br></td>
+            <td><p>{{ single_machine.description }}</p><br></td>
         </tr>
     </table>
 
    
-    <button class="button" role="button"> 
-        <a href="{% url 'home.html' %}">Daten bearbeiten</a>
+    <!-- <button class="button" role="button"> 
+        <a href="{% url 'home' %}">Daten bearbeiten</a>
     </button>
+-->
+    
 
-</body>
+</main>
 {% endblock %}
+</body>
+

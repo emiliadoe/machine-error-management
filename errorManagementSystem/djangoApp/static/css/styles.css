@@ -16,6 +16,11 @@ body {
     box-sizing: border-box;
   }
 
+main{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -24,6 +29,7 @@ header {
   height: 70px;
   width: 100%;
   max-width: 100%;
+  margin-bottom: 20px;
 }
 
 nav{
@@ -60,7 +66,7 @@ nav ul {
   #navbar2{
     all: unset !important;
     #dropdown2{
-        top: 9%;
+        top: 10%;
         right: 5px;
         left: unset;
     }
@@ -68,7 +74,7 @@ nav ul {
 
   #dropdown1{
     min-width: unset;
-    top: 110%;
+    top: 115%;
 }
 #dropdown3{
     min-width: unset;
