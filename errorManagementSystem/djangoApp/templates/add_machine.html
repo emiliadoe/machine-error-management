@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Maschine hinzufügen{% endblock %}
+
+
+<body>
+
+    <main>
+        {% block content %}
+
+    <h2>Maschine hinzufügen</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Maschine hinzufügen</button>
+    </form>
+
+{% endblock %}
+
+</main>
+</body>
