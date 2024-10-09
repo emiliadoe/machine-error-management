@@ -11,8 +11,40 @@
             <td><b>Description:</b></td>
             <td><p>{{ single_machine.description }}</p><br></td>
         </tr>
+        <tr>
+            <td><b>Notizen:</b></td>
+            <td><p>{{ single_machine.notes }}</p><br></td>
+        </tr>
+        <tr>
+            <td><b>weitere Anlagen:</b></td>
+            <td><p>{{ single_machine.files }}</p><br></td>
+        </tr>
     </table>
 
+    <br>
+    <br>
+
+    <form method="get">
+        {% csrf_token %}
+        <input type="text" name="q" placeholder="Search error codes..." value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+        {% if search_query %}
+            <h2>Filtered Error Codes</h2>
+        {% else %}
+            <h2>All Error Codes</h2>
+        {% endif %}
+
+        {% if error_codes %}
+        <ul>
+            {% for error_code in error_codes %}
+                <li>{{ error_code.error_code }} - {{ error_code.error_description }}</li>
+
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No results found.</p>
+    {% endif %}
    
     <!-- <button class="button" role="button"> 
         <a href="{% url 'home' %}">Daten bearbeiten</a>

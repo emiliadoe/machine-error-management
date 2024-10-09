@@ -11,23 +11,24 @@
 <main>
     <h1>Error Management System</h1>
         <br>
-
        
-        <form method="GET" action="{% url 'home' %}">
+        <form method="GET" action="{% url 'home' %}" class="search-bar">
             {% csrf_token %}
             <input type="text" name="q" placeholder="Search...">
             <button type="submit">Search</button>
         </form>
         
         {% if results %}
-        <b>Maschinen:</b><br>
+        <b>Suchergebnisse:</b><br>
         <ul>
             {% for machine in results %}
-                <li>
+                <li class="machine-results">
+                    <div>
                     <p><b>{{ machine }}</b></p>
-                    <a href="{% url 'machine_detail' machine.id %}">
+                    <a href="{% url 'machine_detail' pk=machine.id %}">
                         Show machine
                     </a>
+                </div>
                 </li>
             {% endfor %}
         </ul>

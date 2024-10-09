@@ -4,14 +4,16 @@ from django.contrib.auth import login as auth_login
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from .forms import SearchForm, MachineForm
-from .models import Machine
+from .models import Machine, ErrorCode
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 
 # Create your views here.
-
 
 def home_page(request):
     q = request.GET.get('q')
@@ -50,14 +52,22 @@ def overview_list(request):
     return render(request, 'overview.html', context)
 
 
-def machine_detail(request, **kwargs):
-    product_id = kwargs['pk']  
-    current_machine = get_object_or_404(Machine, id=product_id)
-    current_user = request.user
 
+def machine_detail(request, pk=None):
+    if pk is None:
+        pk = request.GET.get('pk')
+    
+    current_machine = get_object_or_404(Machine, id=pk)
+    all_error_codes = ErrorCode.objects.filter(machine=current_machine).order_by('-id')
+    search_query = request.GET.get('q', '').lower()
+    logger.info(f"Search query: {search_query}")
+    filtered_error_codes = all_error_codes.filter(error_code__icontains=search_query) if search_query else all_error_codes
     context = {
         'single_machine': current_machine,
+        'error_codes': filtered_error_codes,
+        'search_query': search_query,
     }
+    
 
     return render(request, 'machine_detail.html', context)
 
