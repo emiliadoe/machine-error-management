@@ -72,6 +72,11 @@ def machine_detail(request, pk=None):
     return render(request, 'machine_detail.html', context)
 
 
+def error_view(request, pk):
+    error = get_object_or_404(ErrorCode, id=pk)
+    return render(request, "error.html", {'error': error})
+
+
 class MyLoginView(LoginView):
 
     template_name = 'registration/login.html'
