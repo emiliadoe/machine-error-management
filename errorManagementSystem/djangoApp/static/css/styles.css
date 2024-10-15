@@ -120,3 +120,25 @@ nav ul {
     }
   }
 
+  .machine-table td{
+    vertical-align: sub;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .searchbar-error{
+    border-radius: 20px;
+  }
+
+  p{
+    font-size: 18px;
+  }
+
+  .modal-content{
+    padding: 10px 20px;
+  }
+
+  form{
+    padding-bottom: 20px;
+  }
+

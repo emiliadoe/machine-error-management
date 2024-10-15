@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +35,25 @@
                                 </div>
                             </li>   
     
-                    <li class="nav-item dropdown" id="arrow">
-                        <a class="nav-link dropdown-toggle" href="{% url 'home' %}" role="button" data-toggle="dropdown">
-                            DE
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1" id="dropdown1">
-                            <a class="dropdown-item" href="{% url 'home' %}">ENG</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">ESP</a>
-                        </div>
-                    </li>
+                        <form action="{% url 'set_language' %}" method="post" class="nav-item dropdown" id="arrow">
+                            {% csrf_token %}
+                            <select name="language" onchange="this.form.submit()">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% for lang_code, lang_name in LANGUAGES %}
+                                    <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                                        {{ lang_name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                        </form>
 
                     <li>
                         <a href="{% url 'overview' %}">Maschinenübersicht</a>
                     </li>
                     <li>
-                        <a href="{% url 'home' %}">Suche</a>
+                        <a href="{% url 'home' %}">Maschinensuche</a>
                         <!--                            <a href="{% url 'overview' %}"  data-toggle="dropdown" class="nav-link dropdown-toggle"  role="button">Maschinensuche</a>
                          <div class="dropdown-menu" aria-labelledby="navbarDropdown4" id="dropdown4"> 
                                 <a class="dropdown-item" href="{% url 'home' %}">Lorem ipsum</a>

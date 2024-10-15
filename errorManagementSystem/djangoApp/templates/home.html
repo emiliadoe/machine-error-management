@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <head>
@@ -9,7 +10,7 @@
 {% block content %}
 
 <main>
-    <h1>Error Management System</h1>
+    <h1>{% trans "Maschinensuche" %}</h1>
         <br>
        
         <form method="GET" action="{% url 'home' %}" class="search-bar">

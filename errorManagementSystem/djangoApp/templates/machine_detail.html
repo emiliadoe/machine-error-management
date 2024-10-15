@@ -13,9 +13,9 @@
     
     <h2>{{ single_machine.name }}</h2>
 
-    <table>
+    <table class="machine-table">
         <tr>
-            <td><b>Description:</b></td>
+            <td><b>Beschreibung:</b></td>
             <td><p>{{ single_machine.description }}</p><br></td>
         </tr>
         <tr>
@@ -33,14 +33,9 @@
 
     <form method="get">
         {% csrf_token %}
-        <input type="text" name="q" placeholder="Search error codes..." value="{{ search_query }}">
+        <input class="searchbar-error" type="text" name="q" placeholder=" Search error codes..." value="{{ search_query }}">
         <button type="submit">Search</button>
     </form>
-        {% if search_query %}
-            <h2>Filtered Error Codes</h2>
-        {% else %}
-            <h2>All Error Codes</h2>
-        {% endif %}
 
         {% if error_codes %}
         <ul>
