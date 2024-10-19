@@ -34,3 +34,7 @@ class ErrorCode(models.Model):
 
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE) 
 
+    images = models.ImageField(upload_to="error-pictures", blank=True, null=True)
+    
+    files = models.FileField(upload_to="error-files", blank=True, null=True)
+

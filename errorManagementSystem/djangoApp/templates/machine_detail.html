@@ -25,6 +25,24 @@
         <tr>
             <td><b>weitere Anlagen:</b></td>
             <td><p>{{ single_machine.files }}</p><br></td>
+            <td><p>          
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#errorProtocolModal"
+                error-id="{{ error_code.error_code }}"
+                error-description="{{ error_code.error_description }}"
+                error-solution="{{ error_code.solution }}"
+                >
+                   Fehlerprotokoll
+                </button>
+            </p></td>
+            <td><p>          
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#machineImagesModal"
+                error-id="{{ error_code.error_code }}"
+                error-description="{{ error_code.error_description }}"
+                error-solution="{{ error_code.solution }}"
+                >
+                   Bilder/ Videos 
+                </button>
+            </p></td>
         </tr>
     </table>
 
@@ -45,6 +63,8 @@
         error-id="{{ error_code.error_code }}"
         error-description="{{ error_code.error_description }}"
         error-solution="{{ error_code.solution }}"
+        error-images="{{ error_code.images }}"
+        error-files="{{ error_code.files }}"
         >
             {{ error_code.error_code }} - {{ error_code.error_description }}
         </button>
@@ -58,12 +78,10 @@
    
     
  
-<!-- Modal -->
+<!-- Modal for error Codes-->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-  
-      <!-- Modal content-->
-      <div class="modal-content">
+        <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title"></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -71,7 +89,43 @@
         <div class="modal-description">
         </div>
         <p>Lösungsansätze: </p>
-        <div class="modal-solution">
+        <div class="modal-solution"></div>
+        <div class="modal-images"></div>
+        <div class="modal-files"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+      <!-- Modal for error protocol-->
+  <div id="errorProtocolModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Vergangene Fehler:</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-solution"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+     <!-- Modal for Machine Images-->
+  <div id="machineImagesModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Bilder oder Videos der Maschine: </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-machine-images">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -80,6 +134,8 @@
   
     </div>
   </div>
+
+
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -90,11 +146,15 @@
             var errortitle = $(this).attr('error-id');
             var errorDescription = $(this).attr('error-description');
             var errorSolution = $(this).attr('error-solution');
+            var errorImages = $(this).attr('error-images');
+            var errorFiles = $(this).attr('error-files');
 
             console.log(errorDescription)
             $('#myModal .modal-title').html('<p>' + errortitle + '</p>');
             $('#myModal .modal-description').html('<p>' + errorDescription + '</p>');
             $('#myModal .modal-solution').html('<p>' + errorSolution + '</p>');
+            $('#myModal .modal-images').html('<p>' + errorImages + '</p>');
+            $('#myModal .modal-files').html('<p>' + errorFiles + '</p>');
         });
     });
     </script>
