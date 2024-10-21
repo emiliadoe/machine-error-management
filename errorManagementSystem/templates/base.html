@@ -1,4 +1,4 @@
-{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,7 @@
 </title>
 
 {% load static %}
+{% load i18n %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}    
@@ -50,14 +51,10 @@
                         </form>
 
                     <li>
-                        <a href="{% url 'overview' %}">Maschinenübersicht</a>
+                        <a href="{% url 'overview' %}">{% trans "Maschinenübersicht" %}</a>
                     </li>
                     <li>
-                        <a href="{% url 'home' %}">Maschinensuche</a>
-                        <!--                            <a href="{% url 'overview' %}"  data-toggle="dropdown" class="nav-link dropdown-toggle"  role="button">Maschinensuche</a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown4" id="dropdown4"> 
-                                <a class="dropdown-item" href="{% url 'home' %}">Lorem ipsum</a>
-                            </div> --> 
+                        <a href="{% url 'home' %}">{% trans "Maschinensuche" %}</a>
                         </li>    
     
                     <li class="nav-item dropdown" id="navbar2">
@@ -67,9 +64,9 @@
                         </div>
                     </a>       
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
-                            <a class="dropdown-item" href="{% url 'add_machine' %}">Maschine hinzufügen</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">Fehlercode hinzufügen</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">Maschinendaten bearbeiten</a>
+                            <a class="dropdown-item" href="{% url 'add_machine' %}">{% trans "Maschine hinzufügen" %}</a>
+                            <a class="dropdown-item" href="{% url 'home' %}">{% trans "Fehlercode hinzufügen" %}</a>
+                            <a class="dropdown-item" href="{% url 'home' %}">{% trans "Maschinendaten bearbeiten" %}</a>
                         </div>
                     </li>   
                     {% endblock %}

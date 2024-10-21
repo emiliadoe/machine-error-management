@@ -16,18 +16,18 @@
         <form method="GET" action="{% url 'home' %}" class="search-bar">
             {% csrf_token %}
             <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Search</button>
+            <button type="submit"> {% trans "Suche" %}</button>
         </form>
         
         {% if results %}
-        <b>Suchergebnisse:</b><br>
+        <b>{% trans "Suchergebnisse" %}:</b><br>
         <ul>
             {% for machine in results %}
                 <li class="machine-results">
                     <div>
                     <p><b>{{ machine }}</b></p>
                     <a href="{% url 'machine_detail' pk=machine.id %}">
-                        Show machine
+                        {% trans "Maschine zeigen" %}
                     </a>
                 </div>
                 </li>
@@ -35,7 +35,7 @@
         </ul>
 
         {% else %}
-        <p>No results found.</p>
+        <p> {% trans "Keine Ergebnisse gefunden." %}</p>
     {% endif %}
 
         

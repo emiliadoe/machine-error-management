@@ -20,3 +20,52 @@ msgstr ""
 #: .\djangoApp\templates\home.html:12
 msgid "Maschinensuche"
 msgstr "Searching for machines"
+
+msgid "Suchergebnisse"
+msgstr "Results"
+
+msgid "Suche"
+msgstr "Search"
+
+msgid "Keine Ergebnisse gefunden."
+msgstr "No results found."
+
+msgid "Maschinenübersicht"
+msgstr "Overview"
+
+msgid "Beschreibung"
+msgstr "Description"
+
+msgid "Notizen"
+msgstr "Notes"
+
+msgid "weitere Anlagen"
+msgstr "Addtional Information"
+
+msgid "Fehlerprotokoll"
+msgstr "error log"
+
+msgid "Bilder/ Videos"
+msgstr "Images/ Videos"
+
+
+msgid "Lösungsansätze"
+msgstr "Solutions"
+
+msgid "Vergangene Fehler"
+msgstr "past errors"
+
+msgid "Schließen"
+msgstr "Close"
+
+msgid "Bilder oder Videos der Maschine"
+msgstr "Images or videos of the machine"
+
+msgid "Maschine hinzufügen"
+msgstr "Adding new Machine"
+
+msgid "Fehlercode hinzufügen"
+msgstr "Adding new error code"
+
+msgid "Maschinendaten bearbeiten"
+msgstr "Changing machine data"
