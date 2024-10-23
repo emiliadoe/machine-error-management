@@ -3,15 +3,13 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponseRedirect
 from django.db.models import Q
-from .forms import SearchForm, MachineForm
+from .forms import MachineForm, ErrorCodeForm
 from .models import Machine, ErrorCode
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView
 import logging
 
 logger = logging.getLogger(__name__)
-
-
 
 # Create your views here.
 
@@ -24,33 +22,11 @@ def home_page(request):
     
     return render(request, 'home.html', {'results': results})
 
-    if request.method == 'POST':
-
-        search_name = request.POST['name']
-        search_description = request.POST['description']
-        machines_found = Machine.objects.filter(
-            Q(title__contains=search_name)
-            & Q(description__contains=search_description)
-        )
-        form_in_function_based_view = SearchForm()
-        context = {
-            'show_search_results': True,
-            'form': form_in_function_based_view,
-            'machines_found': machines_found
-        }
-    else:  # GET
-        form_in_function_based_view = SearchForm()
-        context = {
-            'show_search_results': False,
-            'form': form_in_function_based_view,
-        }
-    return render(request, 'home.html', context)
 
 def overview_list(request):
     machines = Machine.objects.all()
     context = {'all_machines': machines}
     return render(request, 'overview.html', context)
-
 
 
 def machine_detail(request, pk=None):
@@ -98,8 +74,16 @@ class MachineEditView(UpdateView):
     template_name = 'edit_details.html'
     success_url = reverse_lazy('home')
 
+
+class ErrorAddView(CreateView):
+    model = ErrorCode
+    form_class = ErrorCodeForm
+    template_name = 'add_error.html'
+    success_url = reverse_lazy('home')
+
 class MachineAddView(CreateView):
     model = Machine
     form_class = MachineForm
     template_name = 'add_machine.html'
     success_url = reverse_lazy('home')
+

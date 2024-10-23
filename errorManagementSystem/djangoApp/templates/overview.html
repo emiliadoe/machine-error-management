@@ -1,29 +1,24 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "base.html" %} {% load i18n %}
 
 <body>
-    {% block content %}
-<main>
+  {% block content %}
+  <main>
     <h1>{% trans "Maschinenübersicht" %}</h1>
-        <br>
-       
-        <section class="machines">
-            <div class="machine-list">
-                {% for machine in all_machines %}
-                    <div class="machine">
-                        <a href="{{ machine.pk }}">
-                        <h3 class="name">{{ machine.name }}</h3>
-                        <p class="description">{{ machine.description }}</p>
-                    </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </section> 
-</main>
+    <br />
 
-{% endblock %}
+    <section class="machines">
+      <div class="machine-list">
+        {% for machine in all_machines %}
+        <div class="machine">
+          <a href="{{ machine.pk }}">
+            <h3 class="name">{{ machine.name }}</h3>
+            <p class="description">{{ machine.description }}</p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  {% endblock %}
 </body>
-
-
-
-

@@ -1,166 +1,221 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "base.html" %} {% load static %} {% load i18n %}
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
 </head>
 
 <body>
-
-   
-    {% block content %}
- <main>
-    
-    <h2>{{ single_machine.name }}</h2>
-
-    <table class="machine-table">
-        <tr>
+  {% block content %}
+  <main>
+    <div class="headline-machine">
+      <h2>{{ single_machine.name }}</h2>
+      <a href="{% url 'edit_machine' single_machine.id %}">
+        <img
+          class="image-machine-headline"
+          src="{% static 'images/edit.png' %}"
+          alt="Bearbeiten Icon"
+        />
+      </a>
+    </div>
+    <div class="grid-layout">
+      <div class="column1">
+        <table class="machine-table">
+          <tr>
             <td><b>{% trans "Beschreibung" %}:</b></td>
-            <td><p>{{ single_machine.description }}</p><br></td>
-        </tr>
-        <tr>
-            <td><b>{% trans "Notizen" %}:</b></td>
-            <td><p>{{ single_machine.notes }}</p><br></td>
-        </tr>
-        <tr>
-            <td><b>{% trans "weitere Anlagen" %}:</b></td>
-            <td><p>{{ single_machine.files }}</p><br></td>
-            <td><p>          
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#errorProtocolModal"
-                error-id="{{ error_code.error_code }}"
-                error-description="{{ error_code.error_description }}"
-                error-solution="{{ error_code.solution }}"
-                >
-                {% trans "Fehlerprotokoll" %}
-                </button>
-            </p></td>
-            <td><p>          
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#machineImagesModal"
-                error-id="{{ error_code.error_code }}"
-                error-description="{{ error_code.error_description }}"
-                error-solution="{{ error_code.solution }}"
-                >
-                {% trans "Bilder/ Videos" %}
-                </button>
-            </p></td>
-        </tr>
-    </table>
-
-    <br>
-    <br>
-
-    <form method="get">
-        {% csrf_token %}
-        <input class="searchbar-error" type="text" name="q" placeholder=" Search error codes..." value="{{ search_query }}">
-        <button type="submit">{% trans "Suche" %}</button>
-    </form>
+            <td>
+              <p>{{ single_machine.description }}</p>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td><p>{% trans "Notizen" %}:</p></td>
+            <td>
+              <p>{{ single_machine.notes }}</p>
+              <br />
+            </td>
+          </tr>
+        </table>
+        <h2 class="h2-searchbar-error">Eingabe des Errorcodes:</h2>
+        <form method="get">
+          {% csrf_token %}
+          <input
+            class="searchbar-error"
+            type="text"
+            name="q"
+            placeholder="#errorcode"
+            value="{{ search_query }}"
+          />
+          <button type="submit">{% trans "Suche" %}</button>
+        </form>
 
         {% if error_codes %}
         <ul>
-            {% for error_code in error_codes %}
-            <li style="list-style: none;">
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"
-        error-id="{{ error_code.error_code }}"
-        error-description="{{ error_code.error_description }}"
-        error-solution="{{ error_code.solution }}"
-        error-images="{{ error_code.images }}"
-        error-files="{{ error_code.files }}"
-        >
-            {{ error_code.error_code }} - {{ error_code.error_description }}
-        </button>
-    </li>
-            {% endfor %}
-
+          {% for error_code in error_codes %}
+          <li style="list-style: none">
+            <button
+              type="button"
+              class="errorcode btn btn-info btn-lg"
+              data-toggle="modal"
+              data-target="#myModal"
+              error-id="{{ error_code.error_code }}"
+              error-description="{{ error_code.error_description }}"
+              error-solution="{{ error_code.solution }}"
+              error-images="{{ error_code.images }}"
+              error-files="{{ error_code.files }}"
+            >
+              {{ error_code.error_code }} - {{ error_code.error_description }}
+            </button>
+          </li>
+          {% endfor %}
         </ul>
         {% else %}
         <p>{% trans "Keine Ergebnisse gefunden." %}</p>
-    {% endif %}
-   
-    
- 
-<!-- Modal for error Codes-->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+        {% endif %}
+      </div>
+
+      <br />
+      <br />
+      <div class="column2">
+        <p>{% trans "weitere Anlagen" %}:</p>
+        <p>
+          {% if single_machine.documents %}
+          <button>
+            <a href="{{ single_machine.documents.url }}"
+              >Download PDF</a
+            ></button
+          ><br />
+          {% else %} Keine PDF vorhanden {% endif %}
+        </p>
+
+        <p>
+          <button
+            type="button"
+            class="btn btn-info btn-lg"
+            data-toggle="modal"
+            data-target="#errorProtocolModal"
+            error-id="{{ error_code.error_code }}"
+            error-description="{{ error_code.error_description }}"
+            error-solution="{{ error_code.solution }}"
+          >
+            {% trans "Fehlerprotokoll" %}
+          </button>
+        </p>
+        <p>
+          <button
+            type="button"
+            class="btn btn-info btn-lg"
+            data-toggle="modal"
+            data-target="#machineImagesModal"
+            machine-images="{{ single_machine.image.url }}"
+          >
+            {% trans "Bilder/ Videos" %}
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal for error Codes-->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
+          <div class="modal-header">
             <h4 class="modal-title"></h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-description">
-        </div>
-        <p>{% trans "Lösungsansätze" %}: </p>
-        <div class="modal-solution"></div>
-        <div class="modal-images"></div>
-        <div class="modal-files"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Schließen" %}</button>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-description"></div>
+          <p>{% trans "Lösungsansätze" %}:</p>
+          <div class="modal-solution"></div>
+          <div class="modal-images"></div>
+          <div class="modal-files"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              {% trans "Schließen" %}
+            </button>
+          </div>
         </div>
       </div>
-  
     </div>
-  </div>
 
-      <!-- Modal for error protocol-->
-  <div id="errorProtocolModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+    <!-- Modal for error protocol-->
+    <div id="errorProtocolModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
             <h4 class="modal-title">{% trans "Vergangene Fehler" %}:</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-solution"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Schließen" %}</button>
-        </div>
-      </div>
-  
-    </div>
-  </div>
-
-     <!-- Modal for Machine Images-->
-  <div id="machineImagesModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">{% trans "Bilder oder Videos der Maschine" %}: </h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-machine-images">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Schließen" %}</button>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-solution"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              {% trans "Schließen" %}
+            </button>
+          </div>
         </div>
       </div>
-  
     </div>
-  </div>
 
+    <!-- Modal for Machine Images-->
+    <div id="machineImagesModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">
+              {% trans "Bilder/Videos der Maschine" %}:
+            </h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-machine-images"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              {% trans "Schließen" %}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".btn").click(function () {
+          var errortitle = $(this).attr("error-id");
+          var errorDescription = $(this).attr("error-description");
+          var errorSolution = $(this).attr("error-solution");
+          var errorImages = $(this).attr("error-images");
+          var errorFiles = $(this).attr("error-files");
 
-  <script>
-    $(document).ready(function() {
-        $('.btn').click(function() {
-            var errortitle = $(this).attr('error-id');
-            var errorDescription = $(this).attr('error-description');
-            var errorSolution = $(this).attr('error-solution');
-            var errorImages = $(this).attr('error-images');
-            var errorFiles = $(this).attr('error-files');
-
-            console.log(errorDescription)
-            $('#myModal .modal-title').html('<p>' + errortitle + '</p>');
-            $('#myModal .modal-description').html('<p>' + errorDescription + '</p>');
-            $('#myModal .modal-solution').html('<p>' + errorSolution + '</p>');
-            $('#myModal .modal-images').html('<p>' + errorImages + '</p>');
-            $('#myModal .modal-files').html('<p>' + errorFiles + '</p>');
+          console.log(errorDescription);
+          $("#myModal .modal-title").html("<p>" + errortitle + "</p>");
+          $("#myModal .modal-description").html(
+            "<p>" + errorDescription + "</p>"
+          );
+          $("#myModal .modal-solution").html("<p>" + errorSolution + "</p>");
+          $("#myModal .modal-images").html("<p>" + errorImages + "</p>");
+          $("#myModal .modal-files").html("<p>" + errorFiles + "</p>");
         });
-    });
+      });
+
+      $(document).ready(function () {
+        $(".btn").click(function () {
+          var images = $(this).attr("machine-images");
+          $("#machineImagesModal .modal-machine-images").html(
+            '<img class="no-hovering" src="' + images + '" alt="Machine Image">'
+          );
+        });
+      });
     </script>
+  </main>
 
-</main>
-
-{% endblock %}
+  {% endblock %}
 </body>
-

@@ -17,8 +17,12 @@ class Machine(models.Model):
 
     documents = models.FileField(upload_to="files", blank=True, null=True)
 
+    image = models.ImageField(upload_to="machine_image", blank=True, null=True)
+
     def __str__(self):
         return self.name
+
+
     
 class ErrorCode(models.Model):
 

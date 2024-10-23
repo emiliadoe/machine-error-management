@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% load i18n %} {% block title
-%}Maschine hinzufügen{% endblock %}
+%}Error hinzufügen{% endblock %}
 
 <body>
   {% block content %}
   <main>
-    <h2>Maschine hinzufügen</h2>
+    <h2>Error hinzufügen</h2>
 
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Maschine hinzufügen</button>
+      <button type="submit">Hinzufügen</button>
     </form>
   </main>
   {% endblock %}

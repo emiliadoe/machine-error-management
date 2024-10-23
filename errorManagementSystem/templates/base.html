@@ -8,6 +8,7 @@
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   
   
     <title>
 {% block title %}Error Management{% endblock %}
@@ -35,8 +36,8 @@
                                     <a class="dropdown-item" href="{% url 'home' %}">Logout</a>
                                 </div>
                             </li>   
-    
-                        <form action="{% url 'set_language' %}" method="post" class="nav-item dropdown" id="arrow">
+                            <li class="nav-item dropdown">
+                        <form action="{% url 'set_language' %}" method="post" id="arrow">
                             {% csrf_token %}
                             <select name="language" onchange="this.form.submit()">
                                 {% get_current_language as LANGUAGE_CODE %}
@@ -49,13 +50,20 @@
                             </select>
                             <input type="hidden" name="next" value="{{ request.path }}">
                         </form>
-
+                    </li> 
                     <li>
                         <a href="{% url 'overview' %}">{% trans "Maschinenübersicht" %}</a>
                     </li>
                     <li>
                         <a href="{% url 'home' %}">{% trans "Maschinensuche" %}</a>
                         </li>    
+                    <li>  
+                            <div class="information">
+                                <a href="#" class="d-none d-sm-inline-block" data-toggle="modal" data-target="#information-modal">
+                                    <img src="{% static 'images/information.png' %}" alt="Information" style="height: 65px; width: 70px;">
+                                </a>
+                            </div>
+                    </li>    
     
                     <li class="nav-item dropdown" id="navbar2">
                     <a data-toggle="dropdown" href="{% url 'home' %}" id="navbarDropdown2">
@@ -65,8 +73,8 @@
                     </a>       
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
                             <a class="dropdown-item" href="{% url 'add_machine' %}">{% trans "Maschine hinzufügen" %}</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">{% trans "Fehlercode hinzufügen" %}</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">{% trans "Maschinendaten bearbeiten" %}</a>
+                            <a class="dropdown-item" href="{% url 'add_error' %}">{% trans "Fehlercode hinzufügen" %}</a>
+                           <!--   <a class="dropdown-item" href="{% url 'home' %}">{% trans "Maschinendaten bearbeiten" %}</a> -->
                         </div>
                     </li>   
                     {% endblock %}
@@ -79,19 +87,41 @@
             </ul>
         </nav>
     </header>
+
+        <img src="{% static 'images/back-button.png' %}" alt="Back Arrow" onclick="history.back()" style="height: 60px; padding-left: 10px">
+
     {% block content %}
         <div><p>Base Block</p></div>
     {% endblock %}
 
 
+<div id="information-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog information-dialog">
+        <div class="modal-content information-content">
+        <div class="modal-header">
+            <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <iframe src="https://publikationen.dguv.de/widgets/pdf/download/article/4529" width="100%" height="100%"></iframe>        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Schließen" %}</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
     
   <!-- Optional JavaScript -->
     <!-- jQuery then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

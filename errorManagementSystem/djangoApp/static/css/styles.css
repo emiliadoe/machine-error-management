@@ -1,22 +1,22 @@
 body {
-    font-family: Helvetica;
-    font-size: 30px;
-    color: grey;
-    background-color: #f9f9f9;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    padding-bottom: 100px !important;
+  font-family: Helvetica;
+  font-size: 30px;
+  color: grey;
+  background-color: #f9f9f9;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-bottom: 100px !important;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-main{
+main {
   margin-left: 30px;
   margin-right: 30px;
   display: grid;
@@ -27,118 +27,175 @@ header {
   display: flex;
   align-items: center;
   background-color: lightgrey;
-  text-align: center; 
+  text-align: center;
   height: 70px;
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
 }
 
-nav{
-    all: unset !important;
-    width: 100%;
-    max-width: 100%;
+nav {
+  all: unset !important;
+  width: 100%;
+  max-width: 100%;
 }
 
 nav ul {
-    list-style: none;
-    justify-content: flex-start;
-    padding: 0;
-    display: flex;
-    width: 100%;
-    margin-bottom: 0px !important;
+  list-style: none;
+  justify-content: flex-start;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0px !important;
 
-    li{
-        margin: 0 15px;
-        margin-block: auto;
-        a{
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-        }
-        a:hover{
-          color:black;
-          text-decoration: none;
-        }
-    }
-  }
-
-
-  .plus {
-    right: 50px !important;
-    position: absolute;
-    margin-right: 30px; /* adding breakpoint */
-  }
-  #navbar2{
-    all: unset !important;
-    #dropdown2{
-        top: 10%;
-        right: 5px;
-        left: unset;
-    }
-  }
-
-  #dropdown1{
-    min-width: unset;
-    top: 115%;
-}
-#dropdown3{
-    min-width: unset;
-}
-
-  .profile{
+  li {
     margin: 0 15px;
-  }
-
-  #arrow>a{
-    color: black !important;
-    font-size: 20px;
-  }
-
-  .machine-results{
-    border: solid black;
-    list-style: none;
-    margin-top: 20px;
-  }
-
-  .search-bar{
-    margin-bottom: 20px;
-  }
-
-  .machine {
-    .name{ 
+    margin-block: auto;
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+    }
+    a:hover {
       color: black;
-      text-decoration: solid;
-    }
-
-    .description{
-      font-size: 16px;
-      color: grey;
-    }
-    a:hover{
       text-decoration: none;
     }
   }
+}
 
-  .machine-table td{
-    vertical-align: sub;
-    display: flex;
-    flex-wrap: nowrap;
+.plus {
+  right: 50px !important;
+  position: absolute;
+  margin-right: 30px; /* adding breakpoint */
+}
+
+.information {
+  position: absolute;
+  right: 160px;
+  top: 2px;
+}
+
+#navbar2 {
+  all: unset !important;
+  #dropdown2 {
+    top: 70px;
+    right: 5px;
+    left: unset;
+  }
+}
+
+#dropdown1 {
+  min-width: unset;
+  top: 115%;
+}
+#dropdown3 {
+  min-width: unset;
+}
+
+#arrow > a {
+  color: black !important;
+  font-size: 20px;
+}
+
+.machine-results {
+  border: solid black;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.machine {
+  .name {
+    color: black;
+    text-decoration: solid;
   }
 
-  .searchbar-error{
-    border-radius: 20px;
+  .description {
+    font-size: 16px;
+    color: grey;
   }
-
-  p{
-    font-size: 18px;
+  a:hover {
+    text-decoration: none;
   }
+}
 
-  .modal-content{
-    padding: 10px 20px;
+.machine-table td {
+  vertical-align: sub;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.searchbar-error {
+  border-radius: 20px;
+}
+
+p {
+  font-size: 18px;
+}
+
+.modal-content {
+  padding: 10px 20px;
+}
+
+.searchbar-error {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.h2-searchbar-error {
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.grid-layout {
+  display: flex;
+}
+
+.column1 {
+  flex: 50%;
+}
+
+.column2 {
+  flex: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+button.errorcode {
+  width: 65%;
+  margin-bottom: 15px;
+}
+
+.information-content {
+  width: 150%;
+  height: 50%;
+}
+
+.information-dialog {
+  height: 200%;
+}
+
+.headline-machine {
+  display: flex;
+}
+
+.image-machine-headline {
+  height: 40px;
+  margin-left: 20px;
+}
+
+img:hover {
+  opacity: 0.2;
+}
+
+img.no-hovering {
+  width: 100%;
+  &:hover {
+    opacity: 1 !important;
   }
-
-  form{
-    padding-bottom: 20px;
-  }
-
+}

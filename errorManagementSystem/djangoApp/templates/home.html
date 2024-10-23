@@ -1,52 +1,38 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "base.html" %} {% load i18n %}
 
 <!DOCTYPE html>
-<head>
-   
-</head>
+<head> </head>
 <body>
+  {% block content %}
 
-{% block content %}
-
-<main>
+  <main>
     <h1>{% trans "Maschinensuche" %}</h1>
-        <br>
-       
-        <form method="GET" action="{% url 'home' %}" class="search-bar">
-            {% csrf_token %}
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit"> {% trans "Suche" %}</button>
-        </form>
-        
-        {% if results %}
-        <b>{% trans "Suchergebnisse" %}:</b><br>
-        <ul>
-            {% for machine in results %}
-                <li class="machine-results">
-                    <div>
-                    <p><b>{{ machine }}</b></p>
-                    <a href="{% url 'machine_detail' pk=machine.id %}">
-                        {% trans "Maschine zeigen" %}
-                    </a>
-                </div>
-                </li>
-            {% endfor %}
-        </ul>
+    <br />
 
-        {% else %}
-        <p> {% trans "Keine Ergebnisse gefunden." %}</p>
+    <form method="GET" action="{% url 'home' %}" class="search-bar">
+      {% csrf_token %}
+      <input type="text" name="q" placeholder="Search..." />
+      <button type="submit">{% trans "Suche" %}</button>
+    </form>
+
+    {% if results %}
+    <b>{% trans "Suchergebnisse" %}:</b><br />
+    <ul>
+      {% for machine in results %}
+      <li class="machine-results">
+        <div>
+          <p><b>{{ machine.name }}</b></p>
+          <a href="{% url 'machine_detail' pk=machine.id %}">
+            {% trans "Maschine zeigen" %}
+          </a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+    <p>{% trans "Keine Ergebnisse gefunden." %}</p>
     {% endif %}
-
-        
-    </main>
-
-
-  
-</main>
+  </main>
   {% endblock %}
 </body>
-
-
-
-
