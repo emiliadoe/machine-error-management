@@ -66,7 +66,7 @@ nav ul {
 .plus {
   right: 50px !important;
   position: absolute;
-  margin-right: 30px; /* adding breakpoint */
+  margin-right: 30px;
 }
 
 .information {
@@ -128,26 +128,39 @@ nav ul {
   flex-wrap: nowrap;
 }
 
-.searchbar-error {
-  border-radius: 20px;
-}
-
 p {
   font-size: 18px;
 }
 
 .modal-content {
   padding: 10px 20px;
+  > p {
+    font-weight: bold;
+    font-size: 22px;
+  }
+}
+.modal-alert {
+  font-size: 14px;
+  color: darkred;
+}
+.modal-description p {
+  font-size: 40px;
 }
 
-.searchbar-error {
-  padding-left: 20px;
-  margin-bottom: 20px;
+.modal-title p {
+  color: darkred;
+}
+
+.modal-solution p {
+  font-weight: bold;
+  font-size: 22px;
 }
 
 .h2-searchbar-error {
   margin-top: 60px;
   margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 2vw;
 }
 
 .grid-layout {
@@ -169,6 +182,8 @@ p {
 button.errorcode {
   width: 65%;
   margin-bottom: 15px;
+  text-align: left;
+  white-space: normal;
 }
 
 .information-content {
@@ -182,11 +197,20 @@ button.errorcode {
 
 .headline-machine {
   display: flex;
+  h2 {
+    font-size: 4vw;
+    margin-bottom: 30px;
+  }
 }
 
 .image-machine-headline {
-  height: 40px;
+  height: 30px;
   margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+b.description-table {
+  font-size: 1.5vw;
 }
 
 img:hover {
@@ -198,4 +222,25 @@ img.no-hovering {
   &:hover {
     opacity: 1 !important;
   }
+}
+
+.additional-information {
+  width: 180px;
+}
+
+.language-dropdown {
+  background-color: lightgrey;
+  border: 0px;
+}
+
+.input-machine-search {
+  border: 2px solid;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+button > a {
+  color: #f9f9f9;
 }

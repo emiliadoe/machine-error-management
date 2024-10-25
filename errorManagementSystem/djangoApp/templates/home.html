@@ -11,8 +11,15 @@
 
     <form method="GET" action="{% url 'home' %}" class="search-bar">
       {% csrf_token %}
-      <input type="text" name="q" placeholder="Search..." />
-      <button type="submit">{% trans "Suche" %}</button>
+      <input
+        class="input-machine-search"
+        type="text"
+        name="q"
+        placeholder="Deine Eingabe..."
+      />
+      <button class="input-machine-search" type="submit">
+        {% trans "Suche" %}
+      </button>
     </form>
 
     {% if results %}

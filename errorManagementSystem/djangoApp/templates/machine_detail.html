@@ -24,7 +24,9 @@
       <div class="column1">
         <table class="machine-table">
           <tr>
-            <td><b>{% trans "Beschreibung" %}:</b></td>
+            <td>
+              <b class="description-table">{% trans "Beschreibung" %}:</b>
+            </td>
             <td>
               <p>{{ single_machine.description }}</p>
               <br />
@@ -42,13 +44,15 @@
         <form method="get">
           {% csrf_token %}
           <input
-            class="searchbar-error"
+            class="input-machine-search"
             type="text"
             name="q"
             placeholder="#errorcode"
             value="{{ search_query }}"
           />
-          <button type="submit">{% trans "Suche" %}</button>
+          <button class="input-machine-search" type="submit">
+            {% trans "Suche" %}
+          </button>
         </form>
 
         {% if error_codes %}
@@ -79,12 +83,12 @@
       <br />
       <br />
       <div class="column2">
-        <p>{% trans "weitere Anlagen" %}:</p>
+        <p>{% trans "Weitere Anlagen" %}:</p>
         <p>
           {% if single_machine.documents %}
-          <button>
+          <button class="additional-information btn btn-info btn-lg">
             <a href="{{ single_machine.documents.url }}"
-              >Download PDF</a
+              >PDF anschauen</a
             ></button
           ><br />
           {% else %} Keine PDF vorhanden {% endif %}
@@ -93,7 +97,7 @@
         <p>
           <button
             type="button"
-            class="btn btn-info btn-lg"
+            class="additional-information btn btn-info btn-lg"
             data-toggle="modal"
             data-target="#errorProtocolModal"
             error-id="{{ error_code.error_code }}"
@@ -104,15 +108,26 @@
           </button>
         </p>
         <p>
+          {% if single_machine.image %}
           <button
             type="button"
-            class="btn btn-info btn-lg"
+            class="additional-information btn btn-info btn-lg"
             data-toggle="modal"
             data-target="#machineImagesModal"
             machine-images="{{ single_machine.image.url }}"
           >
             {% trans "Bilder/ Videos" %}
           </button>
+          {% else %}
+          <button
+            type="button"
+            class="additional-information btn btn-info btn-lg"
+            data-toggle="modal"
+            data-target="#machineImagesModal"
+            machine-images=""
+          >
+            {% trans "Bilder/ Videos" %}</button
+          >{% endif %}
         </p>
       </div>
     </div>
@@ -128,8 +143,12 @@
             </button>
           </div>
           <div class="modal-description"></div>
-          <p>{% trans "Lösungsansätze" %}:</p>
+          <p>{% trans "Lösungsansatz" %}:</p>
           <div class="modal-solution"></div>
+          <div class="modal-alert">
+            Vor jeder Störungsbeseitigung bitte die Informationen (Menüleiste)
+            durchlesen.
+          </div>
           <div class="modal-images"></div>
           <div class="modal-files"></div>
           <div class="modal-footer">
