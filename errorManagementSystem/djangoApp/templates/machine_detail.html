@@ -44,13 +44,13 @@
         <form method="get">
           {% csrf_token %}
           <input
-            class="input-machine-search"
+            class="button-style"
             type="text"
             name="q"
-            placeholder="#errorcode"
+            placeholder="#fehlercode"
             value="{{ search_query }}"
           />
-          <button class="input-machine-search" type="submit">
+          <button class="button-style" type="submit">
             {% trans "Suche" %}
           </button>
         </form>

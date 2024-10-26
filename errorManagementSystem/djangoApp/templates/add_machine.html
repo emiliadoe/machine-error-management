@@ -2,12 +2,12 @@
 
 <body>
   {% block content %}
-  <main style="padding: 100px">
-    <h2>Maschine hinzufügen</h2>
+  <main>
+    <h2>Bearbeitungsmodus (Maschine hinzufügen)</h2>
 
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Maschine hinzufügen</button>
+      <button class="button-style" type="submit">Maschine hinzufügen</button>
     </form>
   </main>
   {% endblock %}

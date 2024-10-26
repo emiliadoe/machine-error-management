@@ -12,30 +12,28 @@
     <form method="GET" action="{% url 'home' %}" class="search-bar">
       {% csrf_token %}
       <input
-        class="input-machine-search"
+        class="button-style"
         type="text"
         name="q"
         placeholder="Deine Eingabe..."
       />
-      <button class="input-machine-search" type="submit">
-        {% trans "Suche" %}
-      </button>
+      <button class="button-style" type="submit">{% trans "Suche" %}</button>
     </form>
 
     {% if results %}
-    <b>{% trans "Suchergebnisse" %}:</b><br />
-    <ul>
-      {% for machine in results %}
-      <li class="machine-results">
-        <div>
-          <p><b>{{ machine.name }}</b></p>
-          <a href="{% url 'machine_detail' pk=machine.id %}">
-            {% trans "Maschine zeigen" %}
-          </a>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
+    <div class="list">
+      <ul>
+        {% for machine in results %}
+        <li class="machine-results">
+          <span>
+            <a href="{% url 'machine_detail' pk=machine.id %}">
+              {{ machine.name }}
+            </a>
+          </span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
 
     {% else %}
     <p>{% trans "Keine Ergebnisse gefunden." %}</p>
