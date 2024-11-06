@@ -20,6 +20,7 @@
         />
       </a>
     </div>
+
     <div class="grid-layout">
       <div class="column1">
         <table class="machine-table">
@@ -33,102 +34,110 @@
             </td>
           </tr>
           <tr>
-            <td><p>{% trans "Notizen" %}:</p></td>
+            <td><p class="headline">{% trans "Notizen" %}:</p></td>
             <td>
               <p>{{ single_machine.notes }}</p>
               <br />
             </td>
           </tr>
+          <tr>
+            <td><p class="headline">{% trans "Weitere Anlagen" %}:</p></td>
+            <td>
+              <p>
+                {% if single_machine.documents %}
+                <button class="additional-information btn btn-info btn-lg">
+                  <a href="{{ single_machine.documents.url }}"
+                    >PDF anschauen</a
+                  ></button
+                ><br />
+                {% else %} Keine PDF vorhanden {% endif %}
+              </p>
+            </td>
+          </tr>
+            <td>
+              <p>
+                <button
+                  type="button"
+                  class="additional-information btn btn-info btn-lg"
+                  data-toggle="modal"
+                  data-target="#errorProtocolModal"
+                  error-id="{{ error_code.error_code }}"
+                  error-description="{{ error_code.error_description }}"
+                  error-solution="{{ error_code.solution }}"
+                >
+                  {% trans "Fehlerprotokoll" %}
+                </button>
+              </p>
+            </td>
+            <td>
+              <p>
+                {% if single_machine.image %}
+                <button
+                  type="button"
+                  class="additional-information btn btn-info btn-lg"
+                  data-toggle="modal"
+                  data-target="#machineImagesModal"
+                  machine-images="{{ single_machine.image.url }}"
+                >
+                  {% trans "Bilder/ Videos" %}
+                </button>
+                {% else %}
+                <button
+                  type="button"
+                  class="additional-information btn btn-info btn-lg"
+                  data-toggle="modal"
+                  data-target="#machineImagesModal"
+                  machine-images=""
+                >
+                  {% trans "Bilder/ Videos" %}</button
+                >{% endif %}
+              </p>
+            </td>
+          </tr>
         </table>
-        <h2 class="h2-searchbar-error">Eingabe des Errorcodes:</h2>
-        <form method="get">
-          {% csrf_token %}
-          <input
-            class="button-style"
-            type="text"
-            name="q"
-            placeholder="#fehlercode"
-            value="{{ search_query }}"
-          />
-          <button class="button-style" type="submit">
-            {% trans "Suche" %}
-          </button>
-        </form>
 
-        {% if error_codes %}
-        <ul>
-          {% for error_code in error_codes %}
-          <li style="list-style: none">
-            <button
-              type="button"
-              class="errorcode btn btn-info btn-lg"
-              data-toggle="modal"
-              data-target="#myModal"
-              error-id="{{ error_code.error_code }}"
-              error-description="{{ error_code.error_description }}"
-              error-solution="{{ error_code.solution }}"
-              error-images="{{ error_code.images }}"
-              error-files="{{ error_code.files }}"
-            >
-              {{ error_code.error_code }} - {{ error_code.error_description }}
-            </button>
-          </li>
-          {% endfor %}
-        </ul>
-        {% else %}
-        <p>{% trans "Keine Ergebnisse gefunden." %}</p>
-        {% endif %}
       </div>
-
-      <br />
-      <br />
       <div class="column2">
-        <p>{% trans "Weitere Anlagen" %}:</p>
-        <p>
-          {% if single_machine.documents %}
-          <button class="additional-information btn btn-info btn-lg">
-            <a href="{{ single_machine.documents.url }}"
-              >PDF anschauen</a
-            ></button
-          ><br />
-          {% else %} Keine PDF vorhanden {% endif %}
-        </p>
+        <div class="field-errorcode">
+          <h2 class="h2-searchbar-error">Suche nach Fehlercode</h2>
+          <form method="get">
+            {% csrf_token %}
+            <input
+              class="button-style"
+              type="text"
+              name="q"
+              placeholder="#fehlercode"
+              value="{{ search_query }}"
+            />
+            <button class="button-style" type="submit">
+              {% trans "Suche" %}
+            </button>
+          </form>
 
-        <p>
-          <button
-            type="button"
-            class="additional-information btn btn-info btn-lg"
-            data-toggle="modal"
-            data-target="#errorProtocolModal"
-            error-id="{{ error_code.error_code }}"
-            error-description="{{ error_code.error_description }}"
-            error-solution="{{ error_code.solution }}"
-          >
-            {% trans "Fehlerprotokoll" %}
-          </button>
-        </p>
-        <p>
-          {% if single_machine.image %}
-          <button
-            type="button"
-            class="additional-information btn btn-info btn-lg"
-            data-toggle="modal"
-            data-target="#machineImagesModal"
-            machine-images="{{ single_machine.image.url }}"
-          >
-            {% trans "Bilder/ Videos" %}
-          </button>
+          {% if error_codes %}
+          <ul>
+            {% for error_code in error_codes %}
+            <li style="list-style: none">
+              <button
+                type="button"
+                class="errorcode btn btn-info btn-lg"
+                data-toggle="modal"
+                data-target="#myModal"
+                error-id="{{ error_code.error_code }}"
+                error-description="{{ error_code.error_description }}"
+                error-solution="{{ error_code.solution }}"
+                error-images="{{ error_code.images }}"
+                error-files="{{ error_code.files }}"
+              >
+                {{ error_code.error_code }} - {{ error_code.error_description }}
+              </button>
+            </li>
+            {% endfor %}
+          </ul>
           {% else %}
-          <button
-            type="button"
-            class="additional-information btn btn-info btn-lg"
-            data-toggle="modal"
-            data-target="#machineImagesModal"
-            machine-images=""
-          >
-            {% trans "Bilder/ Videos" %}</button
-          >{% endif %}
-        </p>
+          <p>{% trans "Keine Ergebnisse gefunden." %}</p>
+          {% endif %}
+        </div>
       </div>
     </div>
 

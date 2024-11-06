@@ -7,15 +7,21 @@
     <br />
 
     <section class="machines">
-      <div class="machine-list">
-        {% for machine in all_machines %}
-        <div class="machine">
-          <a href="{{ machine.pk }}">
-            <h3 class="name">{{ machine.name }}</h3>
-            <p class="description">{{ machine.description }}</p>
-          </a>
-        </div>
-        {% endfor %}
+      <div class="list">
+        <ul>
+          {% for machine in all_machines %}
+          <div class="machine">
+            <li class="machine-results">
+              <span>
+                <a href="{{ machine.pk }}">
+                  <h3 class="name">{{ machine.name }}</h3>
+                  <p class="description">{{ machine.description }}</p>
+                </a>
+              </span>
+            </li>
+          </div>
+          {% endfor %}
+        </ul>
       </div>
     </section>
   </main>

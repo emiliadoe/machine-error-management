@@ -1,8 +1,16 @@
+:root {
+  --light-color: #e5ebfc;
+  --caribean-blue: #2c666e;
+  --oxford-blue: #0d1f47;
+  --dark-blue: #2d3045;
+  --marine-blue: #424684;
+}
+
 body {
   font-family: Helvetica;
   font-size: 30px;
-  color: grey;
-  background-color: #f9f9f9;
+  color: var(--dark-blue);
+  background-color: var(--light-color);
   padding: 0;
   margin: 0;
   width: 100%;
@@ -23,10 +31,14 @@ main {
   place-items: center;
 }
 
+h1 {
+  font-size: 4vw;
+}
+
 header {
   display: flex;
   align-items: center;
-  background-color: lightgrey;
+  background-color: var(--marine-blue);
   text-align: center;
   height: 70px;
   width: 100%;
@@ -53,11 +65,11 @@ nav ul {
     margin-block: auto;
     a {
       text-decoration: none;
-      color: #fff;
+      color: var(--light-color);
       font-weight: bold;
     }
     a:hover {
-      color: black;
+      color: var(--oxford-blue);
       text-decoration: none;
     }
   }
@@ -67,6 +79,7 @@ nav ul {
   right: 50px !important;
   position: absolute;
   margin-right: 30px;
+  margin-top: 2px;
 }
 
 .information {
@@ -98,7 +111,7 @@ nav ul {
 }
 
 .machine-results {
-  border: solid black;
+  border: solid var(--dark-blue);
   list-style: none;
   margin-top: 30px;
 }
@@ -109,7 +122,7 @@ nav ul {
     position: relative;
     left: 0;
     color: #fce4ec;
-    border-left: 2px solid lightgrey;
+    border-left: 2px solid var(--caribean-blue);
     transition: 0.5s;
     cursor: pointer;
     & span {
@@ -120,7 +133,7 @@ nav ul {
       z-index: 1;
       transition: 0.5s;
       & a {
-        color: #111;
+        color: var(--oxford-blue);
         &:hover {
           text-decoration: none;
         }
@@ -138,7 +151,8 @@ nav ul {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: lightgrey;
+  background: var(--caribean-blue);
+  opacity: 0.5;
   transform: scaleX(0);
   transform-origin: left;
   transition: 0.5s;
@@ -201,10 +215,9 @@ p {
 }
 
 .h2-searchbar-error {
-  margin-top: 60px;
   margin-bottom: 20px;
-  font-weight: bold;
-  font-size: 2vw;
+  font-size: 3vw;
+  color: var(--caribean-blue);
 }
 
 .grid-layout {
@@ -220,7 +233,6 @@ p {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 30px;
 }
 
 button.errorcode {
@@ -228,6 +240,14 @@ button.errorcode {
   margin-bottom: 15px;
   text-align: left;
   white-space: normal;
+  background-color: var(--caribean-blue);
+  border-color: var(--caribean-blue);
+  color: var(--light-color);
+  &:hover {
+    background-color: var(--caribean-blue);
+    border-color: var(--caribean-blue);
+    opacity: 0.5;
+  }
 }
 
 .information-content {
@@ -244,6 +264,7 @@ button.errorcode {
   h2 {
     font-size: 4vw;
     margin-bottom: 30px;
+    font-weight: bold;
   }
 }
 
@@ -254,7 +275,8 @@ button.errorcode {
 }
 
 b.description-table {
-  font-size: 1.5vw;
+  font-size: 3vw;
+  font-weight: normal;
 }
 
 img:hover {
@@ -270,16 +292,25 @@ img.no-hovering {
 
 .additional-information {
   width: 180px;
-  > a:hover {
-    text-decoration: none;
-    color: #f9f9f9;
+  background-color: var(--marine-blue);
+  border-color: var(--marine-blue);
+  color: var(--light-color);
+  &:hover {
+    > a {
+      text-decoration: none;
+      color: var(--light-color);
+    }
+    opacity: 0.5;
+    background-color: var(--marine-blue);
+    border-color: var(--marine-blue);
   }
 }
 
 .language-dropdown {
-  background-color: lightgrey;
+  background-color: var(--marine-blue);
   border: 0px;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .button-style {
@@ -289,16 +320,20 @@ img.no-hovering {
   padding-right: 10px;
   margin-bottom: 20px;
   margin-top: 20px;
+  color: var(--caribean-blue);
 }
+
 button.button-style {
   cursor: pointer;
   &:hover {
-    background-color: lightgrey;
+    background-color: var(--caribean-blue);
+    opacity: 0.5;
+    color: black;
   }
 }
 
 button > a {
-  color: #f9f9f9;
+  color: var(--light-color);
 }
 
 .back-navigation {
@@ -307,4 +342,8 @@ button > a {
 
 main > h2 {
   margin-bottom: 30px;
+}
+
+p.headline {
+  font-size: 2vw;
 }
