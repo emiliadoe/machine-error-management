@@ -14,5 +14,6 @@ urlpatterns = [
     path('error/<int:pk>/', views.error_view, name="error_view"),
     path('error/add/', views.ErrorAddView.as_view(), name="add_error"),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('errorprotocoll/', views.ProtocollView.as_view(), name="error_protocoll"),
 ]
 

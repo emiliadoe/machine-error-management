@@ -3,8 +3,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponseRedirect
 from django.db.models import Q
-from .forms import MachineForm, ErrorCodeForm
-from .models import Machine, ErrorCode
+from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm
+from .models import Machine, ErrorCode, ErrorProtocol
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView
 import logging
@@ -12,6 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Create your views here.
+
 
 def home_page(request):
     q = request.GET.get('q')
@@ -86,3 +87,11 @@ class MachineAddView(CreateView):
     form_class = MachineForm
     template_name = 'add_machine.html'
     success_url = reverse_lazy('home')
+
+class ProtocollView(CreateView):
+    model = ErrorProtocol
+    form_class = ErrorProtocolForm
+    template_name = 'error_protocoll.html'
+    success_url = reverse_lazy('home')
+
+

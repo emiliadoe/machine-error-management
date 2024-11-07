@@ -10,8 +10,15 @@
           &times;
         </button>
       </div>
-      <div class="modal-solution"></div>
+      <div class="protocol-notes"></div>
+
       <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+        ></button>
+        <a href="{% url 'error_protocoll' %}">{% trans "neuer Fehler" %}</a>
         <button type="button" class="btn btn-default" data-dismiss="modal">
           {% trans "Schließen" %}
         </button>
