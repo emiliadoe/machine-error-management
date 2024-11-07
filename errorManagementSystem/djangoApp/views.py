@@ -86,4 +86,3 @@ class MachineAddView(CreateView):
     form_class = MachineForm
     template_name = 'add_machine.html'
     success_url = reverse_lazy('home')
-

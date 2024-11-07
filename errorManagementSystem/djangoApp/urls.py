@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
@@ -12,5 +13,6 @@ urlpatterns = [
     path('overview/<int:pk>/', views.machine_detail, name="machine_detail"),
     path('error/<int:pk>/', views.error_view, name="error_view"),
     path('error/add/', views.ErrorAddView.as_view(), name="add_error"),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
 

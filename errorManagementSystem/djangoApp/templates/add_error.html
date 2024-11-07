@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% load i18n %}
 <body>
-  {% block content %}
+  {% block content %} {% if user.is_authenticated %}
   <main>
     <h2>Bearbeitungsmodus (Fehlercode hinzufügen)</h2>
 
@@ -9,5 +9,5 @@
       <button class="button-style" type="submit">Hinzufügen</button>
     </form>
   </main>
-  {% endblock %}
+  {% endif %} {% endblock %}
 </body>

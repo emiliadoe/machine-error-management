@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load i18n %}
 
 <body>
-  {% block content %}
+  {% block content %} {% if user.is_authenticated %}
   <main>
     <h1>{% trans "Maschinenübersicht" %}</h1>
     <br />
@@ -26,5 +26,5 @@
     </section>
   </main>
 
-  {% endblock %}
+  {% endif %} {% endblock %}
 </body>

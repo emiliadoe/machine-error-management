@@ -1,40 +1,3 @@
-:root {
-  --light-color: #e5ebfc;
-  --caribean-blue: #2c666e;
-  --oxford-blue: #0d1f47;
-  --dark-blue: #2d3045;
-  --marine-blue: #424684;
-}
-
-body {
-  font-family: Helvetica;
-  font-size: 30px;
-  color: var(--dark-blue);
-  background-color: var(--light-color);
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  max-width: 100%;
-  padding-bottom: 100px !important;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-main {
-  margin-left: 30px;
-  margin-right: 30px;
-  display: grid;
-  place-items: center;
-}
-
-h1 {
-  font-size: 4vw;
-}
-
 header {
   display: flex;
   align-items: center;
@@ -76,16 +39,7 @@ nav ul {
 }
 
 .plus {
-  right: 50px !important;
-  position: absolute;
-  margin-right: 30px;
   margin-top: 2px;
-}
-
-.information {
-  position: absolute;
-  right: 160px;
-  top: 2px;
 }
 
 #navbar2 {
@@ -100,9 +54,6 @@ nav ul {
 #dropdown1 {
   min-width: unset;
   top: 115%;
-}
-#dropdown3 {
-  min-width: unset;
 }
 
 #arrow > a {
@@ -184,10 +135,6 @@ nav ul {
   vertical-align: sub;
   display: flex;
   flex-wrap: nowrap;
-}
-
-p {
-  font-size: 18px;
 }
 
 .modal-content {
@@ -306,29 +253,38 @@ img.no-hovering {
   }
 }
 
+.logout {
+  border-bottom: #0d1f47 2px solid;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(13, 31, 71, 0.5);
+  }
+}
+
+.link {
+  color: var(--light-color) !important;
+  cursor: pointer;
+  &:hover {
+    color: var(--oxford-blue) !important;
+  }
+}
+
 .language-dropdown {
-  background-color: var(--marine-blue);
   border: 0px;
   cursor: pointer;
   font-size: 18px;
-}
-
-.button-style {
-  border: 2px solid;
-  border-radius: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  color: var(--caribean-blue);
+  &:hover {
+    background-color: rgba(13, 31, 71, 0.5);
+  }
 }
 
 button.button-style {
   cursor: pointer;
   &:hover {
-    background-color: var(--caribean-blue);
-    opacity: 0.5;
-    color: black;
+    background-color: rgba(44, 102, 110, 0.5);
   }
 }
 
@@ -338,12 +294,4 @@ button > a {
 
 .back-navigation {
   cursor: pointer;
-}
-
-main > h2 {
-  margin-bottom: 30px;
-}
-
-p.headline {
-  font-size: 2vw;
 }

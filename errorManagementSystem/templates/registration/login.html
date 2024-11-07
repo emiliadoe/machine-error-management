@@ -1,15 +1,10 @@
-{% extends 'base.html' %}
-  
-{% block title %}Login View{% endblock %}
-  
-{% block content %}
-    <h2>Log In</h2>
-  
-    <form method="post">
-  
-        {% csrf_token %}
-        {{ form.as_p }}
-  
-        <button type="submit">Log In</button>
-    </form>
+{% extends 'base.html' %} {% block content %} {% load i18n %}
+<div class="login-container">
+  <h2>{% trans "Login Daten eingeben:" %}</h2>
+
+  <form method="POST">
+    {% csrf_token %} {{ form.as_p }}
+    <button class="button-style" type="submit">{% trans "Login" %}</button>
+  </form>
+</div>
 {% endblock %}

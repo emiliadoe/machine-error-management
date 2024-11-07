@@ -1,9 +1,8 @@
 {% extends "base.html" %} {% load i18n %}
 
 <!DOCTYPE html>
-<head> </head>
 <body>
-  {% block content %}
+  {% block content %} {% if user.is_authenticated %}
 
   <main>
     <h1>{% trans "Maschinensuche" %}</h1>
@@ -37,7 +36,18 @@
 
     {% else %}
     <p>{% trans "Keine Ergebnisse gefunden." %}</p>
-    {% endif %}
   </main>
-  {% endblock %}
+  {% endif %} {% else %} {% block content2 %}
+  <main>
+    <h2>Machine-Error-Management System</h2>
+    <p style="text-align: center">
+      This project was created to built a Machine Error Management System using
+      Python and the Django framework. It allows users to manage a database of
+      machines, their descriptions, and the error codes that have been
+      encountered on these machines. The system also provides details on how to
+      resolve these errors. <br />
+      Please request for access if you dont have rights.
+    </p>
+  </main>
+  {% endblock %}{% endif %} {% endblock %}
 </body>

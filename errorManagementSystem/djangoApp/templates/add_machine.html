@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% load i18n %}
 
 <body>
-  {% block content %}
+  {% block content %} {% if user.is_authenticated %}
   <main>
     <h2>Bearbeitungsmodus (Maschine hinzufügen)</h2>
 
@@ -10,5 +10,5 @@
       <button class="button-style" type="submit">Maschine hinzufügen</button>
     </form>
   </main>
-  {% endblock %}
+  {% endif %} {% endblock %}
 </body>

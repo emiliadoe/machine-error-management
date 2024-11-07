@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% load i18n %} {% load static %} {% block content %}
+{% if user.is_authenticated %}
 <main>
   <h2>Bearbeitungsmodus (Maschinendaten ändern)</h2>
   <div class="add-error">
@@ -14,4 +15,4 @@
     </a>
   </div>
 </main>
-{% endblock %}
+{% endif %} {% endblock %}
