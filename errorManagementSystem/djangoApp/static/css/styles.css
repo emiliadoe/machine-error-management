@@ -11,7 +11,7 @@ header {
 
 nav {
   all: unset !important;
-  width: 100%;
+  width: 100% !important;
   max-width: 100%;
 }
 
@@ -39,11 +39,21 @@ nav ul {
 }
 
 .plus {
-  margin-top: 2px;
+  margin-top: 2px !important;
+}
+
+.navbar-right {
+  display: flex;
+  margin-left: auto;
+}
+
+.navbar-right li {
+  margin-right: 30px;
 }
 
 #navbar2 {
   all: unset !important;
+  margin: 0 10px !important;
   #dropdown2 {
     top: 70px;
     right: 5px;

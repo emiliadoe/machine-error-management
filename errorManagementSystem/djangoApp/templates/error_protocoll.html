@@ -2,7 +2,7 @@
 <body>
   {% block content %} {% if user.is_authenticated %}
   <main>
-    <h2>Bearbeitungsmodus (Fehlerprotokoll)</h2>
+    <h2>Fehler dokumentieren (Fehlerprotokoll)</h2>
 
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}

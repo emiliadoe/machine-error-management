@@ -10,15 +10,25 @@
           &times;
         </button>
       </div>
-      <div class="protocol-notes"></div>
+      {% for protocol in protocols %}
+      <div class="protocol-item">
+        <p><strong>{{ protocol.timestamp }}</p></strong> 
+        <p><strong>Maschine:</strong> {{ protocol.machine }}</p>
+        <p><strong>Fehler Code:</strong> {{ protocol.error_code }}</p>
+        <p><strong>Notizen:</strong> {{ protocol.notes }}</p>
+      </div>
+      <hr />
+      {% endfor %}
 
       <div class="modal-footer">
         <button
-          type="button"
-          class="btn btn-default"
-          data-dismiss="modal"
-        ></button>
-        <a href="{% url 'error_protocoll' %}">{% trans "neuer Fehler" %}</a>
+        type="button"
+        class="btn btn-default"
+        data-url="{% url 'error_protocoll' %}"
+        onclick="redirectToErrorProtocol(this)"
+      >
+        {% trans "neuer Fehler" %}
+      </button>
         <button type="button" class="btn btn-default" data-dismiss="modal">
           {% trans "Schließen" %}
         </button>
@@ -26,3 +36,10 @@
     </div>
   </div>
 </div>
+
+<script>
+   function redirectToErrorProtocol(button) {
+    const url = button.getAttribute('data-url');
+    window.location.href = url;
+  }
+</script>
