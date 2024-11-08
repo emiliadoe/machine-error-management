@@ -53,14 +53,14 @@ class ErrorProtocol(models.Model):
 
     timestamp = models.DateTimeField(default=timezone.now)  
     
-    error_code = models.ForeignKey('ErrorCode', on_delete=models.CASCADE, related_name='error_protocols') 
+    error_code = models.ForeignKey('ErrorCode', on_delete=models.CASCADE, related_name='error_protocols', blank=True, null=True) 
     
     notes = models.TextField(blank=True, null=True) 
     
     machine = models.ForeignKey('Machine', on_delete=models.SET_NULL, null=True, blank=True) 
     
     def save(self, *args, **kwargs):
-        if not self.machine: 
+        if not self.machine and self.error_code:
             self.machine = self.error_code.machine  
         
         super(ErrorProtocol, self).save(*args, **kwargs) 

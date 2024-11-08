@@ -84,7 +84,7 @@ nav ul {
     left: 0;
     color: #fce4ec;
     border-left: 2px solid var(--caribean-blue);
-    transition: 0.5s;
+    transition: color 1s ease;
     cursor: pointer;
     & span {
       position: relative;
@@ -138,6 +138,7 @@ nav ul {
   }
   a:hover {
     text-decoration: none;
+    transition: color 1s ease;
   }
 }
 
@@ -204,6 +205,7 @@ button.errorcode {
     background-color: var(--caribean-blue);
     border-color: var(--caribean-blue);
     opacity: 0.5;
+    transition: background-color 1s ease;
   }
 }
 
@@ -238,12 +240,14 @@ b.description-table {
 
 img:hover {
   opacity: 0.2;
+  transition: opacity 1s ease;
 }
 
 img.no-hovering {
   width: 100%;
   &:hover {
     opacity: 1 !important;
+    transition: opacity 1s ease;
   }
 }
 
@@ -304,4 +308,19 @@ button > a {
 
 .back-navigation {
   cursor: pointer;
+}
+
+#errorProtocolModal .modal-dialog {
+  width: 600px;
+  max-width: 100%;
+}
+
+#errorProtocolModal .modal-content {
+  height: 500px;
+  overflow-y: auto;
+}
+
+.adding-error {
+  margin-left: 120px;
+  margin-top: -5px;
 }
