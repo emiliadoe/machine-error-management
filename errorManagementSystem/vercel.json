@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "errorManagementSystem/errorManagementSystem/wsgi.py",
+      "src": "errorManagementSystem/manage.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" }
     }
@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "errorManagementSystem/errorManagementSystem/wsgi.py"
+      "dest": "errorManagementSystem/manage.py"
     }
   ]
 }
