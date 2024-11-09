@@ -31,15 +31,17 @@ nav ul {
       color: var(--light-color);
       font-weight: bold;
     }
-    a:hover {
+    a:hover,
+    a:active {
       color: var(--oxford-blue);
       text-decoration: none;
+      transition: color 0.3s ease;
     }
   }
 }
 
 .plus {
-  margin-top: 2px !important;
+  margin-top: 4px !important;
 }
 
 .navbar-right {
@@ -49,14 +51,14 @@ nav ul {
 
 .navbar-right li {
   margin-right: 30px;
+  margin-left: 0px;
 }
 
 #navbar2 {
   all: unset !important;
-  margin: 0 10px !important;
+  margin: 0 30px !important;
   #dropdown2 {
     top: 70px;
-    right: 5px;
     left: unset;
   }
 }
@@ -64,6 +66,11 @@ nav ul {
 #dropdown1 {
   min-width: unset;
   top: 115%;
+}
+
+#dropdown3 {
+  left: unset;
+  right: 0px;
 }
 
 #arrow > a {
@@ -92,7 +99,6 @@ nav ul {
       padding-left: 12px;
       display: inline-block;
       z-index: 1;
-      transition: 0.5s;
       & a {
         color: var(--oxford-blue);
         &:hover {
@@ -138,7 +144,7 @@ nav ul {
   }
   a:hover {
     text-decoration: none;
-    transition: color 1s ease;
+    transition: color 0.3s ease;
   }
 }
 
@@ -205,7 +211,7 @@ button.errorcode {
     background-color: var(--caribean-blue);
     border-color: var(--caribean-blue);
     opacity: 0.5;
-    transition: background-color 1s ease;
+    transition: background-color 0.3s ease;
   }
 }
 
@@ -240,14 +246,14 @@ b.description-table {
 
 img:hover {
   opacity: 0.2;
-  transition: opacity 1s ease;
+  transition: opacity 0.3s ease;
 }
 
 img.no-hovering {
   width: 100%;
   &:hover {
     opacity: 1 !important;
-    transition: opacity 1s ease;
+    transition: opacity 0.3s ease;
   }
 }
 
@@ -281,7 +287,8 @@ img.no-hovering {
 .link {
   color: var(--light-color) !important;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:active {
     color: var(--oxford-blue) !important;
   }
 }
@@ -292,13 +299,6 @@ img.no-hovering {
   font-size: 18px;
   &:hover {
     background-color: rgba(13, 31, 71, 0.5);
-  }
-}
-
-button.button-style {
-  cursor: pointer;
-  &:hover {
-    background-color: rgba(44, 102, 110, 0.5);
   }
 }
 

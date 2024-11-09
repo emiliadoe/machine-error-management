@@ -338,6 +338,474 @@
     }
   },
   {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2024-11-09T16:57:46.781Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "210",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Images\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2024-11-09T17:00:03.682Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "8",
+      "object_repr": "Haas UMC-750",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2024-11-09T17:00:28.058Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "9",
+      "object_repr": "Doosan Puma SMX Serie",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2024-11-09T17:00:42.788Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "10",
+      "object_repr": "Hurco VMXHSi Serie",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2024-11-09T17:01:01.665Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "11",
+      "object_repr": "Mori Seiki NT-Serie",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+      "action_time": "2024-11-09T17:01:17.155Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "12",
+      "object_repr": "GROB G350",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+      "action_time": "2024-11-09T17:01:30.939Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "13",
+      "object_repr": "INDEX G220",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+      "action_time": "2024-11-09T17:01:43.440Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "14",
+      "object_repr": "Yamazaki Mazak Variaxis Serie",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+      "action_time": "2024-11-09T17:05:52.840Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "8",
+      "object_repr": "Haas UMC-750",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Notes\", \"Documents\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+      "action_time": "2024-11-09T17:06:31.558Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "12",
+      "object_repr": "104",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+      "action_time": "2024-11-09T17:06:53.480Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "13",
+      "object_repr": "431",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+      "action_time": "2024-11-09T17:07:27.377Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "13",
+      "object_repr": "431",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Machine\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+      "action_time": "2024-11-09T17:08:07.509Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "14",
+      "object_repr": "104",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+      "action_time": "2024-11-09T17:08:30.565Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "15",
+      "object_repr": "202",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+      "action_time": "2024-11-09T17:08:36.738Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "202",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+      "action_time": "2024-11-09T17:09:05.278Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "16",
+      "object_repr": "118",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+      "action_time": "2024-11-09T17:09:31.751Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "17",
+      "object_repr": "417",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+      "action_time": "2024-11-09T17:09:51.916Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "18",
+      "object_repr": "415",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+      "action_time": "2024-11-09T17:10:14.232Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "19",
+      "object_repr": "419",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+      "action_time": "2024-11-09T17:10:36.781Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "20",
+      "object_repr": "910",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+      "action_time": "2024-11-09T17:11:04.975Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "21",
+      "object_repr": "920",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+      "action_time": "2024-11-09T17:11:32.110Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "22",
+      "object_repr": "925",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+      "action_time": "2024-11-09T17:11:55.584Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "23",
+      "object_repr": "115",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+      "action_time": "2024-11-09T17:12:13.753Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "24",
+      "object_repr": "116",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+      "action_time": "2024-11-09T17:12:32.150Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "25",
+      "object_repr": "119",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+      "action_time": "2024-11-09T17:12:58.087Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "26",
+      "object_repr": "504",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+      "action_time": "2024-11-09T17:13:26.093Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "27",
+      "object_repr": "505",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+      "action_time": "2024-11-09T17:13:47.023Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "28",
+      "object_repr": "506",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+      "action_time": "2024-11-09T17:14:21.463Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "29",
+      "object_repr": "608",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+      "action_time": "2024-11-09T17:14:39.106Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "30",
+      "object_repr": "609",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+      "action_time": "2024-11-09T17:14:56.428Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "31",
+      "object_repr": "610",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+      "action_time": "2024-11-09T17:15:14.223Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "32",
+      "object_repr": "720",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+      "action_time": "2024-11-09T17:15:31.187Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "33",
+      "object_repr": "721",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+      "action_time": "2024-11-09T17:15:48.497Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "34",
+      "object_repr": "722",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+      "action_time": "2024-11-09T17:16:27.285Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "12",
+      "object_repr": "104",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+      "action_time": "2024-11-09T17:17:10.246Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "35",
+      "object_repr": "202",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -626,11 +1094,47 @@
     }
   },
   {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add Error",
+      "content_type": 9,
+      "codename": "add_errorprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change Error",
+      "content_type": 9,
+      "codename": "change_errorprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete Error",
+      "content_type": 9,
+      "codename": "delete_errorprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view Error",
+      "content_type": 9,
+      "codename": "view_errorprotocol"
+    }
+  },
+  {
     "model": "auth.user",
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$870000$Etg1H8ywo2vQb2dbYCdfke$I7IruKNiZ2B8vebHcImGACBkYx+mEjQFeV/4J/9yzw8=",
-      "last_login": "2024-10-25T15:29:51.359Z",
+      "last_login": "2024-11-09T16:56:15.369Z",
       "is_superuser": true,
       "username": "admin",
       "first_name": "",
@@ -684,6 +1188,11 @@
     "fields": { "app_label": "djangoApp", "model": "errorcode" }
   },
   {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": { "app_label": "djangoApp", "model": "errorprotocol" }
+  },
+  {
     "model": "sessions.session",
     "pk": "gfiywrz6d3zneqcd1ikzamssxyclh6u3",
     "fields": {
@@ -701,6 +1210,14 @@
   },
   {
     "model": "sessions.session",
+    "pk": "tqzai2oxo3rink4pxn2ntr6wjtcqvnm6",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAUBe_C2hAo0FCX7j1D8_m8L1VTktKuGu9umnSh25nJ7GqkbS3j1rCMU1ZXZdXllyXiF-ZD5CfNj6q5zusyJX0k-rRN32vG-3a2f4NCrRxbEGBz78BDJoPeJJ_FiTUCYQoIEQnex8heBjZOqOsC-SQDgpioPl8p1TmB:1t9okx:imcgygCF1qAXXy7OKMdr5r4TZR2_goPQQXSWyVtKTfg",
+      "expire_date": "2024-11-23T16:56:15.375Z"
+    }
+  },
+  {
+    "model": "sessions.session",
     "pk": "xp5tdzyxnjbotjgk62xhdpb3vb2zpczv",
     "fields": {
       "session_data": ".eJxVjEEOwiAUBe_C2hAo0FCX7j1D8_m8L1VTktKuGu9umnSh25nJ7GqkbS3j1rCMU1ZXZdXllyXiF-ZD5CfNj6q5zusyJX0k-rRN32vG-3a2f4NCrRxbEGBz78BDJoPeJJ_FiTUCYQoIEQnex8heBjZOqOsC-SQDgpioPl8p1TmB:1t4MG7:zP8l9PKprYugvxVkaX7U0Fm6Bo7Jv_1RR_AP-hgalpw",
@@ -714,7 +1231,7 @@
       "name": "Mazak Integrex i-Serie",
       "description": "Eine beliebte Serie von Multi-Tasking-Maschinen, die sowohl Dreh- als auch Fräsoperationen ausführen können.",
       "notes": "https://www.mazakeu.com/de/machines/series/integrex-i/",
-      "documents": "files/Themenblatt_-_Dörschmann.pdf",
+      "documents": "files/Themenblatt_-_D�rschmann.pdf",
       "image": "machine_image/mazak.png"
     }
   },
@@ -741,6 +1258,83 @@
     }
   },
   {
+    "model": "djangoApp.machine",
+    "pk": 8,
+    "fields": {
+      "name": "Haas UMC-750",
+      "description": "Ein Universalbearbeitungszentrum, das fünf Achsen für komplexe Bearbeitungsoperationen bietet.",
+      "notes": "40 Kegel, 5 Achse, 8.1k RPM, 30-50 Werkzeug (https://www.haascnc.com/de/machines/vertical-mills/universal-machine/models/umc-750.html)pl�tze",
+      "documents": "files/operators-manual.pdf",
+      "image": "machine_image/machine1.png"
+    }
+  },
+  {
+    "model": "djangoApp.machine",
+    "pk": 9,
+    "fields": {
+      "name": "Doosan Puma SMX Serie",
+      "description": "Multi-Tasking-Dreh- und Fräszentren, die präzise und komplexe Bearbeitungen ermöglichen.",
+      "notes": "",
+      "documents": "",
+      "image": ""
+    }
+  },
+  {
+    "model": "djangoApp.machine",
+    "pk": 10,
+    "fields": {
+      "name": "Hurco VMXHSi Serie",
+      "description": "Hochgeschwindigkeits-Bearbeitungszentren, die für sowohl Fras- als auch Drehaufgaben verwendet werden können.",
+      "notes": "",
+      "documents": "",
+      "image": ""
+    }
+  },
+  {
+    "model": "djangoApp.machine",
+    "pk": 11,
+    "fields": {
+      "name": "Mori Seiki NT-Serie",
+      "description": "Multi-Tasking-Maschinen, die präzise Bearbeitungen durch integrierte Dreh- und Fräsfunktionen ermöglichen.",
+      "notes": "",
+      "documents": "",
+      "image": ""
+    }
+  },
+  {
+    "model": "djangoApp.machine",
+    "pk": 12,
+    "fields": {
+      "name": "GROB G350",
+      "description": "Eine flexible fünf-Achs-Bearbeitungsmaschine, die sowohl für Fräs- als auch für Dreharbeiten genutzt werden kann.",
+      "notes": "",
+      "documents": "",
+      "image": ""
+    }
+  },
+  {
+    "model": "djangoApp.machine",
+    "pk": 13,
+    "fields": {
+      "name": "INDEX G220",
+      "description": "Ein kompakter Dreh-Fräszentrum, der komplexe Bauteile in einer einzigen Aufspannung bearbeitet.",
+      "notes": "",
+      "documents": "",
+      "image": ""
+    }
+  },
+  {
+    "model": "djangoApp.machine",
+    "pk": 14,
+    "fields": {
+      "name": "Yamazaki Mazak Variaxis Serie",
+      "description": "Fünf-Achs-Bearbeitungszentren, die für eine Vielzahl von Anwendungen in verschiedenen Industrien geeignet sind.",
+      "notes": "",
+      "documents": "",
+      "image": ""
+    }
+  },
+  {
     "model": "djangoApp.errorcode",
     "pk": 3,
     "fields": {
@@ -748,19 +1342,7 @@
       "error_description": "Überhitzung der Spindel",
       "solution": "Regelmäßige Überprüfung und Wartung des Kühlsystems",
       "machine": 5,
-      "images": "",
-      "files": ""
-    }
-  },
-  {
-    "model": "djangoApp.errorcode",
-    "pk": 4,
-    "fields": {
-      "error_code": "202",
-      "error_description": "Spindeltemperatur erhöht",
-      "solution": "Überprüfung und Optimierung des Kühlsystems.",
-      "machine": 5,
-      "images": "",
+      "images": "error-pictures/image_error1.png",
       "files": ""
     }
   },
@@ -844,6 +1426,282 @@
       "error_description": "Axis Overload",
       "solution": "Überprüfung der Achsbelastung und Reduzierung der Vorschubgeschwindigkeit.",
       "machine": 7,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 13,
+    "fields": {
+      "error_code": "431",
+      "error_description": "Spindle Imbalance",
+      "solution": "Auswuchten der Spindel und Überprüfung der Werkzeugaufspannung.",
+      "machine": 7,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 14,
+    "fields": {
+      "error_code": "104",
+      "error_description": "Probleme mit der Achsenkalibrierung",
+      "solution": "Regelmäßige Kalibrierung und Wartung der Maschinenachsen, Verwendung von präzisen Kalibrierwerkzeugen",
+      "machine": 8,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 15,
+    "fields": {
+      "error_code": "202",
+      "error_description": "Servo Overload",
+      "solution": "Überprüfung der Servoantriebe und Anpassung der Vorschubgeschwindigkeit.",
+      "machine": 8,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 16,
+    "fields": {
+      "error_code": "118",
+      "error_description": "Encoder Fault",
+      "solution": "Überprüfung und ggf. Austausch des Achsencoders.",
+      "machine": 8,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 17,
+    "fields": {
+      "error_code": "417",
+      "error_description": "Hydrauliksystemausfälle",
+      "solution": "Überprüfung und Wartung des Hydrauliksystems, Austausch von verschlissenen oder beschädigten Komponenten",
+      "machine": 9,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 18,
+    "fields": {
+      "error_code": "415",
+      "error_description": "Hydraulic Temperature High",
+      "solution": "Überprüfung und Kühlung des Hydrauliksystems.",
+      "machine": 9,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 19,
+    "fields": {
+      "error_code": "419",
+      "error_description": "Hydraulic Fluid Level Low",
+      "solution": "Auffüllen und Überprüfung des Hydraulikflüssigkeitsstands.",
+      "machine": 9,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 20,
+    "fields": {
+      "error_code": "910",
+      "error_description": "Kommunikationsfehler in der CNC-Steuerung",
+      "solution": "Überprüfung und Aktualisierung der CNC-Software, Sicherstellen einer stabilen Stromversorgung",
+      "machine": 10,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 21,
+    "fields": {
+      "error_code": "920",
+      "error_description": "PLC Communication Fault",
+      "solution": "Überprüfung der PLC-Verbindungen und -Software.",
+      "machine": 10,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 22,
+    "fields": {
+      "error_code": "925",
+      "error_description": "Ethernet Communication Error",
+      "solution": "Überprüfung der Netzwerkverbindungen und -einstellungen.",
+      "machine": 10,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 23,
+    "fields": {
+      "error_code": "115",
+      "error_description": "Ungenaue Positionierung",
+      "solution": "Regelmäßige Überprüfung und Kalibrierung der Linearführungen und Kugelumlaufspindeln",
+      "machine": 11,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 24,
+    "fields": {
+      "error_code": "116",
+      "error_description": "Backlash Error",
+      "solution": "Überprüfung und Einstellung des Spielausgleichs.",
+      "machine": 11,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 25,
+    "fields": {
+      "error_code": "119",
+      "error_description": "Home Position Error",
+      "solution": "Überprüfung und Neufestlegung der Referenzposition.",
+      "machine": 11,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 26,
+    "fields": {
+      "error_code": "504",
+      "error_description": "Probleme mit der Kühlmittelzufuhr",
+      "solution": "Reinigung und Wartung des Kühlmittelsystems, Sicherstellen einer ausreichenden Kühlmittelmenge und -qualität",
+      "machine": 12,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 27,
+    "fields": {
+      "error_code": "505",
+      "error_description": "Low Coolant Level",
+      "solution": "Auffüllen des Kühlmittelbehälters und Überprüfung auf Lecks.",
+      "machine": 12,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 28,
+    "fields": {
+      "error_code": "506",
+      "error_description": "Coolant Pump Failure",
+      "solution": "Überprüfung und ggf. Austausch der Kühlmittelpumpe.",
+      "machine": 12,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 29,
+    "fields": {
+      "error_code": "608",
+      "error_description": "Späneansammlungen in der Maschine",
+      "solution": "Regelmäßige Reinigung der Maschine und Einsatz von automatischen Spänefördersystemen",
+      "machine": 13,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 30,
+    "fields": {
+      "error_code": "609",
+      "error_description": "Chip Conveyor Motor Overload",
+      "solution": "Überprüfung und Wartung des Fördermotors.",
+      "machine": 13,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 31,
+    "fields": {
+      "error_code": "610",
+      "error_description": "Coolant Tank Full",
+      "solution": "Entleerung und Reinigung des Kühlmitteltanks.",
+      "machine": 13,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 32,
+    "fields": {
+      "error_code": "720",
+      "error_description": "Softwarefehler und Abstürze",
+      "solution": "Regelmäßige Updates der Maschinensteuerungssoftware und Sicherstellung einer stabilen Netzwerkverbindung",
+      "machine": 14,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 33,
+    "fields": {
+      "error_code": "721",
+      "error_description": "Program Loading Error",
+      "solution": "Überprüfung und Neuinstallation der Maschinensteuerungssoftware.",
+      "machine": 14,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 34,
+    "fields": {
+      "error_code": "722",
+      "error_description": "Memory Overflow",
+      "solution": "Überprüfung und Bereinigung des Speichers sowie Aktualisierung der Steuerungssoftware.",
+      "machine": 14,
+      "images": "",
+      "files": ""
+    }
+  },
+  {
+    "model": "djangoApp.errorcode",
+    "pk": 35,
+    "fields": {
+      "error_code": "202",
+      "error_description": "Spindeltemperatur erhöht",
+      "solution": "Überprüfung und Optimierung des Kühlsystems.",
+      "machine": 5,
       "images": "",
       "files": ""
     }

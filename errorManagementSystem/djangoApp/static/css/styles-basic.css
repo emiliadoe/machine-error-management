@@ -8,7 +8,7 @@
 
 body {
   font-family: Helvetica;
-  font-size: 30px;
+  font-size: 1.5vw;
   color: var(--dark-blue);
   background-color: var(--light-color);
   padding: 0;
@@ -68,5 +68,13 @@ p.headline {
   padding-right: 10px;
   margin-bottom: 20px;
   margin-top: 20px;
-  color: var(--caribean-blue);
+  color: var(--marine-blue);
+}
+
+button.button-style {
+  cursor: pointer;
+  &:hover {
+    background-color: var(--marine-blue);
+    color: var(--light-color);
+  }
 }

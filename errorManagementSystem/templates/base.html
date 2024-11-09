@@ -27,37 +27,18 @@
             <ul>
                 {% if user.is_authenticated %}
                 {% block logged_in_content %}
-                <li class="nav-item dropdown">
-                    <a href="{% url 'home' %}"  data-toggle="dropdown" id="navbarDropdown3">
-                        <div class="profile">
-                            <img src="{% static 'images/profile.svg' %}" alt="Profil">
+                <li class="nav-item dropdown plus" id="navbar2">
+                    <a data-toggle="dropdown" href="{% url 'home' %}" id="navbarDropdown2">
+                        <div class="plus">
+                            <img src="{% static 'images/plus.svg' %}" alt="Plus" >
                         </div>
                     </a>       
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3" id="dropdown3">
-                            <form method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="dropdown-item logout">Logout</button>
-                            </form>
-
-        
-        <!-- Sprachenauswahl-Formular -->
-        <form action="{% url 'set_language' %}" method="post" id="arrow" style="margin: 0; padding: 0;">
-            {% csrf_token %}
-            <span class="dropdown-item" style="cursor: default;">Sprachauswahl:</span>
-
-            <select class="dropdown-item language-dropdown" name="language" onchange="this.form.submit()" style="width: 100%; border: none;">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
-                {% for lang_code, lang_name in LANGUAGES %}
-                    <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
-                        {{ lang_name }}
-                    </option>
-                {% endfor %}
-            </select>
-            <input type="hidden" name="next" value="{{ request.path }}">
-        </form>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
+                            <a class="dropdown-item logout" href="{% url 'error_protocoll' %}">{% trans "Fehler dokumentieren" %}</a> 
+                            <a class="dropdown-item" href="{% url 'add_machine' %}">{% trans "Maschine hinzufügen" %}</a>
+                            <a class="dropdown-item" href="{% url 'add_error' %}">{% trans "Fehlercode hinzufügen" %}</a>
                         </div>
-                    </li>   
+                    </li>  
                     <li>
                         <a href="{% url 'overview' %}">{% trans "Maschinenübersicht" %}</a>
                     </li>
@@ -74,23 +55,38 @@
                         </a>
                     </li> 
                     <div class="navbar-right">
-                    <li class="nav-item dropdown plus" id="navbar2">
-                    <a data-toggle="dropdown" href="{% url 'home' %}" id="navbarDropdown2">
-                        <div class="plus">
-                            <img src="{% static 'images/plus.svg' %}" alt="Plus" >
-                        </div>
-                    </a>       
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
-                            <a class="dropdown-item" href="{% url 'error_protocoll' %}">{% trans "Fehler dokumentieren" %}</a> 
-                            <a class="dropdown-item" href="{% url 'add_machine' %}">{% trans "Maschine hinzufügen" %}</a>
-                            <a class="dropdown-item" href="{% url 'add_error' %}">{% trans "Fehlercode hinzufügen" %}</a>
-                        </div>
-                    </li>   
-                    <li class="information">  
+                          <li class="information">  
                             <a href="#" class="d-none d-sm-inline-block" data-toggle="modal" data-target="#information-modal">
                                 <img src="{% static 'images/information.svg' %}" alt="Information" >
                             </a>
                 </li>  
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'home' %}"  data-toggle="dropdown" id="navbarDropdown3">
+                                <img src="{% static 'images/profile.svg' %}" alt="Profil">
+                        </a>       
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3" id="dropdown3">
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item logout">Logout</button>
+                                </form>
+            <!-- Sprachenauswahl-Formular -->
+            <form action="{% url 'set_language' %}" method="post" id="arrow" style="margin: 0; padding: 0;">
+                {% csrf_token %}
+                <span class="dropdown-item" style="cursor: default;">Sprachauswahl:</span>
+    
+                <select class="dropdown-item language-dropdown" name="language" onchange="this.form.submit()" style="width: 100%; border: none;">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% for lang_code, lang_name in LANGUAGES %}
+                        <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                            {{ lang_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="next" value="{{ request.path }}">
+            </form>
+                            </div>
+                        </li>   
             </div>  
                     {% endblock %}
                 {% else %}
@@ -104,7 +100,7 @@
     </header>
 
     {% if user.is_authenticated %}
-    <img class="back-navigation" src="{% static 'images/arrow.svg' %}" alt="Back Arrow" onclick="history.back()" style="padding-left: 10px">
+    <img class="back-navigation" src="{% static 'images/arrow.svg' %}" alt="Back Arrow" onclick="history.back()" style="padding-left: 30px">
     {% endif %}
 
     {% block content %}
