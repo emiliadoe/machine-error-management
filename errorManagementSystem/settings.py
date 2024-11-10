@@ -29,12 +29,11 @@ SECRET_KEY = 'django-insecure-g=@v3$!hzdivkx91o4s81h@#xuor9$@u4*uu*ay14dbaejpfko
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['machine-error-management.onrender.com', '127.0.0.1', '0.0.0.0']
 """ 
 DEBUG = False
+"""
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1'] """
+ALLOWED_HOSTS = ['machine-error-management.onrender.com', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djangoApp.apps.DjangoappConfig',
-     'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -163,8 +161,7 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
