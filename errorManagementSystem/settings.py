@@ -90,13 +90,14 @@ WSGI_APPLICATION = 'errorManagementSystem.wsgi.application'
 
 import dj_database_url
 
+database_url = os.getenv('DB')
+if not database_url:
+    print("Warning: DATABASE_URL is not set. Using a local database as fallback.")
+    database_url = 'postgres://user:password@localhost:5432/mydatabase'  
+
 DATABASES = {
-    'default': dj_database_url.config(os.getenv('DB'))
+    'default': dj_database_url.config(default=database_url)
 }
-
-if 'DB' not in os.environ:
-    print("Warning: DATABASE_URL is not set. Falling back to the local default database.")
-
 
 """ DATABASES = {
      'default': {
