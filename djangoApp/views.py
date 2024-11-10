@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 
 def home_page(request):
-    
     q = request.GET.get('q')
     if q:
         results = Machine.objects.filter(name__icontains=q)

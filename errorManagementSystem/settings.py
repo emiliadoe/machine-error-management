@@ -92,7 +92,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 import dj_database_url
 
-database_url = os.getenv('DB')
+database_url = os.getenv('DB_URL')
 if not database_url:
     print("Warning: DATABASE_URL is not set. Using a local database as fallback.")
     database_url = 'postgres://user:password@localhost:5432/mydatabase'  
