@@ -67,8 +67,14 @@ p.headline {
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 20px;
-  margin-top: 20px;
   color: var(--marine-blue);
+  padding: 5px;
+}
+
+.overview {
+  margin-top: 20px;
+  width: 60% !important;
+  margin-right: 10px;
 }
 
 button.button-style {
@@ -77,4 +83,39 @@ button.button-style {
     background-color: var(--marine-blue);
     color: var(--light-color);
   }
+}
+
+input.button-style {
+  width: 75%;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+  width: 60%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+input#id_description,
+input#id_name,
+input#id_notes,
+select#id_machine,
+input#id_error_code,
+input#id_error_description,
+input#id_solution,
+input#id_images {
+  height: 50px;
+  display: flex;
+  border-radius: 10px;
+  width: 100%;
+  padding-left: 10px;
+}
+label[for="id_name"],
+label[for="id_description"],
+label[for="id_notes"],
+label[for="id_documents"],
+label[for="id_image"] {
+  font-size: 20px;
+  font-weight: bold;
 }

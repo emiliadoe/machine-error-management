@@ -26,26 +26,51 @@
         <table class="machine-table">
           <tr>
             <td>
-              <b class="description-table">{% trans "Beschreibung" %}:</b>
-            </td>
-            <td>
-              <p>{{ single_machine.description }}</p>
-              <br />
+            <div class="accordion" id="beschreibungAccordion">
+                <div class="card">
+                    <div class="card-header additional-information" id="beschreibungHeader">
+                        <h2 class="mb-0">
+                            <button class="btn description-table additional-information" type="button" data-toggle="collapse" data-target="#beschreibungCollapse" aria-expanded="true" aria-controls="beschreibungCollapse">
+                                Maschinenbeschreibung
+                                <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
+                            </button>
+                        </h2>
+                       
+                    </div>
+                    <div id="beschreibungCollapse" class="collapse" aria-labelledby="beschreibungHeader" data-parent="#beschreibungAccordion">
+                        <div class="card-body">
+                            {{ single_machine.description }}
+                        </div>
+                    </div>
+                </div>
             </td>
           </tr>
           <tr>
-            <td><p class="headline">{% trans "Notizen" %}:</p></td>
             <td>
-              <p>{{ single_machine.notes }}</p>
-              <br />
-            </td>
+              <div class="accordion second" id="notizenAccordion">
+                <div class="card">
+                    <div class="card-header additional-information" id="notizenHeader">
+                        <h2 class="mb-0">
+                            <button class="btn description-table additional-information" type="button" data-toggle="collapse" data-target="#notizenCollapse" aria-expanded="true" aria-controls="notizenCollapse">
+                              Notizen
+                              <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="notizenCollapse" class="collapse" aria-labelledby="notizenHeader" data-parent="#notizenAccordion">
+                        <div class="card-body">
+                          {{ single_machine.notes }}
+                        </div>
+                    </div>
+                </div>
+              </td>  
           </tr>
           <tr>
             <td><p class="headline">{% trans "Weitere Anlagen" %}:</p></td>
             <td>
               <p>
                 {% if single_machine.documents %}
-                <button class="additional-information btn btn-info btn-lg">
+                <button class="additional-information btn btn-info btn-lg ">
                   <a href="{{ single_machine.documents.url }}"
                     >PDF anschauen</a
                   ></button
@@ -98,15 +123,15 @@
 
       </div>
       <div class="column2">
-        <div class="field-errorcode">
-          <h2 class="h2-searchbar-error">Suche nach Fehlercode</h2>
+     <!--    <div class="field-errorcode"> -->
+     <!--      <h2 class="h2-searchbar-error">Suche nach Fehlercode</h2> -->
           <form method="get">
             {% csrf_token %}
             <input
               class="button-style"
               type="text"
               name="q"
-              placeholder="#fehlercode"
+              placeholder="Eingabe des Fehlercodes..."
               value="{{ search_query }}"
             />
             <button class="button-style" type="submit">
@@ -138,7 +163,7 @@
           <p>{% trans "Keine Ergebnisse gefunden." %}</p>
           {% endif %}
         </div>
-      </div>
+<!--       </div> -->
     </div>
 
     <!-- Modal for error Codes-->
