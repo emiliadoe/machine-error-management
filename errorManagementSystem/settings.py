@@ -28,13 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g=@v3$!hzdivkx91o4s81h@#xuor9$@u4*uu*ay14dbaejpfko'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-""" DEBUG = True
+DEBUG = True
 
-ALLOWED_HOSTS = [] """
-
+ALLOWED_HOSTS = []
+""" 
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1'] """
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djangoApp.apps.DjangoappConfig',
+     'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 ]
+
 
 ROOT_URLCONF = 'errorManagementSystem.urls'
 
@@ -86,7 +88,14 @@ WSGI_APPLICATION = 'errorManagementSystem.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
+import dj_database_url
+
 DATABASES = {
+    'default': dj_database_url.parse(os.getenv('DB_DATA'))
+}
+
+
+""" DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME':  'manage-errors',
@@ -95,7 +104,7 @@ DATABASES = {
          'PORT': '5432',
          'HOST': 'localhost'
      }
- }
+ } """
 
 #DATABASES = {
 #    'default': {
