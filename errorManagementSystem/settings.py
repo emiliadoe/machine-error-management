@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'errorManagementSystem.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DB'))
+    'default': dj_database_url.config(os.getenv('DB'))
 }
 
 if 'DB' not in os.environ:
