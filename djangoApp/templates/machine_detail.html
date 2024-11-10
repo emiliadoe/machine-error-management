@@ -123,8 +123,6 @@
 
       </div>
       <div class="column2">
-     <!--    <div class="field-errorcode"> -->
-     <!--      <h2 class="h2-searchbar-error">Suche nach Fehlercode</h2> -->
           <form method="get">
             {% csrf_token %}
             <input
@@ -218,8 +216,6 @@
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
       $(document).ready(function () {
@@ -236,7 +232,9 @@
             "<p>" + errorDescription + "</p>"
           );
           $("#myModal .modal-solution").html("<p>" + errorSolution + "</p>");
-          $("#myModal .modal-images").html("<p>" + errorImages + "</p>");
+          $("#myModal .modal-images").html(
+            '<img class="no-hovering" src="' + errorImages + '" alt="Error Image">'
+          );
           $("#myModal .modal-files").html("<p>" + errorFiles + "</p>");
         });
       });
