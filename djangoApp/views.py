@@ -61,6 +61,11 @@ class MachineEditView(UpdateView):
     template_name = 'edit_details.html'
     success_url = reverse_lazy('home')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Maschine wurde erfolgreich bearbeitet! ')
+        return response
+
 
 class ErrorAddView(CreateView):
     model = ErrorCode
