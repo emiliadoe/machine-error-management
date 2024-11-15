@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% load static %} {% load i18n %}
+
 <body>
   {% block content %} {% if user.is_authenticated %}
   <main>
     <h2>Bearbeitungsmodus (Fehlercode hinzufügen)</h2>
-
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}
       <button class="button-style" type="submit">Hinzufügen</button>
