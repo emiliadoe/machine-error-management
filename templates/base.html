@@ -206,15 +206,13 @@
         });
     });
 });
-$(document).ready(function () {
-      // Show the cursor spinner as soon as the page starts loading
-      $("body").addClass("loading");
-
-      // Once the page is fully loaded, remove the loading cursor
-      $(window).on('load', function () {
-        $("body").removeClass("loading");
-      });
-    });
+function showLoaderOnClick(url) {
+      showLoader();
+      window.location=url;
+  }
+function showLoader(){
+      $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
+  }
     </script>
 </body>
 

@@ -138,6 +138,6 @@ footer {
   }
 }
 
-body.loading {
-  cursor: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/svgs/solid/cog.svg'), progress;
+body.busy {
+  cursor: wait; 
 }
