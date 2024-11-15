@@ -6,11 +6,7 @@
     <div class="headline-machine">
       <h2>{{ single_machine.name }}</h2>
       <a href="{% url 'edit_machine' single_machine.id %}">
-        <img
-          class="image-machine-headline"
-          src="{% static 'images/edit.png' %}"
-          alt="Bearbeiten Icon"
-        />
+        <img class="image-machine-headline" src="{% static 'images/edit.png' %}" alt="Bearbeiten Icon" />
       </a>
     </div>
 
@@ -19,22 +15,24 @@
         <table class="machine-table">
           <tr>
             <td>
-            <div class="accordion" id="beschreibungAccordion">
+              <div class="accordion" id="beschreibungAccordion">
                 <div class="card">
-                    <div class="card-header additional-information" id="beschreibungHeader">
-                        <h2 class="mb-0">
-                            <button class="btn description-table additional-information" type="button" data-toggle="collapse" data-target="#beschreibungCollapse" aria-expanded="true" aria-controls="beschreibungCollapse">
-                                Maschinenbeschreibung
-                                <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
-                            </button>
-                        </h2>
-                       
+                  <div class="card-header additional-information" id="beschreibungHeader">
+                    <h2 class="mb-0">
+                      <button class="btn description-table additional-information" type="button" data-toggle="collapse"
+                        data-target="#beschreibungCollapse" aria-expanded="true" aria-controls="beschreibungCollapse">
+                        Maschinenbeschreibung
+                        <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
+                      </button>
+                    </h2>
+
+                  </div>
+                  <div id="beschreibungCollapse" class="collapse" aria-labelledby="beschreibungHeader"
+                    data-parent="#beschreibungAccordion">
+                    <div class="card-body">
+                      {{ single_machine.description }}
                     </div>
-                    <div id="beschreibungCollapse" class="collapse" aria-labelledby="beschreibungHeader" data-parent="#beschreibungAccordion">
-                        <div class="card-body">
-                            {{ single_machine.description }}
-                        </div>
-                    </div>
+                  </div>
                 </div>
             </td>
           </tr>
@@ -42,110 +40,88 @@
             <td>
               <div class="accordion second" id="notizenAccordion">
                 <div class="card">
-                    <div class="card-header additional-information" id="notizenHeader">
-                        <h2 class="mb-0">
-                            <button class="btn description-table additional-information" type="button" data-toggle="collapse" data-target="#notizenCollapse" aria-expanded="true" aria-controls="notizenCollapse">
-                              Notizen
-                              <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
-                            </button>
-                        </h2>
+                  <div class="card-header additional-information" id="notizenHeader">
+                    <h2 class="mb-0">
+                      <button class="btn description-table additional-information" type="button" data-toggle="collapse"
+                        data-target="#notizenCollapse" aria-expanded="true" aria-controls="notizenCollapse">
+                        Notizen
+                        <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="notizenCollapse" class="collapse" aria-labelledby="notizenHeader"
+                    data-parent="#notizenAccordion">
+                    <div class="card-body">
+                      {{ single_machine.notes }}
                     </div>
-                    <div id="notizenCollapse" class="collapse" aria-labelledby="notizenHeader" data-parent="#notizenAccordion">
-                        <div class="card-body">
-                          {{ single_machine.notes }}
-                        </div>
-                    </div>
+                  </div>
                 </div>
-              </td>  
+            </td>
           </tr>
           <tr>
-            <td><p class="headline">{% trans "Weitere Anlagen" %}:</p></td>
+            <td>
+              <p class="headline">{% trans "Weitere Anlagen" %}:</p>
+            </td>
             <td>
               <p>
                 {% if single_machine.documents %}
                 <button class="additional-information btn btn-info btn-lg ">
-                  <a href="{{ single_machine.documents.url }}"
-                    >PDF anschauen</a
-                  ></button
-                ><br />
+                  <a href="{{ single_machine.documents.url }}">PDF anschauen</a></button><br />
                 {% else %} Keine PDF vorhanden {% endif %}
               </p>
             </td>
           </tr>
-            <td>
-              <p>
-                {% if single_machine.image %}
-                <button
-                  type="button"
-                  class="additional-information image-button btn btn-info btn-lg"
-                  data-toggle="modal"
-                  data-target="#machineImagesModal"
-                  machine-images="{{ single_machine.image.url }}"
-                >
-                  {% trans "Bilder/ Videos" %}
-                </button>
-                {% else %} Keine Bilder vorhanden {% endif %}
-              </p>
-            </td>
-            <td>
-              <p>
-                <button
-                  type="button"
-                  class="additional-information btn btn-info btn-lg"
-                  data-toggle="modal"
-                  data-target="#errorProtocolModal"
-                  error-id="{{ error_code.error_code }}"
-                  error-description="{{ error_code.error_description }}"
-                  error-solution="{{ error_code.solution }}"
-                >
-                  {% trans "Fehlerprotokoll" %}
-                </button>
-              </p>
-            </td>
+          <td>
+            <p>
+              {% if single_machine.image %}
+              <button type="button" class="additional-information image-button btn btn-info btn-lg" data-toggle="modal"
+                data-target="#machineImagesModal" machine-images="{{ single_machine.image.url }}">
+                {% trans "Bilder/ Videos" %}
+              </button>
+              {% else %} Keine Bilder vorhanden {% endif %}
+            </p>
+          </td>
+          <td>
+            <p>
+              <button type="button" class="additional-information btn btn-info btn-lg" data-toggle="modal"
+                data-target="#errorProtocolModal" error-id="{{ error_code.error_code }}"
+                error-description="{{ error_code.error_description }}" error-solution="{{ error_code.solution }}">
+                {% trans "Fehlerprotokoll" %}
+              </button>
+            </p>
+          </td>
           </tr>
         </table>
       </div>
-      
-      <div class="column2">
-          <form method="get">
-            {% csrf_token %}
-            <input
-              class="button-style"
-              type="text"
-              name="q"
-              placeholder="Eingabe des Fehlercodes..."
-              value="{{ search_query }}"
-            />
-            <button class="button-style" type="submit">
-              {% trans "Suche" %}
-            </button>
-          </form>
 
-          {% if error_codes %}
-          <ul>
-            {% for error_code in error_codes %}
-            <li style="list-style: none">
-              <button
-                type="button"
-                class="errorcode btn btn-info btn-lg"
-                data-toggle="modal"
-                data-target="#errorModal"
-                error-id="{{ error_code.error_code }}"
-                error-description="{{ error_code.error_description }}"
-                error-solution="{{ error_code.solution }}"
-                error-images="{{ error_code.images }}"
-                error-files="{{ error_code.files }}"
-              >
-                {{ error_code.error_code }} - {{ error_code.error_description }}
-              </button>
-            </li>
-            {% endfor %}
-          </ul>
-          {% else %}
-          <p>{% trans "Keine Ergebnisse gefunden." %}</p>
-          {% endif %}
-        </div>
-<!--       </div> -->
+      <div class="column2">
+        <form method="get">
+          {% csrf_token %}
+          <input class="button-style" type="text" name="q" placeholder="Eingabe des Fehlercodes..."
+            value="{{ search_query }}" />
+          <button class="button-style" type="submit">
+            {% trans "Suche" %}
+          </button>
+        </form>
+
+        {% if error_codes %}
+        <ul>
+          {% for error_code in error_codes %}
+          <li style="list-style: none">
+            <button type="button" class="errorcode btn btn-info btn-lg" data-toggle="modal" data-target="#errorModal"
+              error-id="{{ error_code.error_code }}" error-description="{{ error_code.error_description }}"
+              error-solution="{{ error_code.solution }}" error-images="{{ error_code.images.url }}"
+              error-files="{{ error_code.files.url }}">
+              {{ error_code.error_code }} - {{ error_code.error_description }}
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>{% trans "Keine Ergebnisse gefunden." %}</p>
+        {% endif %}
+      </div>
+      <!--       </div> -->
     </div>
 
     <!-- Modal for error Codes-->
@@ -203,7 +179,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-       $(document).ready(function () {
+      $(document).ready(function () {
         $(".errorcode").click(function () {
           var errortitle = $(this).attr("error-id");
           var errorDescription = $(this).attr("error-description");
@@ -216,10 +192,16 @@
             "<p>" + errorDescription + "</p>"
           );
           $("#errorModal .modal-solution").html("<p>" + errorSolution + "</p>");
-          $("#errorModal .modal-images").html(
-            '<img class="no-hovering" src="' + errorImages + '" alt="Machine Image">'
-          );
-          $("#errorModal .modal-files").html("<p>" + errorFiles + "</p>");
+          if (errorImages === "None" || !errorImages) {
+            $("#errorModal .modal-images").html(""); 
+            } else {
+            $("#errorModal .modal-images").html('<img class="no-hovering" src="' + errorImages + '" alt="Machine Image">');
+            }
+            if (errorFiles === "None" || !errorFiles) {
+            $("#errorModal .modal-images").html(""); 
+            } else {
+              $("#errorModal .modal-files").html("<p>" + errorFiles + "</p>");
+            }
         });
 
         $(".image-button").click(function () {
@@ -228,7 +210,7 @@
             '<img class="no-hovering" src="' + images + '" alt="Machine Image">'
           );
         });
-  });
+      });
     </script>
 
   </main>

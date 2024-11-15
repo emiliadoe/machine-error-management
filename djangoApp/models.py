@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 
 class Machine(models.Model):
@@ -9,8 +10,8 @@ class Machine(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=400)
     notes = models.CharField(max_length=200, blank=True)
-    documents = models.FileField(upload_to="files", blank=True, null=True)
-    image = models.ImageField(upload_to="machine_image", blank=True, null=True)
+    documents = CloudinaryField('documents', blank=True, null=True, folder="machine_documents")
+    image = CloudinaryField('image', blank=True, null=True, folder="machine_images")
 
     def __str__(self):
         return self.name
@@ -25,8 +26,8 @@ class ErrorCode(models.Model):
     error_description = models.CharField(max_length=400)
     solution = models.CharField(max_length=400)
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE) 
-    images = models.ImageField(upload_to="error-pictures", blank=True, null=True)
-    files = models.FileField(upload_to="error-files", blank=True, null=True)
+    images = CloudinaryField('image', blank=True, null=True, folder="error_images")
+    files = CloudinaryField('documents', blank=True, null=True, folder="error_files")
 
     def __str__(self):
         return self.error_code 
