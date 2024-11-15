@@ -7,9 +7,9 @@ class Machine(models.Model):
     class Meta:
         verbose_name = 'Machine'
         verbose_name_plural = 'Machines'
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=400)
-    notes = models.CharField(max_length=200, blank=True)
+    name = models.CharField(max_length=50, db_index=True)
+    description = models.CharField(max_length=400, db_index=True)
+    notes = models.CharField(max_length=200, blank=True, db_index=True)
     documents = CloudinaryField('documents', blank=True, null=True, folder="machine_documents")
     image = CloudinaryField('image', blank=True, null=True, folder="machine_images")
 
@@ -48,5 +48,5 @@ class ErrorProtocol(models.Model):
         super(ErrorProtocol, self).save(*args, **kwargs) 
 
     def __str__(self):
-        return f"ErrorProtocol {self.id} - {self.timestamp}"
+        return f"Error Eintrag {self.id} - {self.timestamp}"
 

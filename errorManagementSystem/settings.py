@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'djangoApp.apps.DjangoappConfig',
     'cloudinary_storage',
     'cloudinary',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', 
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',  # Allow localhost access
 ]
 
 
@@ -75,7 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'djangoApp.context_processor.global_data', 
+               # 'djangoApp.context_processor.global_data', 
             ],
         },
     },
@@ -177,11 +183,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "home" 
 LOGOUT_REDIRECT_URL = "home" 
 LOGOUT_REDIRECT_URL = '/'  
-
-
-print("CLOUD_NAME:", os.getenv('CLOUD_NAME'))
-print("API_KEY:", os.getenv('API_KEY'))
-print("CLOUD_API_SECRET:", os.getenv('CLOUD_API_SECRET'))
 
 # CLOUDINARY_STORAGE = {
 #     'CLOUD_NAME': os.getenv('CLOUD_NAME'),

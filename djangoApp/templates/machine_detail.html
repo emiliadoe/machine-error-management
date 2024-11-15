@@ -83,10 +83,11 @@
           </td>
           <td>
             <p>
-              <button type="button" class="additional-information btn btn-info btn-lg" data-toggle="modal"
-                data-target="#errorProtocolModal" error-id="{{ error_code.error_code }}"
-                error-description="{{ error_code.error_description }}" error-solution="{{ error_code.solution }}">
-                {% trans "Fehlerprotokoll" %}
+              <button type="button" class="additional-information btn btn-info btn-lg">
+                <a href="{% url 'error_protocol_details' %}" 
+                class="link">
+               {% trans "Fehlerprotokoll" %}
+             </a>
               </button>
             </p>
           </td>
@@ -121,7 +122,6 @@
         <p>{% trans "Keine Ergebnisse gefunden." %}</p>
         {% endif %}
       </div>
-      <!--       </div> -->
     </div>
 
     <!-- Modal for error Codes-->
@@ -138,8 +138,7 @@
           <p>{% trans "Lösungsansatz" %}:</p>
           <div class="modal-solution"></div>
           <div class="modal-alert">
-            Vor jeder Störungsbeseitigung bitte die Informationen (Menüleiste)
-            durchlesen.
+            Vor jeder Störungsbeseitigung bitte die Informationen in der Menüleiste durchlesen.
           </div>
           <div class="modal-images"></div>
           <div class="modal-files"></div>
@@ -152,7 +151,38 @@
       </div>
     </div>
 
-    {% include 'protocol-modal.html' %}
+   <!-- Modal for error protocol-->
+<div id="errorProtocolModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{% trans "Fehlerprotokoll" %}</h4>
+        <button type="button" class="btn btn-outline-secondary adding-error" data-url="{% url 'error_protocoll' %}"
+          onclick="redirectToErrorProtocol(this)">
+          {% trans "neuen Fehler hinzufügen" %}
+        </button>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div>
+          <div class="modal-body">
+              <!-- Content will be dynamically loaded here -->
+          </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-url="{% url 'error_protocoll' %}"
+          onclick="redirectToErrorProtocol(this)">
+          {% trans "neuen Fehler hinzufügen" %}
+        </button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">
+          {% trans "Schließen" %}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
     <!-- Modal for Machine Images-->
     <div id="machineImagesModal" class="modal fade" role="dialog">
@@ -193,12 +223,12 @@
           );
           $("#errorModal .modal-solution").html("<p>" + errorSolution + "</p>");
           if (errorImages === "None" || !errorImages) {
-            $("#errorModal .modal-images").html(""); 
+            $("#errorModal .modal-images").html("hi"); 
             } else {
-            $("#errorModal .modal-images").html('<img class="no-hovering" src="' + errorImages + '" alt="Machine Image">');
+            $("#errorModal .modal-images").html('<img class="no-hovering error-image-modal" src="' + errorImages + '" alt="Machine Image">');
             }
             if (errorFiles === "None" || !errorFiles) {
-            $("#errorModal .modal-images").html(""); 
+            $("#errorModal .modal-files").html(""); 
             } else {
               $("#errorModal .modal-files").html("<p>" + errorFiles + "</p>");
             }

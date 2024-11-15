@@ -26,7 +26,8 @@ from django.views.i18n import set_language
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
-    path('', include('djangoApp.urls'), name='home')
+    path('', include('djangoApp.urls'), name='home'),
+    path('__debug__/', include('debug_toolbar.urls')),
     ]
 
 urlpatterns += i18n_patterns(

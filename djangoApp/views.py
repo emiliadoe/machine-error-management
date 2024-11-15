@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
 from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm
 from .models import Machine, ErrorCode, ErrorProtocol
@@ -22,7 +22,7 @@ def home_page(request):
 
 
 def overview_list(request):
-    machines = Machine.objects.all()
+    machines = Machine.objects.all().only('name', 'description')
     context = {'all_machines': machines}
     return render(request, 'overview.html', context)
 
@@ -44,9 +44,9 @@ def machine_detail(request, pk=None):
     return render(request, 'machine_detail.html', context)
 
 
-def error_view(request, pk):
-    error = get_object_or_404(ErrorCode, id=pk)
-    return render(request, "error.html", {'error': error})
+def error_protocol_details(request):
+    protocols = ErrorProtocol.objects.all().order_by('-timestamp')
+    return render(request, 'protocol-content.html', {'protocols': protocols}) 
 
 
 class MyLoginView(LoginView):

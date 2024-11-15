@@ -246,6 +246,16 @@ img:hover {
   transition: opacity 0.3s ease;
 }
 
+.modal-images{
+  justify-content: center;
+  display: flex;
+}
+.error-image-modal{
+  width: 230px !important;
+  height: 300px !important;
+  margin-top: 10px;
+}
+
 img.no-hovering {
   width: 100%;
   &:hover {
@@ -254,19 +264,26 @@ img.no-hovering {
   }
 }
 
+
+.description-table:hover {
+  color: unset !important;
+}
+
+
 .additional-information {
   width: 180px;
   background-color: var(--marine-blue);
   border-color: var(--marine-blue);
   color: var(--light-color);
-  &:hover {
+  &:hover, &:focus {
     > a {
       text-decoration: none;
-      color: var(--light-color);
+      color: var(--light-color) !important;
     }
-    opacity: 0.5;
+    opacity: 0.7;
     background-color: var(--marine-blue);
     border-color: var(--marine-blue);
+    box-shadow: unset !important;
   }
 }
 
@@ -318,7 +335,7 @@ button > a {
 }
 
 .adding-error {
-  margin-left: 120px;
+  margin-left: 80px;
   margin-top: -5px;
 }
 
