@@ -10,6 +10,10 @@ html {
   height: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   font-family: Helvetica;
   font-size: 1.5vw;
@@ -34,7 +38,7 @@ main {
   margin-right: 30px;
   display: grid;
   place-items: center;
-  margin-bottom: 300px;
+  margin-bottom: 250px;
 }
 
 main > h2 {
@@ -52,19 +56,6 @@ p {
 
 p.headline {
   font-size: 2vw;
-}
-
-.login-container {
-  padding: 20px;
-}
-
-.login-container form {
-  padding: 10px;
-}
-
-.login-container input {
-  padding: 10px;
-  margin-bottom: 10px;
 }
 
 .button-style {
@@ -129,6 +120,7 @@ label[for="id_image"] {
 footer {
   bottom: 0;
   right: 40%;
+  margin-top: 80px;
   p {
     font-size: 12px;
     color: var(--dark-blue);
@@ -138,6 +130,87 @@ footer {
   }
 }
 
-body.busy {
-  cursor: wait; 
+.image-logo{
+  height: 60px;
+  width: unset !important;
+}
+
+.login{
+  font-size: 30px;
+}
+
+.login-screen{
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.login-font{
+  margin-bottom: 60px;
+}
+
+.login-container{
+  display: block;
+  justify-items: center;
+  
+  form[method="POST"] p{
+    display: flex;
+    input{
+      margin-right: 0px;
+      margin-left: auto;
+    }
+  }
+}
+
+input[type="password"], button.login-button{
+  margin-right: 0px;
+  margin-left: auto;
+}
+
+.login-container {
+  padding: 20px;
+}
+
+.login-container form {
+  padding: 10px;
+  width: 400px;
+  display: grid;
+}
+
+.login-container input {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.submit-button{
+  width: 30%;
+  justify-self: flex-end;
+  margin-left: 10px;
+}
+
+.machine-submit{
+  width: unset !important;
+}
+
+div.error-add{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+[name="notes"],
+[name="error_code"]{
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.fehlerprotokoll p{
+  display: flex;
+}
+
+label[for="id_notes"]{
+  margin-right: 44px;
+}
+
+label[for="id_error_code"]{
+  margin-right: 10px;
+  font-weight: 700;
 }

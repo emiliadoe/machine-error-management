@@ -54,6 +54,12 @@ nav ul {
   margin-left: 0px;
 }
 
+.p-login{
+  align-self: center;
+  padding-right: 30px;
+  margin-bottom: unset;
+}
+
 #navbar2 {
   all: unset !important;
   margin: 0 30px !important;
@@ -390,4 +396,8 @@ button > a {
 
 .second {
   margin-bottom: 20px;
+}
+
+.btn-danger{
+  border-radius: 10px !important;
 }

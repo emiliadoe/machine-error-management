@@ -5,10 +5,25 @@
   <main>
     <h2>Fehler dokumentieren (Fehlerprotokoll)</h2>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form class="fehlerprotokoll" method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}
-      <button class="button-style" type="submit">Hinzufügen</button>
+      <div class="error-add">
+        <button class="button-style submit-button" type="submit">Hinzufügen</button>
+        <div class="spinner-border hidden" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </form>
   </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const button = document.querySelector('.submit-button')
+  const spinner = document.querySelector('.spinner-border')
+  button.addEventListener('click', function (event) {
+      spinner.classList.remove("hidden")
+    })
+});
+</script>
   {% endif %} {% endblock %}
 </body>

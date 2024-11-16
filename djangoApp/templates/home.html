@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load i18n %}
+{% extends "base.html" %} {% load i18n %} {% load static %}
 
 <!DOCTYPE html>
 
@@ -19,7 +19,7 @@
     <form method="GET" action="{% url 'home' %}" class="search-bar">
       {% csrf_token %}
       <input class="button-style overview" type="text" name="q" placeholder="Deine Eingabe..." />
-      <button class="button-style" type="submit">{% trans "Suche" %}</button>
+      <button class="button-style search" type="submit">{% trans "Suche" %}</button>
     </form>
 
     {% if results %}
@@ -27,24 +27,42 @@
       <div class="list">
         <ul>
           {% for machine in results %}
-          <li class="machine-results">
-            <span>
-              <a href="{% url 'machine_detail' pk=machine.id %}">
-                {{ machine.name }}
-              </a>
-            </span>
-          </li>
+          <a href="{% url 'machine_detail' pk=machine.id %}">
+          <div class="machine">
+            <li class="machine-results">
+              <span>
+                  <h3 class="name">{{ machine.name }}</h3>
+                  <p class="description">{{ machine.description }}</p>
+              </span>
+            </li>
+          </div>
+        </a>
           {% endfor %}
         </ul>
       </div>
-
+      
       {% else %}
       <p>{% trans "Keine Ergebnisse gefunden." %}</p>
+      <div class="spinner-border home-spinner hidden" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </section>
   </main>
-  {% endif %} {% else %} {% block content2 %}
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const search = document.querySelector('button.search')
+      const spinner = document.querySelector('.spinner-border')
+      search.addEventListener('click', function (event) {
+          spinner.classList.remove("hidden")
+        })
+    });
+    </script>
+
+  {% endif %} 
+ {% else %} {% block content2 %}
   <main>
-    <h2>Machine-Error-Management System</h2>
+    <h2 class="login-screen">Machine-Error-Management System</h2>
     <p style="text-align: center">
       This project was created to built a Machine Error Management System using
       Python and the Django framework. It allows users to manage a database of
@@ -54,5 +72,6 @@
       Please request for access if you dont have rights.
     </p>
   </main>
-  {% endblock %}{% endif %} {% endblock %}
+  {% endblock %}{% endif %} 
+  {% endblock %}
 </body>

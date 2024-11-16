@@ -15,5 +15,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('errorprotocol/', views.ProtocollView.as_view(), name="error_protocoll"),
     path('error-protocol-details/', views.error_protocol_details, name='error_protocol_details'),
+    path('privatepolicy/', views.privatepolicy, name="policy"),
+    path('machine/delete/<int:pk>/', views.delete_machine, name='delete_machine'),
 ]
 

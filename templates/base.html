@@ -89,8 +89,13 @@
                 {% endblock %}
                 {% else %}
                 {% block not_logged_in_content %}
-                <p>You are not logged in</p>
-                <li><a href="{% url 'login' %}">Login</a></li>
+                <a href="https://www.bht-berlin.de/">
+                    <img class="no-hovering image-logo" src="{% static 'images/BHT_Logoo.svg' %}" alt="BHT-Logo">
+                </a>
+                <div class="navbar-right">
+                <p class="p-login">You are not logged in</p>
+                <li class="login"><a href="{% url 'login' %}">Login</a></li>
+            </div>
                 {% endblock %}
                 {% endif %}
             </ul>
@@ -112,7 +117,7 @@
             <p>
                 <a href="{% url 'home' %}">About</a> |
                 <a href="{% url 'home' %}">Contact</a> |
-                <a href="{% url 'home' %}">Privacy Policy</a>
+                <a href="{% url 'policy' %}">Privacy Policy</a>
             </p>
             <p>Developed as part of Bachelor’s Degree Project</p>
             <p>Berliner Hochschule für Technik - Fachbereich VI</p>

@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
-from django.http import HttpResponseRedirect, JsonResponse
-from django.db.models import Q
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm
 from .models import Machine, ErrorCode, ErrorProtocol
 from django.urls import reverse_lazy
@@ -26,6 +25,8 @@ def overview_list(request):
     context = {'all_machines': machines}
     return render(request, 'overview.html', context)
 
+def privatepolicy(request):
+    return render(request, 'policy.html')
 
 def machine_detail(request, pk=None):
     if pk is None:
@@ -54,17 +55,6 @@ class MyLoginView(LoginView):
     def form_valid(self, form):
         auth_login(self.request, form.get_user())
         return HttpResponseRedirect(self.get_success_url())
-
-class MachineEditView(UpdateView):
-    model = Machine
-    form_class = MachineForm
-    template_name = 'edit_details.html'
-    success_url = reverse_lazy('home')
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, 'Maschine wurde erfolgreich bearbeitet! ')
-        return response
 
 
 class ErrorAddView(CreateView):
@@ -100,4 +90,24 @@ class ProtocollView(CreateView):
         messages.success(self.request, 'Fehler wurde erfolgreich zum Protokoll hinzugefügt! ')
         return response
 
+class MachineEditView(UpdateView):
+    model = Machine
+    form_class = MachineForm
+    template_name = 'edit_details.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Maschine wurde erfolgreich bearbeitet! ')
+        return response
+    
+def delete_machine(request, pk):
+    print(pk)
+    if request.method == 'POST': 
+        machine = get_object_or_404(Machine, pk=pk)
+        machine.delete()  
+        messages.success(request, "Maschine wurde erfolgreich gelöscht!")
+        return redirect('home') 
+    else:
+        return HttpResponseForbidden("Ungültige Anfrage. Nur POST-Anfragen erlaubt.")
 

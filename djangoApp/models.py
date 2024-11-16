@@ -38,7 +38,7 @@ class ErrorProtocol(models.Model):
     class Meta:
         verbose_name = 'Error'
     timestamp = models.DateTimeField(default=timezone.now)  
-    error_code = models.ForeignKey('ErrorCode', on_delete=models.CASCADE, related_name='error_protocols', blank=True, null=True) 
+    error_code = models.ForeignKey('ErrorCode', on_delete=models.CASCADE, related_name='error_protocols') 
     notes = models.TextField(blank=True, null=True) 
     machine = models.ForeignKey('Machine', on_delete=models.SET_NULL, null=True, blank=True) 
     
