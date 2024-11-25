@@ -7,6 +7,7 @@ class Machine(models.Model):
     class Meta:
         verbose_name = 'Machine'
         verbose_name_plural = 'Machines'
+        ordering = ['name']
     name = models.CharField(max_length=50, db_index=True)
     description = models.CharField(max_length=400, db_index=True)
     notes = models.CharField(max_length=200, blank=True, db_index=True)
@@ -16,12 +17,12 @@ class Machine(models.Model):
     def __str__(self):
         return self.name
 
-
     
 class ErrorCode(models.Model):
     class Meta: 
         verbose_name = 'ErrorCode'
         verbose_name_plural = 'ErrorCodes'
+        ordering = ['error_code']
     error_code = models.CharField(max_length=20)
     error_description = models.CharField(max_length=400)
     solution = models.CharField(max_length=400)

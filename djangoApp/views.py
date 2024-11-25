@@ -4,20 +4,31 @@ from django.contrib.auth import login as auth_login
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm
 from .models import Machine, ErrorCode, ErrorProtocol
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, CreateView
 from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
 def home_page(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            return redirect('home')  
+    else:
+        form = AuthenticationForm()
+       
     q = request.GET.get('q')
     if q:
         results = Machine.objects.filter(name__icontains=q)
     else:
         results = None
-    
-    return render(request, 'home.html', {'results': results})
+
+    machines = Machine.objects.all().only('name', 'description')
+    context = {'form': form, 'all_machines': machines, 'results': results}
+    return render(request, 'home.html', context)
 
 
 def overview_list(request):
@@ -27,6 +38,9 @@ def overview_list(request):
 
 def privatepolicy(request):
     return render(request, 'policy.html')
+
+def about(request):
+    return render(request, 'about.html')
 
 def machine_detail(request, pk=None):
     if pk is None:
@@ -48,13 +62,6 @@ def machine_detail(request, pk=None):
 def error_protocol_details(request):
     protocols = ErrorProtocol.objects.all().order_by('-timestamp')
     return render(request, 'protocol-content.html', {'protocols': protocols}) 
-
-
-class MyLoginView(LoginView):
-    template_name = 'registration/login.html'
-    def form_valid(self, form):
-        auth_login(self.request, form.get_user())
-        return HttpResponseRedirect(self.get_success_url())
 
 
 class ErrorAddView(CreateView):
@@ -94,7 +101,8 @@ class MachineEditView(UpdateView):
     model = Machine
     form_class = MachineForm
     template_name = 'edit_details.html'
-    success_url = reverse_lazy('home')
+    def get_success_url(self):
+        return reverse('machine_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -102,7 +110,6 @@ class MachineEditView(UpdateView):
         return response
     
 def delete_machine(request, pk):
-    print(pk)
     if request.method == 'POST': 
         machine = get_object_or_404(Machine, pk=pk)
         machine.delete()  

@@ -20,14 +20,14 @@
                   <div class="card-header additional-information" id="beschreibungHeader">
                     <h2 class="mb-0">
                       <button class="btn description-table additional-information" type="button" data-toggle="collapse"
-                        data-target="#beschreibungCollapse" aria-expanded="true" aria-controls="beschreibungCollapse">
+                        data-target="#beschreibungCollapse" aria-expanded="false" aria-controls="beschreibungCollapse">
                         Maschinenbeschreibung
                         <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
                       </button>
                     </h2>
 
                   </div>
-                  <div id="beschreibungCollapse" class="collapse" aria-labelledby="beschreibungHeader"
+                  <div id="beschreibungCollapse" class="collapse show" aria-labelledby="beschreibungHeader"
                     data-parent="#beschreibungAccordion">
                     <div class="card-body">
                       {{ single_machine.description }}
@@ -42,7 +42,7 @@
                 <div class="card">
                   <div class="card-header additional-information" id="notizenHeader">
                     <h2 class="mb-0">
-                      <button class="btn description-table additional-information" type="button" data-toggle="collapse"
+                      <button class="btn description-table additional-information collapsed" type="button" data-toggle="collapse"
                         data-target="#notizenCollapse" aria-expanded="true" aria-controls="notizenCollapse">
                         Notizen
                         <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">

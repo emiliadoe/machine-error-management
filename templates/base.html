@@ -31,18 +31,16 @@
                         </div>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
-                        <a class="dropdown-item logout" href="{% url 'error_protocoll' %}">{% trans "Fehler dokumentieren" %}</a>
+                         <!--   <a class="dropdown-item logout" href="{% url 'error_protocoll' %}">{% trans "Fehler dokumentieren" %}</a>
+                            -->
                         <a class="dropdown-item" href="{% url 'add_machine' %}">{% trans "Maschine hinzufügen" %}</a>
                         <a class="dropdown-item" href="{% url 'add_error' %}">{% trans "Fehlercode hinzufügen" %}</a>
                     </div>
                 </li>
-                <li>
-                    <a href="{% url 'overview' %}">{% trans "Maschinenübersicht" %}</a>
-                </li>
-                <li>
+                <li class="tab-navigation tab-1">
                     <a href="{% url 'home' %}">{% trans "Maschinensuche" %}</a>
                 </li>
-                <li>
+                <li class="tab-navigation tab-2">
                     <a href="{% url 'error_protocol_details' %}" 
                     class="link">
                    {% trans "Fehlerprotokoll" %}
@@ -94,7 +92,7 @@
                 </a>
                 <div class="navbar-right">
                 <p class="p-login">You are not logged in</p>
-                <li class="login"><a href="{% url 'login' %}">Login</a></li>
+                <!-- <li class="login"><a href="{% url 'login' %}">Login</a></li>--> 
             </div>
                 {% endblock %}
                 {% endif %}
@@ -115,8 +113,8 @@
         <div class="container text-center">
             <p>&copy; 2024 Machine Error Management System</p>
             <p>
-                <a href="{% url 'home' %}">About</a> |
-                <a href="{% url 'home' %}">Contact</a> |
+                <a href="{% url 'about' %}">About</a> |
+                <a href="{% url 'about' %}">Contact</a> |
                 <a href="{% url 'policy' %}">Privacy Policy</a>
             </p>
             <p>Developed as part of Bachelor’s Degree Project</p>
@@ -218,6 +216,17 @@ function showLoaderOnClick(url) {
 function showLoader(){
       $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
   }
+  const tabs = document.querySelectorAll('.tab-navigation');
+
+// Get the current URL
+//const currentURL = window.location.href;
+//tabs.forEach(tab => {
+//  if (tab.href === currentURL) {
+//    tab.classList.add('active');
+//  } else {
+ //   tab.classList.remove('active'); // Optional, to ensure others are not active
+ // }
+//});
     </script>
 </body>
 

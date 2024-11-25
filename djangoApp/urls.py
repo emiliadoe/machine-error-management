@@ -6,7 +6,6 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', views.home_page, name='home'),
-    path('login/', views.MyLoginView.as_view(), name='login'),
     path('machine/add/', views.MachineAddView.as_view(), name="add_machine"),
     path('machine/edit/<int:pk>/', views.MachineEditView.as_view(), name='edit_machine'),
     path('overview/', views.overview_list, name='overview'),
@@ -17,5 +16,6 @@ urlpatterns = [
     path('error-protocol-details/', views.error_protocol_details, name='error_protocol_details'),
     path('privatepolicy/', views.privatepolicy, name="policy"),
     path('machine/delete/<int:pk>/', views.delete_machine, name='delete_machine'),
+    path('about/', views.about, name="about"),
 ]
 

@@ -58,6 +58,7 @@ nav ul {
   align-self: center;
   padding-right: 30px;
   margin-bottom: unset;
+  color: var(--light-color)
 }
 
 #navbar2 {
@@ -66,6 +67,7 @@ nav ul {
   #dropdown2 {
     top: 70px;
     left: unset;
+    margin: unset !important;
   }
 }
 
@@ -77,6 +79,7 @@ nav ul {
 #dropdown3 {
   left: unset;
   right: 0px;
+  margin: unset !important;
 }
 
 #arrow > a {
@@ -176,7 +179,6 @@ nav ul {
 }
 
 .modal-solution p {
-  font-weight: bold;
   font-size: 22px;
 }
 
