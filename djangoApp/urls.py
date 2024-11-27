@@ -8,7 +8,6 @@ urlpatterns = [
     path('', views.home_page, name='home'),
     path('machine/add/', views.MachineAddView.as_view(), name="add_machine"),
     path('machine/edit/<int:pk>/', views.MachineEditView.as_view(), name='edit_machine'),
-    path('overview/', views.overview_list, name='overview'),
     path('overview/<int:pk>/', views.machine_detail, name="machine_detail"),
     path('error/add/', views.ErrorAddView.as_view(), name="add_error"),
     path('logout/', LogoutView.as_view(), name='logout'),

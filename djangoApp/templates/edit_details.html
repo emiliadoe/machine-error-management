@@ -6,30 +6,30 @@
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}
 
-    <div class="error-add">
-      <button class="button-style submit-button" type="submit">Speichern</button>    
-      <div class="spinner-border hidden" role="status">
-        <span class="sr-only">Loading...</span>
+      <div class="error-add">
+        <button class="button-style submit-button" type="submit">Speichern</button>
+        <div class="spinner-border hidden" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
+      <div class="error-add">
+        <a href="{% url 'add_error' %}">
+          <button type="button" class="button-style">
+            + Fehlercode hinzufügen
+          </button>
+        </a>
+      </div>
+    </form>
+    <div class="error-add">
+      <form action="{% url 'delete_machine' object.id %}" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <div class="spinner-border-2 hidden" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <button type="submit" class="btn btn-outline-danger">Maschine löschen</button>
+      </form>
+    </div>
   </div>
-  <div class="error-add">
-  <a href="{% url 'add_error' %}">
-    <button type="button" class="button-style">
-      + Fehlercode hinzufügen
-    </button>
-  </a>
-</div>
-</form>
-<div class="error-add">
-<form action="{% url 'delete_machine' object.id %}" method="POST" style="display:inline;">
-  {% csrf_token %}
-  <div class="spinner-border-2 hidden" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-  <button type="submit" class="btn btn-danger">Maschine löschen</button>
-</form>
-</div>
-</div>
 </main>
 
 <script>
@@ -44,7 +44,6 @@
     deleteButton.addEventListener('click', function (event) {
       spinner2.classList.remove("hidden")
     })
-});
+  });
 </script>
 {% endif %} {% endblock %}
-

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>
         {% block title %}Error Management{% endblock %}
     </title>
@@ -24,25 +25,14 @@
             <ul>
                 {% if user.is_authenticated %}
                 {% block logged_in_content %}
-                <li class="nav-item dropdown plus" id="navbar2">
-                    <a data-toggle="dropdown" href="{% url 'home' %}" id="navbarDropdown2">
-                        <div class="plus">
-                            <img src="{% static 'images/plus.svg' %}" alt="Plus" title="Daten hinzufügen">
-                        </div>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
-                         <!--   <a class="dropdown-item logout" href="{% url 'error_protocoll' %}">{% trans "Fehler dokumentieren" %}</a>
-                            -->
-                        <a class="dropdown-item" href="{% url 'add_machine' %}">{% trans "Maschine hinzufügen" %}</a>
-                        <a class="dropdown-item" href="{% url 'add_error' %}">{% trans "Fehlercode hinzufügen" %}</a>
-                    </div>
-                </li>
+                <a href="https://www.bht-berlin.de/">
+                    <img class="no-hovering image-logo" src="{% static 'images/BHT_Logoo.svg' %}" alt="BHT-Logo">
+                </a>
                 <li class="tab-navigation tab-1">
-                    <a href="{% url 'home' %}">{% trans "Maschinensuche" %}</a>
+                    <a href="{% url 'home' %}">{% trans "Maschinenübersicht" %}</a>
                 </li>
                 <li class="tab-navigation tab-2">
-                    <a href="{% url 'error_protocol_details' %}" 
-                    class="link">
+                    <a href="{% url 'error_protocol_details' %}" >
                    {% trans "Fehlerprotokoll" %}
                  </a>
                 </li>
@@ -83,6 +73,18 @@
                             </form>
                         </div>
                     </li>
+                    <li class="nav-item dropdown plus" id="navbar2">
+                        <a data-toggle="dropdown" href="{% url 'home' %}" id="navbarDropdown2">
+                            <div class="plus">
+                                <img src="{% static 'images/plus.svg' %}" alt="Plus" title="Daten hinzufügen">
+                         <!--      <p>  Hinzufügen </p>  -->
+                            </div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2" id="dropdown2">
+                            <a class="dropdown-item" href="{% url 'add_machine' %}">{% trans "Maschine hinzufügen" %}</a>
+                            <a class="dropdown-item" href="{% url 'add_error' %}">{% trans "Fehlercode hinzufügen" %}</a>
+                        </div>
+                    </li>
                 </div>
                 {% endblock %}
                 {% else %}
@@ -90,27 +92,18 @@
                 <a href="https://www.bht-berlin.de/">
                     <img class="no-hovering image-logo" src="{% static 'images/BHT_Logoo.svg' %}" alt="BHT-Logo">
                 </a>
-                <div class="navbar-right">
-                <p class="p-login">You are not logged in</p>
-                <!-- <li class="login"><a href="{% url 'login' %}">Login</a></li>--> 
-            </div>
                 {% endblock %}
                 {% endif %}
             </ul>
         </nav>
     </header>
 
-    {% if user.is_authenticated %}
-    <img class="back-navigation" src="{% static 'images/arrow.svg' %}" alt="Back Arrow" onclick="history.back()"
-        style="padding-left: 30px">
-    {% endif %}
-
     {% block content %}
 
     {% endblock %}
 
     <footer>
-        <div class="container text-center">
+        <div class="text-center">
             <p>&copy; 2024 Machine Error Management System</p>
             <p>
                 <a href="{% url 'about' %}">About</a> |
@@ -140,93 +133,12 @@
             </div>
         </div>
     </div>
- 
-<!-- Modal for error protocol-->
-<div id="errorProtocolModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">{% trans "Fehlerprotokoll" %}</h4>
-          <button type="button" class="btn btn-outline-secondary adding-error" data-url="{% url 'error_protocoll' %}"
-            onclick="redirectToErrorProtocol(this)">
-            {% trans "neuen Fehler hinzufügen" %}
-          </button>
-          <button type="button" class="close" data-dismiss="modal">
-            &times;
-          </button>
-        </div>
-        <div>
-            <div class="modal-body">
-                <!-- Content will be dynamically loaded here -->
-            </div>
-  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-url="{% url 'error_protocoll' %}"
-            onclick="redirectToErrorProtocol(this)">
-            {% trans "neuen Fehler hinzufügen" %}
-          </button>
-          <button type="button" class="btn btn-light" data-dismiss="modal">
-            {% trans "Schließen" %}
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+
 
     <!-- jQuery and Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
-
-        
     <script>
-            function redirectToErrorProtocol(button) {
-      const url = button.getAttribute('data-url');
-      window.location.href = url;
-    }  
-    $(document).ready(function () {
-    $(".link").click(function (e) {
-        e.preventDefault(); 
-        var url = $(this).attr('href'); 
-        $('#errorProtocolModal .modal-body').html(`
-            <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
-                <div class="spinner-border" role="status">
-                    <span class="sr-only">Informationen werden geladen...</span>
-                </div>
-            </div>
-        `);
-        $('#errorProtocolModal').modal('show'); 
-        $.ajax({
-            url: url,
-            method: 'GET',
-            success: function (response) {
-                $('#errorProtocolModal .modal-body').html(response);
-            },
-            error: function (xhr, status, error) {
-                console.error("Failed to load modal content:", error);
-                $('#errorProtocolModal .modal-body').html('<p>Error loading content. Please try again.</p>');
-            }
-        });
-    });
-});
-function showLoaderOnClick(url) {
-      showLoader();
-      window.location=url;
-  }
-function showLoader(){
-      $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
-  }
-  const tabs = document.querySelectorAll('.tab-navigation');
-
-// Get the current URL
-//const currentURL = window.location.href;
-//tabs.forEach(tab => {
-//  if (tab.href === currentURL) {
-//    tab.classList.add('active');
-//  } else {
- //   tab.classList.remove('active'); // Optional, to ensure others are not active
- // }
-//});
     </script>
 </body>
 

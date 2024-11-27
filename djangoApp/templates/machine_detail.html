@@ -4,244 +4,265 @@
   {% block content %} {% if user.is_authenticated %}
   <main>
     <div class="headline-machine">
+      <img class="back-navigation" src="{% static 'images/arrow.svg' %}" alt="Back Arrow" onclick="history.back()"
+        style="padding-left: 30px">
       <h2>{{ single_machine.name }}</h2>
-      <a href="{% url 'edit_machine' single_machine.id %}">
+      <a class="edit-icon" href="{% url 'edit_machine' single_machine.id %}">
         <img class="image-machine-headline" src="{% static 'images/edit.png' %}" alt="Bearbeiten Icon" />
+        <p>Bearbeiten</p>
       </a>
     </div>
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs" id="mainNav" role="tablist">
+      <li class="nav-item navigation">
+        <a class="nav-link active" id="fehlertab" data-toggle="tab" href="#fehlercodes" role="tab"
+          aria-controls="fehlercodes" aria-selected="true">Fehlercodes</a>
+      </li>
+      <li class="nav-item navigation">
+        <a class="nav-link" id="maschinentab" data-toggle="tab" href="#maschinenbeschreibung" role="tab"
+          aria-controls="maschinenbeschreibung" aria-selected="false">Maschinenbeschreibung</a>
+      </li>
+      <li class="nav-item navigation">
+        <a class="nav-link" id="notizentab" data-toggle="tab" href="#notizen" role="tab" aria-controls="notizen"
+          aria-selected="false">Notizen</a>
+      </li>
+      <li class="nav-item navigation">
+        <a class="nav-link" id="pdftab" data-toggle="tab" href="#pdf" role="tab" aria-controls="pdf"
+          aria-selected="false">PDF</a>
+      </li>
+      <li class="nav-item navigation">
+        <a class="nav-link" id="bildertab" data-toggle="tab" href="#bilder" role="tab" aria-controls="bilder"
+          aria-selected="false">Bilder & Videos</a>
+      </li>
+    </ul>
 
-    <div class="grid-layout">
-      <div class="column1">
-        <table class="machine-table">
-          <tr>
-            <td>
-              <div class="accordion" id="beschreibungAccordion">
-                <div class="card">
-                  <div class="card-header additional-information" id="beschreibungHeader">
-                    <h2 class="mb-0">
-                      <button class="btn description-table additional-information" type="button" data-toggle="collapse"
-                        data-target="#beschreibungCollapse" aria-expanded="false" aria-controls="beschreibungCollapse">
-                        Maschinenbeschreibung
-                        <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
-                      </button>
-                    </h2>
-
-                  </div>
-                  <div id="beschreibungCollapse" class="collapse show" aria-labelledby="beschreibungHeader"
-                    data-parent="#beschreibungAccordion">
-                    <div class="card-body">
-                      {{ single_machine.description }}
-                    </div>
-                  </div>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="accordion second" id="notizenAccordion">
-                <div class="card">
-                  <div class="card-header additional-information" id="notizenHeader">
-                    <h2 class="mb-0">
-                      <button class="btn description-table additional-information collapsed" type="button" data-toggle="collapse"
-                        data-target="#notizenCollapse" aria-expanded="true" aria-controls="notizenCollapse">
-                        Notizen
-                        <img class="arrow-down" src="{% static 'images/arrow-down.svg' %}" alt="Arrow down">
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="notizenCollapse" class="collapse" aria-labelledby="notizenHeader"
-                    data-parent="#notizenAccordion">
-                    <div class="card-body">
-                      {{ single_machine.notes }}
-                    </div>
-                  </div>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p class="headline">{% trans "Weitere Anlagen" %}:</p>
-            </td>
-            <td>
-              <p>
-                {% if single_machine.documents %}
-                <button class="additional-information btn btn-info btn-lg ">
-                  <a href="{{ single_machine.documents.url }}">PDF anschauen</a></button><br />
-                {% else %} Keine PDF vorhanden {% endif %}
-              </p>
-            </td>
-          </tr>
-          <td>
-            <p>
-              {% if single_machine.image %}
-              <button type="button" class="additional-information image-button btn btn-info btn-lg" data-toggle="modal"
-                data-target="#machineImagesModal" machine-images="{{ single_machine.image.url }}">
-                {% trans "Bilder/ Videos" %}
-              </button>
-              {% else %} Keine Bilder vorhanden {% endif %}
-            </p>
-          </td>
-          <td>
-            <p>
-              <button type="button" class="additional-information btn btn-info btn-lg">
-                <a href="{% url 'error_protocol_details' %}" 
-                class="link">
-               {% trans "Fehlerprotokoll" %}
-             </a>
-              </button>
-            </p>
-          </td>
-          </tr>
-        </table>
+    <div class="tab-content" id="mainNavContent">
+      <div class="tab-pane fade" id="maschinenbeschreibung" role="tabpanel" aria-labelledby="maschinentab">
+        <div class="card-body">
+          {{ single_machine.description }}
+        </div>
       </div>
 
-      <div class="column2">
-        <form method="get">
-          {% csrf_token %}
-          <input class="button-style" type="text" name="q" placeholder="Eingabe des Fehlercodes..."
-            value="{{ search_query }}" />
-          <button class="button-style" type="submit">
-            {% trans "Suche" %}
+      <div class="tab-pane fade" id="notizen" role="tabpanel" aria-labelledby="pdftab">
+        <div class="card-body">
+          {% if single_machine.notes %}
+          {{ single_machine.notes }}
+          {% else %}
+          <p>Keine weiteren Notizen</p>
+          {% endif %}
+        </div>
+      </div>
+
+
+      <div class="tab-pane fade" id="pdf" role="tabpanel" aria-labelledby="maschinentab">
+        <div class="card-body">
+          <p>
+            {% if single_machine.documents %}
+            <button class="additional-information btn btn-info btn-lg ">
+              <a href="{{ single_machine.documents.url }}">PDF anschauen</a></button><br />
+            {% else %}
+            <button class="btn btn-info" disabled>Keine PDF vorhanden</button><br />{% endif %}
+          </p>
+
+        </div>
+      </div>
+
+
+      <div class="tab-pane fade" id="bilder" role="tabpanel" aria-labelledby="bildertab">
+        <div class="card-body">
+          {% if single_machine.image %}
+          <button type="button" class="additional-information image-button btn btn-info btn-lg" data-toggle="modal"
+            data-target="#machineImagesModal" machine-images="{{ single_machine.image.url }}">
+            {% trans "Bilder/ Videos" %}
           </button>
-        </form>
+          {% else %}
+          <button class="btn btn-info" disabled>Keine Bilder vorhanden </button><br />
+          {% endif %}
 
-        {% if error_codes %}
-        <ul>
-          {% for error_code in error_codes %}
-          <li style="list-style: none">
-            <button type="button" class="errorcode btn btn-info btn-lg" data-toggle="modal" data-target="#errorModal"
-              error-id="{{ error_code.error_code }}" error-description="{{ error_code.error_description }}"
-              error-solution="{{ error_code.solution }}" error-images="{{ error_code.images.url }}"
-              error-files="{{ error_code.files.url }}">
-              {{ error_code.error_code }} - {{ error_code.error_description }}
-            </button>
-          </li>
-          {% endfor %}
-        </ul>
-        {% else %}
-        <p>{% trans "Keine Ergebnisse gefunden." %}</p>
-        {% endif %}
+        </div>
       </div>
-    </div>
 
-    <!-- Modal for error Codes-->
-    <div id="errorModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title"></h4>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
-          <div class="modal-description"></div>
-          <p>{% trans "Lösungsansatz" %}:</p>
-          <div class="modal-solution"></div>
-          <div class="modal-alert">
-            Vor jeder Störungsbeseitigung bitte die Informationen in der Menüleiste durchlesen.
-          </div>
-          <div class="modal-images"></div>
-          <div class="modal-files"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              {% trans "Schließen" %}
-            </button>
+      <div class="tab-pane fade show active" id="fehlercodes" role="tabpanel" aria-labelledby="fehlertab">
+        <div class="columns">
+          <div class="column1">
+            <div class="search-bar-container">
+              <div class="column2">
+                <div class="error-detail">
+                  <form method="get" class="searchbar">
+                    {% csrf_token %}
+                    <div class="input-group">
+                      <input class="input-style" type="text" name="q" placeholder="Fehlercode Suche..."
+                        value="{{ search_query }}" />
+                      <button class="search-button" type="submit" id="search-addon">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </form>
+
+                  <button class="container-add error">
+                    <a href="{% url 'add_error' %}">
+                      <img src="{% static 'images/plus.svg' %}" alt="Plus" title="Daten hinzufügen">
+                      <p class="adding-machine"> {% trans "Fehler hinzufügen" %}</p>
+                    </a>
+                  </button>
+                </div>
+                <div class="spinner-border hidden" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                {% if error_codes %}
+                <ul>
+                  <p class="error-p">Bekannte Fehlercodes:</p>
+                  {% for error_code in error_codes %}
+                  <li style="list-style: none">
+                    <button type="button" class="errorcode btn btn-info btn-lg" data-toggle="modal"
+                      data-target="#errorModal" error-id="{{ error_code.error_code }}"
+                      error-description="{{ error_code.error_description }}" error-solution="{{ error_code.solution }}"
+                      error-images="{{ error_code.images.url }}" error-files="{{ error_code.files.url }}">
+                      {{ error_code.error_code }} - {{ error_code.error_description }}
+                    </button>
+                  </li>
+                  {% endfor %}
+                </ul>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    const button = document.querySelector('.search-button')
+                    button.addEventListener('click', function () {
+                      const spinner = document.querySelector('.spinner-border')
+                      spinner.classList.remove("hidden")
+                    });
+                  });
+                </script>
+                {% else %}
+                <p>{% trans "Keine Ergebnisse gefunden." %}</p>
+                {% endif %}
+              </div>
+
+            </div>
+
+            <!-- Modal for error Codes-->
+            <div id="errorModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                      &times;
+                    </button>
+                  </div>
+                  <div class="modal-description"></div>
+                <hr/>
+                  <p>{% trans "Lösungsansatz" %}:</p>
+                  <div class="modal-solution"></div>
+                  <hr/>
+                  <div class="modal-alert">
+                  Warnung: Wichtige Meldungen können hier platziert werden
+                  </div>
+                  <div class="modal-images"></div>
+                  <div class="modal-files"></div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                      {% trans "Schließen" %}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-   <!-- Modal for error protocol-->
-<div id="errorProtocolModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">{% trans "Fehlerprotokoll" %}</h4>
-        <button type="button" class="btn btn-outline-secondary adding-error" data-url="{% url 'error_protocoll' %}"
-          onclick="redirectToErrorProtocol(this)">
-          {% trans "neuen Fehler hinzufügen" %}
-        </button>
-        <button type="button" class="close" data-dismiss="modal">
-          &times;
-        </button>
-      </div>
-      <div>
-          <div class="modal-body">
-              <!-- Content will be dynamically loaded here -->
-          </div>
+      <!-- Modal for error protocol-->
+      <div id="errorProtocolModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{% trans "Fehlerprotokoll" %}</h4>
+              <button type="button" class="btn btn-outline-secondary adding-error"
+                data-url="{% url 'error_protocoll' %}" onclick="redirectToErrorProtocol(this)">
+                {% trans "neuen Fehler hinzufügen" %}
+              </button>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div>
+              <div class="modal-body">
+                <!-- Content will be dynamically loaded here -->
+              </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-url="{% url 'error_protocoll' %}"
-          onclick="redirectToErrorProtocol(this)">
-          {% trans "neuen Fehler hinzufügen" %}
-        </button>
-        <button type="button" class="btn btn-light" data-dismiss="modal">
-          {% trans "Schließen" %}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-    <!-- Modal for Machine Images-->
-    <div id="machineImagesModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">
-              {% trans "Bilder/Videos der Maschine" %}:
-            </h4>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
-          <div class="modal-machine-images"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              {% trans "Schließen" %}
-            </button>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-url="{% url 'error_protocoll' %}"
+                  onclick="redirectToErrorProtocol(this)">
+                  {% trans "neuen Fehler hinzufügen" %}
+                </button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">
+                  {% trans "Schließen" %}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Modal for Machine Images-->
+      <div id="machineImagesModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">
+                {% trans "Bilder/Videos der Maschine" %}:
+              </h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-machine-images"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                {% trans "Schließen" %}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $(".errorcode").click(function () {
-          var errortitle = $(this).attr("error-id");
-          var errorDescription = $(this).attr("error-description");
-          var errorSolution = $(this).attr("error-solution");
-          var errorImages = $(this).attr("error-images");
-          var errorFiles = $(this).attr("error-files");
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        $(document).ready(function () {
+          $(".errorcode").click(function () {
+            var errortitle = $(this).attr("error-id");
+            var errorDescription = $(this).attr("error-description");
+            var errorSolution = $(this).attr("error-solution");
+            var errorImages = $(this).attr("error-images");
+            var errorFiles = $(this).attr("error-files");
 
-          $("#errorModal .modal-title").html("<p>" + errortitle + "</p>");
-          $("#errorModal .modal-description").html(
-            "<p>" + errorDescription + "</p>"
-          );
-          $("#errorModal .modal-solution").html("<p>" + errorSolution + "</p>");
-          if (errorImages === "None" || !errorImages) {
-            $("#errorModal .modal-images").html(""); 
+            $("#errorModal .modal-title").html("<p>" + errortitle + "</p>");
+            $("#errorModal .modal-description").html(
+              "<p>" + errorDescription + "</p>"
+            );
+            $("#errorModal .modal-solution").html("<p>" + errorSolution + "</p>");
+            if (errorImages === "None" || !errorImages) {
+              $("#errorModal .modal-images").html("");
             } else {
-            $("#errorModal .modal-images").html('<img class="no-hovering error-image-modal" src="' + errorImages + '" alt="Machine Image">');
+              $("#errorModal .modal-images").html('<img class="no-hovering error-image-modal" src="' + errorImages + '" alt="Machine Image">');
             }
             if (errorFiles === "None" || !errorFiles) {
-            $("#errorModal .modal-files").html(""); 
+              $("#errorModal .modal-files").html("");
             } else {
               $("#errorModal .modal-files").html("<p>" + errorFiles + "</p>");
             }
+          });
+
+          $(".image-button").click(function () {
+            var images = $(this).attr("machine-images");
+            $("#machineImagesModal .modal-machine-images").html(
+              '<img class="no-hovering" src="' + images + '" alt="Machine Image">'
+            );
+          });
         });
 
-        $(".image-button").click(function () {
-          var images = $(this).attr("machine-images");
-          $("#machineImagesModal .modal-machine-images").html(
-            '<img class="no-hovering" src="' + images + '" alt="Machine Image">'
-          );
-        });
-      });
-    </script>
+      </script>
 
   </main>
   {% endif %}

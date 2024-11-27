@@ -6,7 +6,7 @@
   {% block content %} {% if user.is_authenticated %}
 
   <main>
-    <h1>{% trans "Maschinensuche" %}</h1>
+    <h1>{% trans "Maschinenübersicht" %}</h1>
     <br />
     {% if messages %}
     {% for message in messages %}
@@ -16,11 +16,26 @@
     {% endfor %}
     {% endif %}
 
-    <form method="GET" action="{% url 'home' %}" class="search-bar">
-      {% csrf_token %}
-      <input class="button-style overview" type="text" name="q" placeholder="Deine Eingabe..." />
-      <button class="button-style search" type="submit">{% trans "Suche" %}</button>
-    </form>
+    <div class="container">
+      <form method="GET" action="{% url 'home' %}" class="search-bar">
+        {% csrf_token %}
+        <!--   <input class="button-style overview" type="text" name="q" placeholder="Maschinensuche..."/>-->
+        <div class="input-group">
+          <input class="input-style" type="text" name="q" placeholder="Maschinensuche..." value="{{ search_query }}" />
+          <button class="search-button" type="submit" id="search-addon">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+
+      <button class="container-add home">
+        <a href="{% url 'add_machine' %}">
+
+          <img src="{% static 'images/plus.svg' %}" alt="Plus" title="Daten hinzufügen">
+          <p class="adding-machine">Maschine hinzufügen</p>
+        </a>
+      </button>
+    </div>
     <div class="spinner-border home-spinner hidden" role="status">
       <span class="sr-only">Loading...</span>
     </div>
@@ -30,20 +45,20 @@
       <div class="list">
         <ul>
           {% for machine in results %}
-        <a href="{% url 'machine_detail' pk=machine.id %}">
-          <div class="machine">
-            <li class="machine-results">
-              <span>
+          <a href="{% url 'machine_detail' pk=machine.id %}">
+            <div class="machine">
+              <li class="machine-results">
+                <span>
                   <h3 class="name">{{ machine.name }}</h3>
                   <p class="description">{{ machine.description }}</p>
-              </span>
-            </li>
-          </div>
-        </a>
+                </span>
+              </li>
+            </div>
+          </a>
           {% endfor %}
         </ul>
       </div>
-      
+
       {% else %}
       {% for machine in all_machines %}
       <section class="machines">
@@ -59,44 +74,52 @@
                 </li>
               </div>
             </a>
-        {% endfor %}
+            {% endfor %}
       </section>
   </main>
-  
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const search = document.querySelector('button.search')
+      const search = document.querySelector('.search-button')
       const spinner = document.querySelector('.spinner-border')
       search.addEventListener('click', function (event) {
-          spinner.classList.remove("hidden")
-        })
-    });
-    </script>
-
-  {% endif %} 
-
-  {% else %}{% load i18n %}
-<div class="login-container">
-  <h2 class="login-font">{% trans "Login Daten eingeben" %}</h2>
-
-  <form method="POST">
-    {% csrf_token %} {{ form.as_p }}
-    <button class="button-style login-button" type="submit">{% trans "Login" %}</button>
-  </form>
-  <div class="spinner-border hidden" role="status">
-      <span class="sr-only">Loading...</span>
-  </div>
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector('form')
-    const spinner = document.querySelector('.spinner-border')
-    form.addEventListener('submit', function (event) {
         spinner.classList.remove("hidden")
       })
-  });
-</script>
+    });
+  </script>
 
-{% endif %}
+  {% endif %}
+
+  {% else %}{% load i18n %}
+  <div class="login-container">
+    <h2 class="login-font">{% trans "Login Daten eingeben" %}</h2>
+    <form method="POST">
+      {% csrf_token %} {{ form.as_p }}
+      <button class="button-style login-button" type="submit" id="submit-button">
+        <div id="spinner" class="spinner-border hidden" role="status" style="width: 25px; height: 25px">
+          <span class="sr-only">Loading...</span>
+        </div>
+        {% trans "Anmelden" %}
+      </button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const button = document.querySelector('.login-button')
+      const spinner = document.querySelector('.spinner-border')
+      button.addEventListener('click', function (event) {
+        button.childNodes.forEach(child => {
+          if (child.nodeType === 3) {
+            child.textContent = ''
+          }
+        });
+        spinner.classList.remove('hidden');
+        spinner.style.display = 'inline-block';
+      })
+    });
+  </script>
+
+  {% endif %}
   {% endblock %}
 </body>

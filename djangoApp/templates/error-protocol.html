@@ -1,0 +1,175 @@
+{% extends 'base.html' %} {% load static %} {% load i18n %}
+
+<body>
+    {% block content %} {% if user.is_authenticated %}
+    <main>
+        <div class="container">
+            <h1 class="protocol-h1">Fehlerprotokoll</h1>
+            <div class="container-buttons">
+                <button type="button" class="container-add modal-button" data-toggle="modal" data-target="#errorModal">
+                    <img src="{% static 'images/plus.svg' %}" alt="Plus" title="Daten hinzufügen">
+                    <p class="adding-machine"> {% trans "Fehler protokollieren" %}</p>
+                </button>
+
+                <button type="button" class="container-add" id="toggle-filter-btn">
+                    <img src="{% static 'images/arrow-down.svg' %}" alt="Filter" title="filtern">
+                    <p class="adding-machine"> {% trans "Ergebnisse filtern" %}</p>
+                </button>
+
+                <div id="filter" style="display:none; margin-left: 185px;">
+                    <form method="get" action="{% url 'error_protocol_details' %}" style="display: flex;">
+                        <input type="text" name="q" value="{{ search_query }}" placeholder="Filter nach..."
+                            class="form-control input">
+                        <button id="filter-spinner" type="submit" class="btn btn-outline-custom">
+                            <div class="filter-text"> {% trans "Filtern" %} </div>
+                            <div id="spinner" class="spinner-border spinner-more hidden" role="status"
+                                style="width: 25px; height: 25px">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const filterDiv = document.getElementById("filter");
+                const toggleButton = document.getElementById("toggle-filter-btn");
+
+                toggleButton.addEventListener("click", function () {
+                    if (filterDiv.style.display === "none") {
+                        filterDiv.style.display = "flex";
+                    } else {
+                        filterDiv.style.display = "none";
+                    }
+                });
+            });
+        </script>
+
+        <section class="machines max-main">
+            <div class="list">
+                <ul id="protocols-list">
+                    {% for protocol in protocols %}
+                    <div class="protocol-item">
+                        <p><strong>{{ protocol.timestamp }}</strong></p>
+                        <p><strong>Maschine:</strong> {{ protocol.machine }}</p>
+                        <p><strong>Fehler Code:</strong> {{ protocol.error_code }}</p>
+                        <p><strong>Notizen:</strong> {{ protocol.notes }}</p>
+                    </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        {% if has_next %}
+        <button id="see-more" class="container-add" data-next-page="{{ protocols.next_page_number }}">
+            <p class="adding-machine see-more"> {% trans "Mehr anzeigen" %}</p>
+            <div id="spinner" class="spinner-border show-more hidden" role="status" style="width: 25px; height: 25px">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </button>
+        {% endif %}
+
+        <!-- Error Modal -->
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
+            aria-hidden="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="errorModalLabel">Fehler protokollieren</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="fehlerprotokoll" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="spinner-border hidden" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Abbrechen</button>
+                        <button class="btn btn-info" type="submit">Hinzufügen</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function toggleSpinner(buttonId, spinnerClass, textClass) {
+                const button = document.getElementById(buttonId);
+                const spinner = document.querySelector(`.${spinnerClass}`);
+                const textElement = document.querySelector(`.${textClass}`);
+
+                if (button) {
+                    button.addEventListener('click', function () {
+                        if (textElement) textElement.style.display = 'none';
+                        console.log(textElement)
+                        if (spinner) {
+                            spinner.classList.remove('hidden');
+                            spinner.style.display = 'inline-block';
+                        }
+                        setTimeout(function () {
+                            if (textElement) textElement.style.display = 'block';
+                            if (spinner) {
+                                spinner.classList.add('hidden');
+                                spinner.style.display = 'none';
+                            }
+                        }, 6000);
+                    });
+                }
+            }
+
+            toggleSpinner('see-more', 'show-more', 'see-more');
+            toggleSpinner('filter-spinner', 'spinner-more', 'filter-text');
+
+            const modalButton = document.querySelector('.modal-button');
+            const modal = document.querySelector('#errorModal');
+            if (modalButton && modal) {
+                modalButton.addEventListener('click', function () {
+                    const modalSpinner = modal.querySelector('.spinner-border');
+                    const modalActionButton = modal.querySelector('.btn-info');
+                    if (modalActionButton && modalSpinner) {
+                        modalActionButton.addEventListener('click', function () {
+                            modalSpinner.classList.remove('hidden');
+                        });
+                    }
+                });
+            }
+
+            const seeMoreButton = document.getElementById("see-more");
+            const protocolsList = document.getElementById("protocols-list");
+
+            if (seeMoreButton && protocolsList) {
+                seeMoreButton.addEventListener("click", function () {
+                    const nextPage = seeMoreButton.getAttribute("data-next-page");
+                    if (!nextPage) return;
+
+                    const url = `?page=${nextPage}`;
+                    fetch(url)
+                        .then((response) => response.text())
+                        .then((data) => {
+                            const parser = new DOMParser();
+                            const html = parser.parseFromString(data, "text/html");
+                            const newProtocols = html.querySelector("#protocols-list")?.innerHTML;
+                            if (newProtocols) protocolsList.innerHTML += newProtocols;
+                            const newNextPage = html.querySelector("#see-more")?.getAttribute("data-next-page");
+                            if (newNextPage) {
+                                seeMoreButton.setAttribute("data-next-page", newNextPage);
+                            } else {
+                                seeMoreButton.remove();
+                            }
+                        })
+                        .catch((err) => console.error("Failed to fetch protocols:", err));
+                });
+            }
+        });
+    </script>
+    {% endif %} {% endblock %}
+</body>

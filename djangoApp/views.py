@@ -1,24 +1,27 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
-from django.http import HttpResponseRedirect, HttpResponseForbidden
-from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm
+from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
+from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm, CustomAuthenticationForm, LogFilterForm
 from .models import Machine, ErrorCode, ErrorProtocol
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, CreateView
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q 
+from django.core.paginator import Paginator
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
+@cache_page(60 * 5)
 def home_page(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect('home')  
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
        
     q = request.GET.get('q')
     if q:
@@ -30,11 +33,6 @@ def home_page(request):
     context = {'form': form, 'all_machines': machines, 'results': results}
     return render(request, 'home.html', context)
 
-
-def overview_list(request):
-    machines = Machine.objects.all().only('name', 'description')
-    context = {'all_machines': machines}
-    return render(request, 'overview.html', context)
 
 def privatepolicy(request):
     return render(request, 'policy.html')
@@ -58,11 +56,48 @@ def machine_detail(request, pk=None):
     
     return render(request, 'machine_detail.html', context)
 
-
+@cache_page(60 * 10)
 def error_protocol_details(request):
-    protocols = ErrorProtocol.objects.all().order_by('-timestamp')
-    return render(request, 'protocol-content.html', {'protocols': protocols}) 
+    search_query = request.GET.get('q', '').lower()
+    page_number = request.GET.get('page', 1) 
+    protocols = ErrorProtocol.objects.select_related('error_code', 'machine').only(
+        'error_code__error_code', 'machine__name', 'timestamp')
+    if search_query:
+          protocols = protocols.filter(
+            Q(error_code__error_code__icontains=search_query) | 
+            Q(machine__name__icontains=search_query)             
+        )
+    paginator = Paginator(protocols, 5) 
+    protocols_page = paginator.get_page(page_number)
+    if request.method == "POST":
+        form = ErrorProtocolForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('error_protocol_details') 
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        data = {
+            'protocols': [
+                {
+                    'timestamp': protocol.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                    'machine': protocol.machine.name if protocol.machine else 'N/A',
+                    'error_code': protocol.error_code.error_code,
+                    'notes': protocol.notes,
+                }
+                for protocol in protocols_page
+            ],
+            'has_next': protocols_page.has_next(),
+        }
+        return JsonResponse(data)
+    form = ErrorProtocolForm()  
+   
+    context = {
+        'protocols': protocols_page, 
+        'form': form,
+        'search_query': search_query,
+        'has_next': protocols_page.has_next() 
+    }
 
+    return render(request, 'error-protocol.html', context)
 
 class ErrorAddView(CreateView):
     model = ErrorCode

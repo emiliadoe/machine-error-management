@@ -38,6 +38,7 @@ class ErrorCode(models.Model):
 class ErrorProtocol(models.Model):
     class Meta:
         verbose_name = 'Error'
+        ordering = ['-timestamp']
     timestamp = models.DateTimeField(default=timezone.now)  
     error_code = models.ForeignKey('ErrorCode', on_delete=models.CASCADE, related_name='error_protocols') 
     notes = models.TextField(blank=True, null=True) 
