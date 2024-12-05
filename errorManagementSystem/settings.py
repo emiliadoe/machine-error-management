@@ -33,7 +33,8 @@ DEBUG = False
 DEBUG = False
 """
 
-ALLOWED_HOSTS = ['https://machine-error-management.onrender.com', '127.0.0.1', '0.0.0.0']
+#ALLOWED_HOSTS = ['machine-error-management.onrender.com', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
