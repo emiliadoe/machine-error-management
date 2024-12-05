@@ -94,6 +94,9 @@ CSRF_TRUSTED_ORIGINS = [
     'https://machine-error-management.onrender.com',
 ]
 
+CSRF_COOKIE_SECURE = True 
+CSRF_USE_SESSIONS = False 
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
