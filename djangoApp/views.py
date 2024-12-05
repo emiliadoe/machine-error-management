@@ -21,7 +21,7 @@ def home_page(request):
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('home')  
+            return render(request, 'home.html')
     else:
         form = CustomAuthenticationForm()
        
