@@ -10,10 +10,12 @@ from django.contrib import messages
 from django.db.models import Q 
 from django.core.paginator import Paginator
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 
-@cache_page(60 * 5)
+#@cache_page(60 * 5)
+@csrf_protect
 def home_page(request):
     if request.method == "POST":
         form = CustomAuthenticationForm(request, data=request.POST)
