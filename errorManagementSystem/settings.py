@@ -28,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g=@v3$!hzdivkx91o4s81h@#xuor9$@u4*uu*ay14dbaejpfko'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 """ 
 DEBUG = False
 """
 
-ALLOWED_HOSTS = ['machine-error-management.onrender.com', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['https://machine-error-management.onrender.com', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -96,6 +96,9 @@ CSRF_TRUSTED_ORIGINS = [
 
 CSRF_COOKIE_SECURE = True 
 CSRF_USE_SESSIONS = False 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'Lax' 
+SESSION_COOKIE_SAMESITE = 'Lax'
 
 
 # Database
