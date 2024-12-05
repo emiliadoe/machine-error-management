@@ -414,3 +414,13 @@ button > a {
   flex-direction: column;
   gap: 10px;
 }
+
+
+#toggle-filter-btn img{
+  transform: rotate(180deg);
+}
+
+#maschinenbeschreibung .card-body,
+#notizen .card-body{
+  max-width: 700px;
+}

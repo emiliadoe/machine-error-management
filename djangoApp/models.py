@@ -39,10 +39,25 @@ class ErrorProtocol(models.Model):
     class Meta:
         verbose_name = 'Error'
         ordering = ['-timestamp']
+
+    TYPE = [
+        ('Fehler', 'Fehler'),
+        ('Störung', 'Störung'),
+        ('Ausfall', 'Ausfall'), 
+        ('Schaden', 'Schaden'),
+    ]
+
+
     timestamp = models.DateTimeField(default=timezone.now)  
     error_code = models.ForeignKey('ErrorCode', on_delete=models.CASCADE, related_name='error_protocols') 
     notes = models.TextField(blank=True, null=True) 
     machine = models.ForeignKey('Machine', on_delete=models.SET_NULL, null=True, blank=True) 
+    category = models.CharField(
+        blank=True,
+        choices=TYPE,
+        max_length=15,
+        default='Fehler'
+          )
     
     def save(self, *args, **kwargs):
         if not self.machine and self.error_code:

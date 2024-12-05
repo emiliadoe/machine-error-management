@@ -33,20 +33,17 @@ nav ul {
     }
     a:hover,
     a:active {
-      color: var(--oxford-blue);
+      color: var(--light-color);
       text-decoration: none;
       transition: color 0.3s ease;
     }
   }
 }
 
-.plus {
-  margin-top: 4px !important;
-}
-
 .navbar-right {
   display: flex;
   margin-left: auto;
+  margin-right: 30px;
 }
 
 .navbar-right li {
@@ -54,18 +51,22 @@ nav ul {
   margin-left: 0px;
 }
 
-.p-login{
+.p-login {
   align-self: center;
   padding-right: 30px;
   margin-bottom: unset;
+  color: var(--light-color);
 }
 
 #navbar2 {
   all: unset !important;
-  margin: 0 30px !important;
+  margin: 0 15px;
+  margin-top: 13px !important;
   #dropdown2 {
     top: 70px;
     left: unset;
+    margin: unset !important;
+    right: 0px;
   }
 }
 
@@ -75,8 +76,9 @@ nav ul {
 }
 
 #dropdown3 {
+  margin: 15px;
   left: unset;
-  right: 0px;
+  right: -70px;
 }
 
 #arrow > a {
@@ -142,7 +144,7 @@ nav ul {
 
   .description {
     font-size: 16px;
-    color: grey;
+    color: var(--marine-blue);
   }
   a:hover {
     text-decoration: none;
@@ -166,9 +168,11 @@ nav ul {
 .modal-alert {
   font-size: 14px;
   color: darkred;
+  margin-bottom: 1rem;
 }
 .modal-description p {
   font-size: 40px;
+  margin-top: 1rem;
 }
 
 .modal-title p {
@@ -176,29 +180,58 @@ nav ul {
 }
 
 .modal-solution p {
-  font-weight: bold;
   font-size: 22px;
 }
 
-.h2-searchbar-error {
-  margin-bottom: 20px;
-  font-size: 3vw;
-  color: var(--caribean-blue);
-}
-
-.grid-layout {
-  display: flex;
-  width: 60%;
-}
-
 .column1 {
-  flex: 50%;
+  display: flex;
 }
 
-.column2 {
-  flex: 50%;
+.columns {
+  display: flex;
+  margin-top: 50px;
+}
+
+.column2,
+.container {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
+  .search-button {
+    border: none;
+    padding: 10px 20px;
+    background: white;
+    color: var(--dark-blue);
+    width: 60px;
+    &:active {
+      background-color: white;
+      color: var(--dark-blue);
+    }
+  }
+  .input-group {
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    height: 52px;
+  }
+  .input-style {
+    border: none;
+    padding-left: 20px;
+    width: 580px;
+    &:active {
+      border: none;
+    }
+  }
+}
+
+.container {
+  flex-direction: row !important;
+  justify-content: center;
+}
+
+.search-bar .form-control {
+  border: none;
+  padding-left: 20px;
 }
 
 button.errorcode {
@@ -206,15 +239,21 @@ button.errorcode {
   margin-bottom: 15px;
   text-align: left;
   white-space: normal;
-  background-color: var(--caribean-blue);
+  background-color: unset;
   border-color: var(--caribean-blue);
-  color: var(--light-color);
+  color: var(--caribean-blue);
   font-size: 18px;
+  height: 52px;
   &:hover {
     background-color: var(--caribean-blue);
     border-color: var(--caribean-blue);
-    opacity: 0.5;
     transition: background-color 0.3s ease;
+    color: var(--light-color);
+  }
+  &:focus {
+    background-color: var(--caribean-blue);
+    border-color: var(--caribean-blue);
+    color: var(--light-color);
   }
 }
 
@@ -229,17 +268,20 @@ button.errorcode {
 
 .headline-machine {
   display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  align-items: center;
   h2 {
     font-size: 4vw;
-    margin-bottom: 30px;
     font-weight: bold;
+    margin-left: 20px;
+    margin-right: 140px;
   }
 }
 
 .image-machine-headline {
-  height: 30px;
+  height: 20px;
   margin-left: 20px;
-  margin-bottom: 5px;
 }
 
 b.description-table {
@@ -252,11 +294,11 @@ img:hover {
   transition: opacity 0.3s ease;
 }
 
-.modal-images{
+.modal-images {
   justify-content: center;
   display: flex;
 }
-.error-image-modal{
+.error-image-modal {
   width: 230px !important;
   height: 300px !important;
   margin-top: 10px;
@@ -270,18 +312,17 @@ img.no-hovering {
   }
 }
 
-
 .description-table:hover {
   color: unset !important;
 }
-
 
 .additional-information {
   width: 180px;
   background-color: var(--marine-blue);
   border-color: var(--marine-blue);
   color: var(--light-color);
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     > a {
       text-decoration: none;
       color: var(--light-color) !important;
@@ -307,10 +348,6 @@ img.no-hovering {
 .link {
   color: var(--light-color) !important;
   cursor: pointer;
-  &:hover,
-  &:active {
-    color: var(--oxford-blue) !important;
-  }
 }
 
 .language-dropdown {
@@ -345,44 +382,6 @@ button > a {
   margin-top: -5px;
 }
 
-.collapsible {
-  cursor: pointer;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
-
-.collapsible-content {
-  padding: 0 15px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-
-.active,
-.collapsible:hover {
-  background-color: #555;
-  color: white;
-}
-
-.card-body {
-  height: fit-content;
-  overflow-y: auto;
-  padding: 12px;
-  width: 280px;
-  font-size: 18px;
-}
-
-.card-header {
-  width: 280px;
-  padding: unset;
-  width: 100%;
-  height: 100%;
-}
-
 .description-table {
   background-color: unset;
   width: 280px;
@@ -398,6 +397,30 @@ button > a {
   margin-bottom: 20px;
 }
 
-.btn-danger{
+.btn-danger {
   border-radius: 10px !important;
+}
+
+.card-body {
+  margin-top: 50px;
+}
+
+.form-control.input {
+  height: 52px;
+}
+
+.container-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+#toggle-filter-btn img{
+  transform: rotate(180deg);
+}
+
+#maschinenbeschreibung .card-body,
+#notizen .card-body{
+  max-width: 700px;
 }

@@ -112,7 +112,8 @@ select#id_machine,
 input#id_error_code,
 input#id_error_description,
 input#id_solution,
-input#id_images {
+input#id_images,
+select#id_category{
   height: 50px;
   display: flex;
   border-radius: 10px;
@@ -207,7 +208,8 @@ label[for="id_notes"] {
   margin-right: 44px;
 }
 
-label[for="id_error_code"] {
+label[for="id_error_code"],
+label[for="id_category"]{
   margin-right: 10px;
   font-weight: 700;
 }
@@ -238,11 +240,6 @@ li {
   background-color: var(--light-color);
   position: absolute;
   bottom: -18px;
-}
-
-.description-table.collapsed img {
-  transform: rotate(180deg);
-  transition: transform 0.3s ease;
 }
 
 label[for="id_username"],
@@ -380,4 +377,9 @@ button {
     background-color: var(--caribean-blue);
     color: var(--light-color);
   }
+}
+
+.description-table.collapsed img {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
 }

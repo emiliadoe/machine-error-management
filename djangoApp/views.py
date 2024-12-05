@@ -114,12 +114,40 @@ class MachineAddView(CreateView):
     model = Machine
     form_class = MachineForm
     template_name = 'add_machine.html'
-    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, 'Maschine wurde erfolgreich hinzugefügt! ')
-        return response
+        self.object = form.save()
+        messages.success(self.request, 'Maschine wurde erfolgreich hinzugefügt!')
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('home') 
+
+
+class MachineEditView(UpdateView):
+    model = Machine
+    form_class = MachineForm
+    template_name = 'edit_details.html'
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, 'Maschine wurde erfolgreich bearbeitet!')
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('machine_detail', kwargs={'pk': self.object.pk}) 
+
+
+def delete_machine(request, pk):
+    if request.method == 'POST':
+        machine = get_object_or_404(Machine, pk=pk)
+        machine.delete()
+        messages.success(request, "Maschine wurde erfolgreich gelöscht!")
+        return redirect('home') 
+    else:
+        return HttpResponseForbidden("Ungültige Anfrage. Nur POST-Anfragen erlaubt.")
+
+
 
 class ProtocollView(CreateView):
     model = ErrorProtocol
@@ -131,25 +159,5 @@ class ProtocollView(CreateView):
         response = super().form_valid(form)
         messages.success(self.request, 'Fehler wurde erfolgreich zum Protokoll hinzugefügt! ')
         return response
-
-class MachineEditView(UpdateView):
-    model = Machine
-    form_class = MachineForm
-    template_name = 'edit_details.html'
-    def get_success_url(self):
-        return reverse('machine_detail', kwargs={'pk': self.object.pk})
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, 'Maschine wurde erfolgreich bearbeitet! ')
-        return response
-    
-def delete_machine(request, pk):
-    if request.method == 'POST': 
-        machine = get_object_or_404(Machine, pk=pk)
-        machine.delete()  
-        messages.success(request, "Maschine wurde erfolgreich gelöscht!")
-        return redirect('home') 
-    else:
-        return HttpResponseForbidden("Ungültige Anfrage. Nur POST-Anfragen erlaubt.")
+ 
 

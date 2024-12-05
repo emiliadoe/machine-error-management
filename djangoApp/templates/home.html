@@ -10,9 +10,21 @@
     <br />
     {% if messages %}
     {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+    <div class="message alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
       {{ message }}
     </div>
+    <script>
+      const message = document.querySelector('.message');
+      console.log(message)
+  
+  if (message) {
+      setTimeout(() => {
+          message.style.transition = 'opacity 0.5s';
+          message.style.opacity = 0;
+          setTimeout(() => message.remove(), 500);  
+      }, 5000); 
+  }
+  </script>
     {% endfor %}
     {% endif %}
 
@@ -39,6 +51,7 @@
     <div class="spinner-border home-spinner hidden" role="status">
       <span class="sr-only">Loading...</span>
     </div>
+
 
     {% if results %}
     <section class="machines">

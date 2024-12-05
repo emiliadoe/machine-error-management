@@ -35,17 +35,19 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                const filterDiv = document.getElementById("filter");
-                const toggleButton = document.getElementById("toggle-filter-btn");
-
+                const filterDiv = document.getElementById('filter')
+                const toggleButton = document.getElementById('toggle-filter-btn')
+                const image = toggleButton.querySelector('img');
                 toggleButton.addEventListener("click", function () {
                     if (filterDiv.style.display === "none") {
-                        filterDiv.style.display = "flex";
+                        filterDiv.style.display = "flex"
+                        image.style.transform = "rotate(180deg)"
                     } else {
                         filterDiv.style.display = "none";
+                        image.style.transform = "rotate(180deg)"
                     }
-                });
-            });
+                })
+            })
         </script>
 
         <section class="machines max-main">
@@ -56,6 +58,7 @@
                         <p><strong>{{ protocol.timestamp }}</strong></p>
                         <p><strong>Maschine:</strong> {{ protocol.machine }}</p>
                         <p><strong>Fehler Code:</strong> {{ protocol.error_code }}</p>
+                        <p><strong>Fehlergrad:</strong> {{ protocol.category }}</p>
                         <p><strong>Notizen:</strong> {{ protocol.notes }}</p>
                     </div>
                     {% endfor %}

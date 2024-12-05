@@ -12,6 +12,13 @@
         <p>Bearbeiten</p>
       </a>
     </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
     <!-- Navigation Tabs -->
     <ul class="nav nav-tabs" id="mainNav" role="tablist">
       <li class="nav-item navigation">
@@ -35,7 +42,6 @@
           aria-selected="false">Bilder & Videos</a>
       </li>
     </ul>
-
     <div class="tab-content" id="mainNavContent">
       <div class="tab-pane fade" id="maschinenbeschreibung" role="tabpanel" aria-labelledby="maschinentab">
         <div class="card-body">
@@ -46,26 +52,31 @@
       <div class="tab-pane fade" id="notizen" role="tabpanel" aria-labelledby="pdftab">
         <div class="card-body">
           {% if single_machine.notes %}
-          {{ single_machine.notes }}
+          <span id="notes">{{ single_machine.notes }}</span>
           {% else %}
           <p>Keine weiteren Notizen</p>
           {% endif %}
         </div>
       </div>
 
+    <script> 
+      const notes = document.getElementById('notes');
+      if (notes) {
+        const urlPattern = /^(https?:\/\/|www\.)[^\s]+$/i;
+        if (urlPattern.test(notes.textContent)) {
+          notes.innerHTML = `<a href="${notes.textContent}" target="_blank">${notes.textContent}</a>`;
+        }
+      }
+    </script>
 
       <div class="tab-pane fade" id="pdf" role="tabpanel" aria-labelledby="maschinentab">
         <div class="card-body">
-          <p>
             {% if single_machine.documents %}
-            <button class="additional-information btn btn-info btn-lg ">
-              <a href="{{ single_machine.documents.url }}">PDF anschauen</a></button><br />
+              <iframe src="{{ single_machine.documents.url }}" width="500px" height="700px"></iframe>
+      </div>
             {% else %}
             <button class="btn btn-info" disabled>Keine PDF vorhanden</button><br />{% endif %}
-          </p>
-
         </div>
-      </div>
 
 
       <div class="tab-pane fade" id="bilder" role="tabpanel" aria-labelledby="bildertab">
@@ -138,7 +149,7 @@
               </div>
 
             </div>
-
+          </div>
             <!-- Modal for error Codes-->
             <div id="errorModal" class="modal fade" role="dialog">
               <div class="modal-dialog">

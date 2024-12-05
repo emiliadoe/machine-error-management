@@ -13,21 +13,14 @@ class MachineForm(forms.ModelForm):
         options={
             'resource_type': 'raw',
             'folder': 'machine_documents'
-        }
+        },
+        required= False
     )
     class Meta:
         model = Machine
         fields = ['name', 'description','notes', 'documents','image']
 
-    def clean_documents(self):
-        document = self.cleaned_data.get('documents')
-        if document:
-            if not document.url.endswith('.pdf'):
-                raise ValidationError('Die Datei muss im PDF-Format vorliegen.')
-            if document.size > MAX_FILE_SIZE:
-                raise ValidationError('Die Datei ist zu groß.')
 
-        return document
 
 class ErrorCodeForm(forms.ModelForm):
     class Meta:
@@ -37,7 +30,7 @@ class ErrorCodeForm(forms.ModelForm):
 class ErrorProtocolForm(forms.ModelForm):
     class Meta:
         model = ErrorProtocol
-        fields = [ 'error_code', 'notes']
+        fields = [ 'error_code', 'category', 'notes']
 
 class CustomAuthenticationForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
