@@ -93,7 +93,6 @@ WSGI_APPLICATION = 'errorManagementSystem.wsgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://machine-error-management.onrender.com',
-    '*'
 ]
 
 CSRF_COOKIE_SECURE = True 
