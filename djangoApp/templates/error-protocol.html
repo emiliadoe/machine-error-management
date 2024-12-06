@@ -41,7 +41,7 @@
                 toggleButton.addEventListener("click", function () {
                     if (filterDiv.style.display === "none") {
                         filterDiv.style.display = "flex"
-                        image.style.transform = "rotate(180deg)"
+                        image.style.transform = "rotate(0deg)";
                     } else {
                         filterDiv.style.display = "none";
                         image.style.transform = "rotate(180deg)"
@@ -113,7 +113,6 @@
                 if (button) {
                     button.addEventListener('click', function () {
                         if (textElement) textElement.style.display = 'none';
-                        console.log(textElement)
                         if (spinner) {
                             spinner.classList.remove('hidden');
                             spinner.style.display = 'inline-block';
