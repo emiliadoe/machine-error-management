@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
-from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm, CustomAuthenticationForm, LogFilterForm
-from .models import Machine, ErrorCode, ErrorProtocol
+from .forms import MachineForm, ErrorCodeForm, ErrorProtocolForm, CustomAuthenticationForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, CreateView
 from django.contrib import messages
@@ -11,6 +10,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
+from .models import Machine, ErrorCode, ErrorProtocol
 
 # Create your views here.
 

@@ -272,7 +272,7 @@ button.errorcode {
   margin-bottom: 30px;
   align-items: center;
   h2 {
-    font-size: 4vw;
+    font-size: 44px;
     font-weight: bold;
     margin-left: 20px;
     margin-right: 140px;
@@ -282,11 +282,6 @@ button.errorcode {
 .image-machine-headline {
   height: 20px;
   margin-left: 20px;
-}
-
-b.description-table {
-  font-size: 3vw;
-  font-weight: normal;
 }
 
 img:hover {

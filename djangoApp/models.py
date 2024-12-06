@@ -47,7 +47,6 @@ class ErrorProtocol(models.Model):
         ('Schaden', 'Schaden'),
     ]
 
-
     timestamp = models.DateTimeField(default=timezone.now)  
     error_code = models.ForeignKey('ErrorCode', on_delete=models.CASCADE, related_name='error_protocols') 
     notes = models.TextField(blank=True, null=True) 

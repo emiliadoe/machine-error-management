@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
+import cloudinary
 
 # Lade die .env-Datei
 load_dotenv()
@@ -30,7 +32,7 @@ SECRET_KEY = 'django-insecure-g=@v3$!hzdivkx91o4s81h@#xuor9$@u4*uu*ay14dbaejpfko
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 """ 
-DEBUG = False
+DEBUG = True
 """
 
 #ALLOWED_HOSTS = ['machine-error-management.onrender.com', '127.0.0.1', '0.0.0.0']
@@ -106,8 +108,6 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-import dj_database_url
-
 database_url = os.getenv('DB_DATA')
 if not database_url:
     print("Warning: DATABASE_URL is not set. Using a local database as fallback.")
@@ -160,9 +160,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = 'de'
-
 TIME_ZONE = 'UTC'
-
 USE_TZ = True
 USE_I18N = True
 USE_L10N = True
@@ -205,8 +203,6 @@ LOGOUT_REDIRECT_URL = '/'
 #    'API_SECRET': os.getenv('CLOUD_API_SECRET'),
 #}
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-import cloudinary
 
 cloudinary.config(
     cloud_name=os.getenv('CLOUD_NAME'),

@@ -16,7 +16,7 @@ html {
 
 body {
   font-family: Helvetica;
-  font-size: 1.5vw;
+  font-size: 22px;
   color: var(--dark-blue);
   background-color: var(--light-color);
   padding: 0;
@@ -52,7 +52,7 @@ main > h2 {
 }
 
 h1 {
-  font-size: 4vw;
+  font-size: 48px;
   font-weight: bold;
 }
 
@@ -61,7 +61,7 @@ p {
 }
 
 p.headline {
-  font-size: 2vw;
+  font-size: 30px;
 }
 
 .button-style {
