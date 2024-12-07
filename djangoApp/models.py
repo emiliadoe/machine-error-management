@@ -14,6 +14,9 @@ class Machine(models.Model):
     documents = CloudinaryField('documents', blank=True, null=True, folder="machine_documents")
     image = CloudinaryField('image', blank=True, null=True, folder="machine_images")
 
+    def secure_url(self):
+        return self.documents.url.replace('http://', 'https://')
+
     def __str__(self):
         return self.name
 
