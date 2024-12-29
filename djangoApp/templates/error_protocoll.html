@@ -16,14 +16,14 @@
     </form>
   </main>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const button = document.querySelector('.submit-button')
-  const spinner = document.querySelector('.spinner-border')
-  button.addEventListener('click', function (event) {
-      spinner.classList.remove("hidden")
-    })
-});
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const button = document.querySelector('.submit-button')
+      const spinner = document.querySelector('.spinner-border')
+      button.addEventListener('click', function (event) {
+        spinner.classList.remove("hidden")
+      })
+    });
+  </script>
   {% endif %} {% endblock %}
 </body>

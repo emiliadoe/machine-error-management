@@ -7,22 +7,22 @@
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}
       <div class="error-add">
-        <button class="button-style submit-button" type="submit">Hinzufügen</button>    
+        <button class="button-style submit-button" type="submit">Hinzufügen</button>
         <div class="spinner-border hidden" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
     </form>
-    </main>
-    
-    <script>
+  </main>
+
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
-    const button = document.querySelector('.submit-button')
-    const spinner = document.querySelector('.spinner-border')
-    button.addEventListener('click', function (event) {
-      spinner.classList.remove("hidden")
-    })
+      const button = document.querySelector('.submit-button')
+      const spinner = document.querySelector('.spinner-border')
+      button.addEventListener('click', function (event) {
+        spinner.classList.remove("hidden")
+      })
     });
-    </script>
+  </script>
   {% endif %} {% endblock %}
 </body>

@@ -74,7 +74,7 @@ p.headline {
   padding: 5px;
 }
 
-.btn-outline-danger{
+.btn-outline-danger {
   border-radius: 10px;
 }
 
@@ -113,7 +113,7 @@ input#id_error_code,
 input#id_error_description,
 input#id_solution,
 input#id_images,
-select#id_category{
+select#id_category {
   height: 50px;
   display: flex;
   border-radius: 10px;
@@ -209,7 +209,7 @@ label[for="id_notes"] {
 }
 
 label[for="id_error_code"],
-label[for="id_category"]{
+label[for="id_category"] {
   margin-right: 10px;
   font-weight: 700;
 }
@@ -327,6 +327,7 @@ label[for="id_password"] {
   border: solid 2px var(--dark-blue);
   padding: 16px;
   margin-bottom: 20px;
+  background: hsla(230, 39%, 34%, 0.2);
 }
 
 .protocol-h1 {

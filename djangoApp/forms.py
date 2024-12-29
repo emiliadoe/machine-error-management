@@ -4,8 +4,6 @@ from cloudinary.forms import CloudinaryFileField
 from django.contrib.auth.forms import AuthenticationForm
 
 
-MAX_FILE_SIZE = 100 * 1024 * 1024  # 100MB
-
 class MachineForm(forms.ModelForm):
     documents = CloudinaryFileField(
         options={

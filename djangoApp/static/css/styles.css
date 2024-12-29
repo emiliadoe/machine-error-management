@@ -362,30 +362,9 @@ button > a {
   cursor: pointer;
 }
 
-#errorProtocolModal .modal-dialog {
-  width: 600px;
-  max-width: 100%;
-}
-
-#errorProtocolModal .modal-content {
-  height: 500px;
-  overflow-y: auto;
-}
-
 .adding-error {
   margin-left: 80px;
   margin-top: -5px;
-}
-
-.description-table {
-  background-color: unset;
-  width: 280px;
-  display: flex;
-  margin: auto;
-  > img {
-    margin-left: auto;
-    margin-right: 1px;
-  }
 }
 
 .second {
@@ -410,12 +389,11 @@ button > a {
   gap: 10px;
 }
 
-
-#toggle-filter-btn img{
+#toggle-filter-btn img {
   transform: rotate(180deg);
 }
 
 #maschinenbeschreibung .card-body,
-#notizen .card-body{
+#notizen .card-body {
   max-width: 700px;
 }

@@ -16,7 +16,6 @@ from dotenv import load_dotenv
 import dj_database_url
 import cloudinary
 
-# Lade die .env-Datei
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g=@v3$!hzdivkx91o4s81h@#xuor9$@u4*uu*ay14dbaejpfko'
+SECRET_KEY =  os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -85,7 +84,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-               # 'djangoApp.context_processor.global_data', 
             ],
         },
     },
@@ -107,7 +105,6 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
 database_url = os.getenv('DB_DATA')
 if not database_url:
     print("Warning: DATABASE_URL is not set. Using a local database as fallback.")
@@ -116,17 +113,6 @@ if not database_url:
 DATABASES = {
     'default': dj_database_url.config(default=database_url)
 }
-
-""" DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME':  'manage-errors',
-         'USER': os.getenv('DB_USER'),
-         'PASSWORD': os.getenv('DB_PASSWORD'),
-         'PORT': '5432',
-         'HOST': 'localhost'
-     }
- } """
 
 #DATABASES = {
 #    'default': {
@@ -174,9 +160,7 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
 
@@ -188,20 +172,12 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "home" 
 LOGOUT_REDIRECT_URL = "home" 
 LOGOUT_REDIRECT_URL = '/'  
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-#    'API_KEY': os.getenv('API_KEY'),
-#    'API_SECRET': os.getenv('CLOUD_API_SECRET'),
-#}
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 cloudinary.config(

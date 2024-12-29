@@ -40,10 +40,10 @@ msgid "Notizen"
 msgstr "Notes"
 
 msgid "weitere Anlagen"
-msgstr "Addtional Information"
+msgstr "Additional Information"
 
 msgid "Fehlerprotokoll"
-msgstr "error log"
+msgstr "Error Log"
 
 msgid "Bilder/ Videos"
 msgstr "Images/ Videos"
@@ -53,19 +53,19 @@ msgid "Lösungsansätze"
 msgstr "Solutions"
 
 msgid "Vergangene Fehler"
-msgstr "past errors"
+msgstr "Past Errors"
 
 msgid "Schließen"
 msgstr "Close"
 
 msgid "Bilder oder Videos der Maschine"
-msgstr "Images or videos of the machine"
+msgstr "Images or Videos of the machine"
 
 msgid "Maschine hinzufügen"
-msgstr "Adding new Machine"
+msgstr "Adding a new Machine"
 
 msgid "Fehlercode hinzufügen"
-msgstr "Adding new error code"
+msgstr "Adding a new errorCode"
 
 msgid "Maschinendaten bearbeiten"
 msgstr "Changing machine data"

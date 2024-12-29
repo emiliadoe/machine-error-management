@@ -20,4 +20,29 @@ msgstr ""
 "1 : 2;\n"
 #: .\djangoApp\templates\home.html:12
 msgid "Maschinensuche"
-msgstr ""
+msgstr "Búsqueda de máquinas"
+
+msgid "Suchergebnisse"
+msgstr "Resultados"
+
+msgid "Suche"
+msgstr "Buscar"
+
+msgid "Keine Ergebnisse gefunden."
+msgstr "No se encontraron resultados."
+
+msgid "Maschinenübersicht"
+msgstr "Vista general"
+
+msgid "Beschreibung"
+msgstr "Descripción"
+
+msgid "Notizen"
+msgstr "Notas"
+
+msgid "weitere Anlagen"
+msgstr "Información adicional"
+
+msgid "Fehlerprotokoll"
+msgstr "Registro de errores"
+

@@ -272,7 +272,7 @@ button.errorcode {
   margin-bottom: 30px;
   align-items: center;
   h2 {
-    font-size: 4vw;
+    font-size: 44px;
     font-weight: bold;
     margin-left: 20px;
     margin-right: 140px;
@@ -282,11 +282,6 @@ button.errorcode {
 .image-machine-headline {
   height: 20px;
   margin-left: 20px;
-}
-
-b.description-table {
-  font-size: 3vw;
-  font-weight: normal;
 }
 
 img:hover {
@@ -367,30 +362,9 @@ button > a {
   cursor: pointer;
 }
 
-#errorProtocolModal .modal-dialog {
-  width: 600px;
-  max-width: 100%;
-}
-
-#errorProtocolModal .modal-content {
-  height: 500px;
-  overflow-y: auto;
-}
-
 .adding-error {
   margin-left: 80px;
   margin-top: -5px;
-}
-
-.description-table {
-  background-color: unset;
-  width: 280px;
-  display: flex;
-  margin: auto;
-  > img {
-    margin-left: auto;
-    margin-right: 1px;
-  }
 }
 
 .second {
@@ -415,12 +389,11 @@ button > a {
   gap: 10px;
 }
 
-
-#toggle-filter-btn img{
+#toggle-filter-btn img {
   transform: rotate(180deg);
 }
 
 #maschinenbeschreibung .card-body,
-#notizen .card-body{
+#notizen .card-body {
   max-width: 700px;
 }

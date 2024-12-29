@@ -58,7 +58,7 @@ def machine_detail(request, pk=None):
     
     return render(request, 'machine_detail.html', context)
 
-@cache_page(60 * 10)
+
 def error_protocol_details(request):
     search_query = request.GET.get('q', '').lower()
     page_number = request.GET.get('page', 1) 
@@ -156,10 +156,10 @@ class ProtocollView(CreateView):
     form_class = ErrorProtocolForm
     template_name = 'error_protocoll.html'
     success_url = reverse_lazy('home')
-
+    
     def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, 'Fehler wurde erfolgreich zum Protokoll hinzugefügt! ')
-        return response
+        super().form_valid(form)
+        messages.success(self.request, 'Fehler wurde erfolgreich zum Protokoll hinzugefügt!')
+        return redirect('error_protocol_details')
  
 
